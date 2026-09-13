@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="description" content="Coco Travel 当前行程入口。" />
+  <meta name="description" content="Coco Travel 当前行程与全部行程入口。" />
   <meta name="theme-color" content="#0076c9" />
   <title>Coco Travel</title>
   <link rel="icon" href="./assets/favicon.ico" sizes="any" />
@@ -18,11 +18,15 @@
       --text: #20303a;
       --muted: #60717b;
       --line: #d7e5eb;
+      --line-strong: #b8d1dc;
       --accent: #0076c9;
       --accent-strong: #005891;
+      --accent-soft: #e5f4ff;
       --warm: #f28c18;
-      --shadow: 0 18px 46px rgba(21, 57, 77, .12);
+      --warm-soft: #fff2df;
+      --shadow: 0 14px 34px rgba(21, 57, 77, .10);
       --radius: 18px;
+      --radius-sm: 12px;
       color-scheme: light dark;
       font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
     }
@@ -35,10 +39,13 @@
         --text: #edf7fb;
         --muted: #afc2cb;
         --line: #2a424e;
+        --line-strong: #3d5a68;
         --accent: #5db9f3;
         --accent-strong: #94d4ff;
+        --accent-soft: #143140;
         --warm: #ffb257;
-        --shadow: 0 18px 46px rgba(0, 0, 0, .28);
+        --warm-soft: #3a2714;
+        --shadow: 0 14px 34px rgba(0, 0, 0, .24);
       }
     }
 
@@ -61,8 +68,8 @@
       min-height: 100dvh;
       color: var(--text);
       background:
-        radial-gradient(circle at 12% 0%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 28rem),
-        radial-gradient(circle at 94% 6%, color-mix(in srgb, var(--warm) 18%, transparent), transparent 22rem),
+        radial-gradient(circle at 12% 0%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 26rem),
+        radial-gradient(circle at 94% 6%, color-mix(in srgb, var(--warm) 16%, transparent), transparent 22rem),
         linear-gradient(180deg, var(--bg), var(--surface-strong));
       font-size: 16px;
       line-height: 1.5;
@@ -70,15 +77,16 @@
     }
 
     a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; }
 
     .page {
-      width: min(100%, 720px);
+      width: min(100%, 760px);
       min-height: 100dvh;
       margin: 0 auto;
       padding: max(16px, env(safe-area-inset-top)) clamp(16px, 5vw, 32px) max(28px, env(safe-area-inset-bottom));
       display: grid;
-      grid-template-rows: auto 1fr;
-      gap: clamp(42px, 10vh, 96px);
+      align-content: start;
+      gap: 18px;
     }
 
     .topbar {
@@ -104,76 +112,226 @@
       box-shadow: 0 10px 24px color-mix(in srgb, var(--accent) 24%, transparent);
     }
 
-    .home {
-      align-self: start;
-      display: grid;
-      gap: 14px;
+    .nav-link {
+      min-height: 42px;
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0 13px;
+      background: color-mix(in srgb, var(--surface) 80%, transparent);
+      color: var(--muted);
+      font-size: .88rem;
+      font-weight: 760;
     }
 
-    .label {
+    .current {
+      display: grid;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .section-title {
       margin: 0;
       color: var(--muted);
       font-size: .92rem;
       font-weight: 780;
     }
 
-    .trip-link {
+    .current-link {
       position: relative;
-      min-height: 76px;
+      min-height: 72px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 18px;
+      gap: 16px;
       border: 1px solid var(--line);
       border-radius: var(--radius);
-      padding: 16px 17px 16px 18px;
-      background:
-        linear-gradient(90deg, color-mix(in srgb, var(--surface) 94%, transparent), color-mix(in srgb, var(--surface) 78%, transparent)),
-        linear-gradient(90deg, var(--accent), var(--warm));
+      padding: 15px 16px 15px 18px;
+      background: var(--surface);
       box-shadow: var(--shadow);
+      overflow: hidden;
       transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
     }
 
-    .trip-link::before {
+    .current-link::before {
       content: "";
       position: absolute;
       inset: 0 auto 0 0;
       width: 6px;
-      border-radius: var(--radius) 0 0 var(--radius);
       background: linear-gradient(180deg, var(--accent), var(--warm));
     }
 
-    .trip-link:hover {
+    .current-link:hover,
+    .trip-row:hover {
       transform: translateY(-2px);
       border-color: color-mix(in srgb, var(--accent) 34%, var(--line));
-      box-shadow: 0 22px 54px rgba(21, 57, 77, .16);
+      box-shadow: 0 18px 42px rgba(21, 57, 77, .14);
     }
 
-    .trip-link:active {
+    .current-link:active,
+    .trip-row:active {
       transform: scale(.985);
     }
 
-    .trip-name {
+    .current-name {
       min-width: 0;
       padding-left: 4px;
-      font-size: clamp(1.42rem, 8vw, 2.55rem);
-      line-height: 1.05;
+      font-size: clamp(1.35rem, 7vw, 2.35rem);
+      line-height: 1.06;
       font-weight: 920;
-      letter-spacing: 0;
     }
 
     .arrow {
-      width: 42px;
-      height: 42px;
+      width: 40px;
+      height: 40px;
       flex: 0 0 auto;
       border-radius: 999px;
       display: grid;
       place-items: center;
       color: #f7fbfd;
       background: var(--accent-strong);
-      font-size: 1.4rem;
+      font-size: 1.35rem;
       line-height: 1;
     }
+
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      margin-top: 8px;
+      padding: 8px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: color-mix(in srgb, var(--surface) 88%, transparent);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow);
+    }
+
+    .search-wrap {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 8px;
+      min-height: 48px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0 7px 0 14px;
+      background: var(--surface);
+    }
+
+    .search-wrap input {
+      min-width: 0;
+      width: 100%;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: var(--text);
+      font-size: 1rem;
+    }
+
+    .search-wrap input::placeholder {
+      color: color-mix(in srgb, var(--muted) 78%, transparent);
+    }
+
+    .clear-btn {
+      width: 36px;
+      height: 36px;
+      border: 0;
+      border-radius: 999px;
+      display: none;
+      place-items: center;
+      color: var(--muted);
+      background: var(--surface-strong);
+      cursor: pointer;
+    }
+
+    .clear-btn.show { display: grid; }
+
+    .all-trips {
+      display: grid;
+      gap: 10px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: 1.18rem;
+      line-height: 1.2;
+    }
+
+    .result-copy {
+      margin: 0;
+      color: var(--muted);
+      font-size: .86rem;
+      font-weight: 720;
+    }
+
+    .trip-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .trip-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 12px;
+      min-height: 62px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 12px 13px;
+      background: color-mix(in srgb, var(--surface) 92%, transparent);
+      transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+    }
+
+    .trip-row strong {
+      display: block;
+      font-size: 1.04rem;
+      line-height: 1.25;
+    }
+
+    .trip-row span {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: .84rem;
+      line-height: 1.35;
+    }
+
+    .trip-tag {
+      min-height: 30px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 0 9px;
+      background: var(--warm-soft);
+      color: color-mix(in srgb, var(--warm) 70%, var(--text));
+      font-size: .78rem;
+      font-weight: 840;
+      white-space: nowrap;
+    }
+
+    .empty {
+      display: none;
+      border: 1px dashed var(--line-strong);
+      border-radius: var(--radius-sm);
+      padding: 18px 14px;
+      background: color-mix(in srgb, var(--surface) 80%, transparent);
+      color: var(--muted);
+      text-align: center;
+      font-size: .92rem;
+    }
+
+    .empty.show { display: block; }
 
     @media (max-width: 430px) {
       body { font-size: 15px; }
@@ -181,7 +339,7 @@
       .page {
         padding-left: 14px;
         padding-right: 14px;
-        gap: 34px;
+        gap: 16px;
       }
 
       .topbar {
@@ -193,15 +351,31 @@
         height: 36px;
       }
 
-      .trip-link {
-        min-height: 68px;
-        padding: 14px 14px 14px 16px;
-        gap: 12px;
+      .nav-link {
+        display: none;
+      }
+
+      .current-link {
+        min-height: 66px;
+        padding: 14px;
       }
 
       .arrow {
         width: 38px;
         height: 38px;
+      }
+
+      .section-head {
+        display: grid;
+        gap: 3px;
+      }
+
+      .trip-row {
+        grid-template-columns: 1fr;
+      }
+
+      .trip-tag {
+        width: fit-content;
       }
     }
 
@@ -222,15 +396,88 @@
         <img src="./assets/icon-192.png" alt="" width="38" height="38" />
         <span>Coco Travel</span>
       </a>
+      <a class="nav-link" href="#all-trips">全部行程</a>
     </header>
 
-    <section class="home" aria-labelledby="current-title">
-      <p class="label" id="current-title">即将进行或正在进行</p>
-      <a class="trip-link" href="./jeju_olle_itinerary_2026-09-20_to_2026-09-30.html" aria-label="打开 2026-09 济州岛行程">
-        <span class="trip-name">2026-09 济州岛</span>
+    <section class="current" aria-labelledby="current-title">
+      <p class="section-title" id="current-title">即将进行或正在进行</p>
+      <a class="current-link" href="./jeju_olle_itinerary_2026-09-20_to_2026-09-30.html" aria-label="打开 2026-09 济州岛行程">
+        <span class="current-name">2026-09 济州岛</span>
         <span class="arrow" aria-hidden="true">›</span>
       </a>
     </section>
+
+    <section class="toolbar" aria-label="行程搜索">
+      <label class="search-wrap" for="trip-search">
+        <input id="trip-search" type="search" autocomplete="off" placeholder="搜索地点、月份、主题，例如 济州、2026-09、徒步" />
+        <button class="clear-btn" id="clear-search" type="button" aria-label="清空搜索">×</button>
+      </label>
+    </section>
+
+    <section class="all-trips" id="all-trips" aria-labelledby="all-title">
+      <div class="section-head">
+        <h2 id="all-title">全部行程</h2>
+        <p class="result-copy" id="result-copy">目前收录 1 个行程</p>
+      </div>
+      <div class="trip-list" id="trip-list"></div>
+      <div class="empty" id="empty-state" aria-live="polite">没有找到匹配行程，换个关键词试试。</div>
+    </section>
   </main>
+
+  <script>
+    const trips = [
+      {
+        name: "2026-09 济州岛",
+        meta: "2026-09-20 至 2026-09-30 / Olle 徒步",
+        tag: "即将出发",
+        href: "./jeju_olle_itinerary_2026-09-20_to_2026-09-30.html",
+        searchable: "2026-09 济州岛 韩国 济州 Jeju Olle Solo Trip 徒步 购物 地图 西归浦 城山 济州市"
+      }
+    ];
+
+    const list = document.querySelector("#trip-list");
+    const search = document.querySelector("#trip-search");
+    const clear = document.querySelector("#clear-search");
+    const empty = document.querySelector("#empty-state");
+    const resultCopy = document.querySelector("#result-copy");
+
+    function renderTrips(query = "") {
+      const normalized = query.trim().toLowerCase();
+      const filtered = trips.filter((trip) => {
+        if (!normalized) return true;
+        return trip.searchable.toLowerCase().includes(normalized);
+      });
+
+      list.innerHTML = filtered.map((trip) => `
+        <a class="trip-row" href="${trip.href}" data-search="${trip.searchable.toLowerCase()}">
+          <span>
+            <strong>${trip.name}</strong>
+            <span>${trip.meta}</span>
+          </span>
+          <span class="trip-tag">${trip.tag}</span>
+        </a>
+      `).join("");
+
+      empty.classList.toggle("show", filtered.length === 0);
+      clear.classList.toggle("show", normalized.length > 0);
+
+      if (normalized && filtered.length) {
+        resultCopy.textContent = `找到 ${filtered.length} 个匹配行程`;
+      } else if (normalized) {
+        resultCopy.textContent = "没有匹配行程";
+      } else {
+        resultCopy.textContent = `目前收录 ${trips.length} 个行程`;
+      }
+    }
+
+    search.addEventListener("input", (event) => renderTrips(event.target.value));
+    clear.addEventListener("click", () => {
+      search.value = "";
+      search.focus();
+      renderTrips("");
+    });
+
+    renderTrips();
+  </script>
 </body>
 </html>
