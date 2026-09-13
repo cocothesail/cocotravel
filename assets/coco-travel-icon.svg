@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Coco Travel icon">
+  <rect width="512" height="512" rx="112" fill="#0076c9"/>
+  <path d="M384 0h128v512H280c62-101 97-208 104-512Z" fill="#f28c18"/>
+  <path d="M112 132c0-18 18-30 34-23l68 29 76-29c8-3 17-3 25 0l55 24c19 8 31 27 31 47v174c0 18-18 30-34 23l-68-29-76 29c-8 3-17 3-25 0l-55-24c-19-8-31-27-31-47V132Z" fill="#fffdf8"/>
+  <path d="M214 139v239M299 110v238" fill="none" stroke="#bdd3df" stroke-width="18" stroke-linecap="round"/>
+  <path d="M154 276c34-58 80-86 136-84 45 2 79 27 107 75" fill="none" stroke="#0076c9" stroke-width="26" stroke-linecap="round"/>
+  <path d="M154 276c19-34 42-57 69-70" fill="none" stroke="#f28c18" stroke-width="26" stroke-linecap="round"/>
+  <circle cx="342" cy="204" r="43" fill="#f28c18"/>
+  <circle cx="342" cy="204" r="16" fill="#fffdf8"/>
+</svg>

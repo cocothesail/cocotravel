@@ -3,7 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0076c9" />
   <title>济州偶来执行版 | 2026-09-20 至 2026-09-30</title>
+  <link rel="icon" href="./assets/favicon.ico" sizes="any" />
+  <link rel="icon" href="./assets/coco-travel-icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png" />
+  <link rel="manifest" href="./site.webmanifest" />
   <style>
     :root {
       --olle-blue: #0076c9;
@@ -31,6 +36,16 @@
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+    ::selection {
+      color: white;
+      background: var(--olle-blue-dark);
+    }
+
+    :focus-visible {
+      outline: 3px solid rgba(242, 140, 24, .72);
+      outline-offset: 4px;
+    }
+
     body {
       margin: 0;
       color: var(--basalt);
@@ -954,7 +969,7 @@
   <main class="page">
     <header class="hero" id="top">
       <div class="hero-top">
-        <div class="brand"><span class="marker"></span> Jeju Olle 2026</div>
+        <a class="brand" href="./" aria-label="返回 Coco Travel 首页"><span class="marker"></span> Jeju Olle 2026</a>
         <div class="hero-actions">
           <a class="icon-link" href="#map" aria-label="查看地图"><svg><use href="#i-map"/></svg></a>
           <a class="icon-link" href="javascript:window.print()" aria-label="打印"><svg><use href="#i-calendar"/></svg></a>

@@ -4,7 +4,12 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="description" content="Coco Travel 行程汇总页，按月份和地点快速查看旅行计划。" />
+  <meta name="theme-color" content="#0076c9" />
   <title>Coco Travel | 行程汇总</title>
+  <link rel="icon" href="./assets/favicon.ico" sizes="any" />
+  <link rel="icon" href="./assets/coco-travel-icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png" />
+  <link rel="manifest" href="./site.webmanifest" />
   <link rel="preconnect" href="https://unpkg.com" />
   <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css" />
   <style>
@@ -22,6 +27,7 @@
       --warm: #f28c18;
       --warm-soft: #fff2df;
       --green: #2f8a5b;
+      --photo-shadow: 0 24px 64px rgba(0, 88, 145, .22);
       --shadow: 0 20px 56px rgba(21, 57, 77, .13);
       --shadow-soft: 0 12px 28px rgba(21, 57, 77, .09);
       --radius: 18px;
@@ -46,6 +52,7 @@
         --warm: #ffb257;
         --warm-soft: #3a2714;
         --green: #78d8a6;
+        --photo-shadow: 0 24px 64px rgba(0, 0, 0, .34);
         --shadow: 0 20px 56px rgba(0, 0, 0, .30);
         --shadow-soft: 0 12px 28px rgba(0, 0, 0, .22);
       }
@@ -53,6 +60,16 @@
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+    ::selection {
+      color: #f7fbfd;
+      background: var(--accent-strong);
+    }
+
+    :focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--warm) 70%, transparent);
+      outline-offset: 4px;
+    }
+
     body {
       margin: 0;
       min-height: 100dvh;
@@ -72,7 +89,7 @@
     .page {
       width: min(100%, 1120px);
       margin: 0 auto;
-      padding: max(16px, env(safe-area-inset-top)) clamp(16px, 4vw, 32px) 44px;
+      padding: max(16px, env(safe-area-inset-top)) clamp(16px, 4vw, 32px) 34px;
     }
 
     .topbar {
@@ -127,6 +144,11 @@
       transition: transform .18s ease, border-color .18s ease, color .18s ease;
     }
 
+    .nav-link:hover {
+      border-color: var(--line-strong);
+      color: var(--text);
+    }
+
     .nav-link:active,
     .trip-card:active,
     .primary-link:active {
@@ -134,18 +156,31 @@
     }
 
     .hero {
+      position: relative;
       display: grid;
-      gap: 22px;
-      align-items: end;
-      min-height: clamp(360px, 72dvh, 620px);
+      grid-template-columns: minmax(0, 1fr) minmax(260px, .78fr);
+      gap: clamp(18px, 4vw, 34px);
+      align-items: center;
+      min-height: clamp(390px, 70dvh, 620px);
       padding: clamp(20px, 5vw, 42px);
       border: 1px solid var(--line);
       border-radius: var(--radius);
       background:
-        linear-gradient(135deg, color-mix(in srgb, var(--surface) 96%, transparent), color-mix(in srgb, var(--accent-soft) 72%, transparent)),
-        url("https://images.unsplash.com/photo-1632302578892-7564cb018d69?auto=format&fit=crop&w=1800&q=82") right bottom / min(720px, 86vw) auto no-repeat;
+        radial-gradient(circle at 78% 8%, color-mix(in srgb, var(--warm) 20%, transparent), transparent 18rem),
+        linear-gradient(135deg, color-mix(in srgb, var(--surface) 96%, transparent), color-mix(in srgb, var(--accent-soft) 78%, transparent));
       box-shadow: var(--shadow);
       overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: auto auto 34px clamp(20px, 5vw, 42px);
+      width: min(38vw, 310px);
+      height: 10px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), var(--warm));
+      opacity: .9;
     }
 
     .hero-copy {
@@ -153,6 +188,8 @@
       display: grid;
       gap: 16px;
       align-self: center;
+      position: relative;
+      z-index: 1;
     }
 
     h1 {
@@ -166,7 +203,7 @@
 
     .hero-copy p {
       margin: 0;
-      max-width: 38rem;
+      max-width: 32rem;
       color: var(--muted);
       font-size: clamp(1rem, 3.8vw, 1.18rem);
     }
@@ -203,33 +240,57 @@
       background: color-mix(in srgb, var(--surface) 74%, transparent);
     }
 
-    .stats {
+    .hero-media {
+      position: relative;
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
-      align-self: end;
+      align-self: stretch;
+      min-height: 360px;
+      isolation: isolate;
     }
 
-    .stat {
-      border: 1px solid var(--line);
-      border-radius: var(--radius-sm);
-      padding: 12px;
+    .hero-photo {
+      position: absolute;
+      inset: 0;
+      border-radius: 28px;
+      background: url("https://images.unsplash.com/photo-1632302578892-7564cb018d69?auto=format&fit=crop&w=1000&q=82") center / cover no-repeat;
+      box-shadow: var(--photo-shadow);
+      transform: rotate(2deg);
+      overflow: hidden;
+    }
+
+    .hero-photo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 44%, rgba(0, 88, 145, .68));
+    }
+
+    .hero-ticket {
+      position: absolute;
+      left: -18px;
+      bottom: 26px;
+      z-index: 1;
+      width: min(88%, 310px);
+      border: 1px solid color-mix(in srgb, var(--surface) 65%, transparent);
+      border-radius: 18px;
+      padding: 14px;
       background: color-mix(in srgb, var(--surface) 88%, transparent);
-      backdrop-filter: blur(14px);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow-soft);
     }
 
-    .stat strong {
+    .hero-ticket strong {
       display: block;
-      font-size: 1.35rem;
-      line-height: 1;
+      font-size: 1rem;
+      line-height: 1.2;
     }
 
-    .stat span {
+    .hero-ticket span {
       display: block;
       margin-top: 5px;
       color: var(--muted);
-      font-size: .82rem;
-      font-weight: 720;
+      font-size: .86rem;
+      line-height: 1.35;
     }
 
     .toolbar {
@@ -340,6 +401,11 @@
       border-color: color-mix(in srgb, var(--accent) 38%, var(--line));
       transform: translateY(-2px);
       box-shadow: var(--shadow);
+    }
+
+    .trip-card:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--warm) 70%, transparent);
+      outline-offset: 4px;
     }
 
     .trip-thumb {
@@ -473,42 +539,9 @@
       font-size: .92rem;
     }
 
-    .notes {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-    }
-
-    .note {
-      border: 1px solid var(--line);
-      border-radius: var(--radius-sm);
-      padding: 14px;
-      background: color-mix(in srgb, var(--surface) 86%, transparent);
-    }
-
-    .note i {
-      color: var(--accent-strong);
-      font-size: 1.32rem;
-    }
-
-    .note strong {
-      display: block;
-      margin-top: 8px;
-      font-size: .98rem;
-      line-height: 1.25;
-    }
-
-    .note span {
-      display: block;
-      margin-top: 5px;
-      color: var(--muted);
-      font-size: .88rem;
-      line-height: 1.45;
-    }
-
     footer {
-      margin-top: 34px;
-      padding: 20px 0 6px;
+      margin-top: 24px;
+      padding: 18px 0 6px;
       color: var(--muted);
       font-size: .86rem;
     }
@@ -517,16 +550,27 @@
       .topbar { margin-bottom: 12px; }
       .nav-link span { display: none; }
       .hero {
-        min-height: 520px;
-        background:
-          linear-gradient(180deg, color-mix(in srgb, var(--surface) 96%, transparent) 0%, color-mix(in srgb, var(--surface) 84%, transparent) 48%, color-mix(in srgb, var(--accent-soft) 90%, transparent) 100%),
-          url("https://images.unsplash.com/photo-1632302578892-7564cb018d69?auto=format&fit=crop&w=1100&q=82") center bottom / 118% auto no-repeat;
+        grid-template-columns: 1fr;
+        min-height: auto;
       }
       .hero-copy {
         align-self: start;
       }
-      .stats {
-        grid-template-columns: 1fr;
+      .hero::before {
+        inset: auto auto 20px 18px;
+        width: 170px;
+        height: 8px;
+      }
+      .hero-media {
+        min-height: 310px;
+      }
+      .hero-photo {
+        position: relative;
+        min-height: 310px;
+      }
+      .hero-ticket {
+        left: 16px;
+        bottom: 16px;
       }
       .trip-card {
         grid-template-columns: 1fr;
@@ -536,8 +580,7 @@
         aspect-ratio: 16 / 9;
         min-height: 0;
       }
-      .meta-grid,
-      .notes {
+      .meta-grid {
         grid-template-columns: 1fr;
       }
       .trip-title-row {
@@ -549,6 +592,8 @@
       body { font-size: 15px; }
       .page { padding-left: 12px; padding-right: 12px; }
       .hero { padding: 18px; }
+      .hero-photo { border-radius: 20px; }
+      .hero-ticket { width: calc(100% - 32px); }
       .hero-actions { display: grid; grid-template-columns: 1fr; }
       .primary-link, .ghost-link { width: 100%; }
       .toolbar {
@@ -593,7 +638,7 @@
     <section class="hero" aria-labelledby="page-title">
       <div class="hero-copy">
         <h1 id="page-title">旅行行程库</h1>
-        <p>按月份和地点整理每一趟计划。以后行程多起来，也能用搜索快速找到。</p>
+        <p>按月份和地点整理旅行计划。打开详情页，直接查看地图、交通、日程和购物清单。</p>
         <div class="hero-actions">
           <a class="primary-link" href="#trips">
             <i class="ph ph-list-magnifying-glass" aria-hidden="true"></i>
@@ -606,10 +651,12 @@
         </div>
       </div>
 
-      <div class="stats" aria-label="行程统计">
-        <div class="stat"><strong id="stat-count">1</strong><span>当前行程</span></div>
-        <div class="stat"><strong>11</strong><span>旅行天数</span></div>
-        <div class="stat"><strong>6</strong><span>重点徒步线</span></div>
+      <div class="hero-media" aria-hidden="true">
+        <div class="hero-photo"></div>
+        <div class="hero-ticket">
+          <strong>2026-09 济州岛</strong>
+          <span>Olle 徒步、东线海岸、最后两天购物补货。</span>
+        </div>
       </div>
     </section>
 
@@ -626,7 +673,7 @@
     <section class="section" aria-labelledby="trip-list-title">
       <div class="section-head">
         <h2 id="trip-list-title">全部行程</h2>
-        <p id="result-copy">目前只有 2026-09 济州岛。新增城市后会自动进入这个列表。</p>
+        <p id="result-copy">目前收录 1 个行程。</p>
       </div>
       <div class="trip-list" id="trip-list"></div>
       <div class="empty" id="empty-state" aria-live="polite">
@@ -636,32 +683,8 @@
       </div>
     </section>
 
-    <section class="section" aria-labelledby="future-title">
-      <div class="section-head">
-        <h2 id="future-title">以后可以继续补充</h2>
-        <p>我给首页预留了几个实际会用到的能力，不会让页面一开始就变复杂。</p>
-      </div>
-      <div class="notes">
-        <article class="note">
-          <i class="ph ph-funnel" aria-hidden="true"></i>
-          <strong>按关键词筛选</strong>
-          <span>地点、月份、酒店、主题和标签都会参与搜索。</span>
-        </article>
-        <article class="note">
-          <i class="ph ph-device-mobile-camera" aria-hidden="true"></i>
-          <strong>手机优先</strong>
-          <span>卡片、按钮和搜索框都保留了大点击区域。</span>
-        </article>
-        <article class="note">
-          <i class="ph ph-folder-simple-plus" aria-hidden="true"></i>
-          <strong>方便扩展</strong>
-          <span>之后新增行程，只要加一个详情页和一条数据。</span>
-        </article>
-      </div>
-    </section>
-
     <footer>
-      <span>Designed for Coco Travel. 行程命名采用 YYYY-MM + 地点。</span>
+      <span>Coco Travel</span>
     </footer>
   </main>
 
@@ -687,7 +710,6 @@
     const clear = document.querySelector("#clear-search");
     const empty = document.querySelector("#empty-state");
     const resultCopy = document.querySelector("#result-copy");
-    const statCount = document.querySelector("#stat-count");
 
     function tripTemplate(trip) {
       const tags = trip.tags.map((tag, index) => `<span class="tag ${index === 0 ? "warm" : ""}">${tag}</span>`).join("");
@@ -723,14 +745,13 @@
       list.innerHTML = filtered.map(tripTemplate).join("");
       empty.classList.toggle("show", filtered.length === 0);
       clear.classList.toggle("show", normalized.length > 0);
-      statCount.textContent = String(trips.length);
 
       if (normalized && filtered.length) {
         resultCopy.textContent = `找到 ${filtered.length} 个匹配行程。`;
       } else if (normalized) {
         resultCopy.textContent = "没有匹配行程。";
       } else {
-        resultCopy.textContent = "目前只有 2026-09 济州岛。新增城市后会自动进入这个列表。";
+        resultCopy.textContent = `目前收录 ${trips.length} 个行程。`;
       }
     }
 
