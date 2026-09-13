@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-label="JEJU travel cover">
+  <rect width="1200" height="760" rx="44" fill="#14252d"/>
+  <path d="M0 0h1200v345c-96 41-207 60-333 57-162-4-294-50-447-54C250 344 103 394 0 470V0Z" fill="#0076c9"/>
+  <path d="M1200 0v760H790c88-92 134-202 139-331 5-161-55-303-179-429h450Z" fill="#f28c18"/>
+  <path d="M0 488c120-92 258-137 415-136 174 1 311 63 491 70 113 5 212-10 294-43v381H0V488Z" fill="#183947"/>
+  <path d="M132 588c96-73 199-112 309-116 125-5 219 28 330 61 93 28 189 34 289 16" fill="none" stroke="#8bd6ff" stroke-width="12" stroke-linecap="round" opacity=".72"/>
+  <path d="M132 588c56-42 112-72 169-91" fill="none" stroke="#ffd341" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="928" cy="183" r="86" fill="#ffd341"/>
+  <circle cx="928" cy="183" r="42" fill="#fffdf8"/>
+  <text x="600" y="392" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="154" font-weight="900" letter-spacing="0" fill="#fffdf8">JEJU</text>
+  <text x="602" y="456" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="800" letter-spacing="7" fill="#b9d3df">OLLE TRAIL</text>
+  <path d="M392 516h416" stroke="#fffdf8" stroke-width="7" stroke-linecap="round" opacity=".72"/>
+  <path d="M474 545h252" stroke="#fffdf8" stroke-width="7" stroke-linecap="round" opacity=".35"/>
+  <circle cx="392" cy="516" r="13" fill="#f28c18"/>
+  <circle cx="808" cy="516" r="13" fill="#8bd6ff"/>
+</svg>
