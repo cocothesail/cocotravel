@@ -3,36 +3,26 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="description" content="Coco Travel 行程汇总页，按月份和地点快速查看旅行计划。" />
+  <meta name="description" content="Coco Travel 当前行程入口。" />
   <meta name="theme-color" content="#0076c9" />
-  <title>Coco Travel | 行程汇总</title>
+  <title>Coco Travel</title>
   <link rel="icon" href="./assets/favicon.ico" sizes="any" />
   <link rel="icon" href="./assets/coco-travel-icon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png" />
   <link rel="manifest" href="./site.webmanifest" />
-  <link rel="preconnect" href="https://unpkg.com" />
-  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css" />
   <style>
     :root {
       --bg: #f5f9fb;
       --surface: #fbfefd;
       --surface-strong: #edf6fa;
       --text: #20303a;
-      --muted: #5d6c75;
+      --muted: #60717b;
       --line: #d7e5eb;
-      --line-strong: #b8d1dc;
       --accent: #0076c9;
       --accent-strong: #005891;
-      --accent-soft: #e5f4ff;
       --warm: #f28c18;
-      --warm-soft: #fff2df;
-      --green: #2f8a5b;
-      --photo-shadow: 0 24px 64px rgba(0, 88, 145, .22);
-      --shadow: 0 20px 56px rgba(21, 57, 77, .13);
-      --shadow-soft: 0 12px 28px rgba(21, 57, 77, .09);
+      --shadow: 0 18px 46px rgba(21, 57, 77, .12);
       --radius: 18px;
-      --radius-sm: 12px;
-      --tap: 46px;
       color-scheme: light dark;
       font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
     }
@@ -43,62 +33,60 @@
         --surface: #17242b;
         --surface-strong: #1f313b;
         --text: #edf7fb;
-        --muted: #adc0ca;
+        --muted: #afc2cb;
         --line: #2a424e;
-        --line-strong: #3d5a68;
         --accent: #5db9f3;
         --accent-strong: #94d4ff;
-        --accent-soft: #143140;
         --warm: #ffb257;
-        --warm-soft: #3a2714;
-        --green: #78d8a6;
-        --photo-shadow: 0 24px 64px rgba(0, 0, 0, .34);
-        --shadow: 0 20px 56px rgba(0, 0, 0, .30);
-        --shadow-soft: 0 12px 28px rgba(0, 0, 0, .22);
+        --shadow: 0 18px 46px rgba(0, 0, 0, .28);
       }
     }
 
     * { box-sizing: border-box; }
+
     html { scroll-behavior: smooth; }
+
     ::selection {
       color: #f7fbfd;
       background: var(--accent-strong);
     }
 
     :focus-visible {
-      outline: 3px solid color-mix(in srgb, var(--warm) 70%, transparent);
+      outline: 3px solid color-mix(in srgb, var(--warm) 72%, transparent);
       outline-offset: 4px;
     }
 
     body {
       margin: 0;
       min-height: 100dvh;
-      background:
-        radial-gradient(circle at 10% 0%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 30rem),
-        radial-gradient(circle at 92% 8%, color-mix(in srgb, var(--warm) 17%, transparent), transparent 26rem),
-        linear-gradient(180deg, var(--bg), var(--surface-strong));
       color: var(--text);
+      background:
+        radial-gradient(circle at 12% 0%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 28rem),
+        radial-gradient(circle at 94% 6%, color-mix(in srgb, var(--warm) 18%, transparent), transparent 22rem),
+        linear-gradient(180deg, var(--bg), var(--surface-strong));
       font-size: 16px;
-      line-height: 1.55;
+      line-height: 1.5;
       letter-spacing: 0;
     }
 
     a { color: inherit; text-decoration: none; }
-    button, input { font: inherit; }
 
     .page {
-      width: min(100%, 1120px);
+      width: min(100%, 720px);
+      min-height: 100dvh;
       margin: 0 auto;
-      padding: max(16px, env(safe-area-inset-top)) clamp(16px, 4vw, 32px) 34px;
+      padding: max(16px, env(safe-area-inset-top)) clamp(16px, 5vw, 32px) max(28px, env(safe-area-inset-bottom));
+      display: grid;
+      grid-template-rows: auto 1fr;
+      gap: clamp(42px, 10vh, 96px);
     }
 
     .topbar {
-      min-height: 64px;
+      min-height: 56px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 18px;
+      gap: 14px;
     }
 
     .brand {
@@ -106,509 +94,114 @@
       align-items: center;
       gap: 10px;
       min-width: 0;
-      font-weight: 850;
-      letter-spacing: 0;
-    }
-
-    .brand-mark {
-      width: 38px;
-      height: 38px;
-      border-radius: 999px;
-      display: inline-grid;
-      place-items: center;
-      flex: 0 0 auto;
-      background: linear-gradient(135deg, var(--accent), var(--warm));
-      color: #f7fbfd;
-      box-shadow: 0 10px 24px color-mix(in srgb, var(--accent) 24%, transparent);
-    }
-
-    .brand span:last-child {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .nav-link {
-      min-height: var(--tap);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 7px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 0 14px;
-      background: color-mix(in srgb, var(--surface) 82%, transparent);
-      color: var(--muted);
-      font-size: .9rem;
-      font-weight: 760;
-      transition: transform .18s ease, border-color .18s ease, color .18s ease;
-    }
-
-    .nav-link:hover {
-      border-color: var(--line-strong);
-      color: var(--text);
-    }
-
-    .nav-link:active,
-    .trip-card:active,
-    .primary-link:active {
-      transform: scale(.985);
-    }
-
-    .hero {
-      position: relative;
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(260px, .78fr);
-      gap: clamp(18px, 4vw, 34px);
-      align-items: center;
-      min-height: clamp(390px, 70dvh, 620px);
-      padding: clamp(20px, 5vw, 42px);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background:
-        radial-gradient(circle at 78% 8%, color-mix(in srgb, var(--warm) 20%, transparent), transparent 18rem),
-        linear-gradient(135deg, color-mix(in srgb, var(--surface) 96%, transparent), color-mix(in srgb, var(--accent-soft) 78%, transparent));
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: auto auto 34px clamp(20px, 5vw, 42px);
-      width: min(38vw, 310px);
-      height: 10px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, var(--accent), var(--warm));
-      opacity: .9;
-    }
-
-    .hero-copy {
-      max-width: 620px;
-      display: grid;
-      gap: 16px;
-      align-self: center;
-      position: relative;
-      z-index: 1;
-    }
-
-    h1 {
-      margin: 0;
-      max-width: 10ch;
-      font-size: clamp(2.7rem, 13vw, 5.8rem);
-      line-height: .94;
-      letter-spacing: 0;
-      font-weight: 920;
-    }
-
-    .hero-copy p {
-      margin: 0;
-      max-width: 32rem;
-      color: var(--muted);
-      font-size: clamp(1rem, 3.8vw, 1.18rem);
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .primary-link,
-    .ghost-link {
-      min-height: var(--tap);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      border-radius: 999px;
-      padding: 0 16px;
-      font-weight: 820;
-      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-      white-space: nowrap;
-    }
-
-    .primary-link {
-      color: #f7fbfd;
-      background: var(--accent-strong);
-      box-shadow: 0 14px 32px color-mix(in srgb, var(--accent) 28%, transparent);
-    }
-
-    .ghost-link {
-      border: 1px solid var(--line-strong);
-      color: var(--text);
-      background: color-mix(in srgb, var(--surface) 74%, transparent);
-    }
-
-    .hero-media {
-      position: relative;
-      display: grid;
-      align-self: stretch;
-      min-height: 360px;
-      isolation: isolate;
-    }
-
-    .hero-photo {
-      position: absolute;
-      inset: 0;
-      border-radius: 28px;
-      background: url("https://images.unsplash.com/photo-1632302578892-7564cb018d69?auto=format&fit=crop&w=1000&q=82") center / cover no-repeat;
-      box-shadow: var(--photo-shadow);
-      transform: rotate(2deg);
-      overflow: hidden;
-    }
-
-    .hero-photo::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, transparent 44%, rgba(0, 88, 145, .68));
-    }
-
-    .hero-ticket {
-      position: absolute;
-      left: -18px;
-      bottom: 26px;
-      z-index: 1;
-      width: min(88%, 310px);
-      border: 1px solid color-mix(in srgb, var(--surface) 65%, transparent);
-      border-radius: 18px;
-      padding: 14px;
-      background: color-mix(in srgb, var(--surface) 88%, transparent);
-      backdrop-filter: blur(18px);
-      box-shadow: var(--shadow-soft);
-    }
-
-    .hero-ticket strong {
-      display: block;
-      font-size: 1rem;
-      line-height: 1.2;
-    }
-
-    .hero-ticket span {
-      display: block;
-      margin-top: 5px;
-      color: var(--muted);
-      font-size: .86rem;
-      line-height: 1.35;
-    }
-
-    .toolbar {
-      position: sticky;
-      top: 0;
-      z-index: 3;
-      margin: 16px 0 14px;
-      padding: 10px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: color-mix(in srgb, var(--surface) 88%, transparent);
-      backdrop-filter: blur(18px);
-      box-shadow: var(--shadow-soft);
-    }
-
-    .search-wrap {
-      position: relative;
-      display: grid;
-      grid-template-columns: auto 1fr auto;
-      align-items: center;
-      gap: 10px;
-      min-height: 52px;
-      padding: 0 10px 0 14px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: var(--surface);
-    }
-
-    .search-wrap i {
-      color: var(--accent-strong);
-      font-size: 1.25rem;
-    }
-
-    .search-wrap input {
-      min-width: 0;
-      width: 100%;
-      border: 0;
-      outline: 0;
-      background: transparent;
-      color: var(--text);
-      font-size: 1rem;
-    }
-
-    .search-wrap input::placeholder {
-      color: color-mix(in srgb, var(--muted) 78%, transparent);
-    }
-
-    .clear-btn {
-      width: 38px;
-      height: 38px;
-      border: 0;
-      border-radius: 999px;
-      display: none;
-      place-items: center;
-      color: var(--muted);
-      background: var(--surface-strong);
-      cursor: pointer;
-    }
-
-    .clear-btn.show { display: grid; }
-
-    .section {
-      margin-top: 26px;
-    }
-
-    .section-head {
-      display: grid;
-      gap: 6px;
-      margin-bottom: 12px;
-    }
-
-    .section h2 {
-      margin: 0;
-      font-size: clamp(1.35rem, 5vw, 2rem);
-      line-height: 1.15;
-      letter-spacing: 0;
-    }
-
-    .section-head p {
-      margin: 0;
-      max-width: 44rem;
-      color: var(--muted);
-      font-size: .98rem;
-    }
-
-    .trip-list {
-      display: grid;
-      gap: 12px;
-    }
-
-    .trip-card {
-      position: relative;
-      display: grid;
-      grid-template-columns: 132px 1fr;
-      gap: 14px;
-      align-items: stretch;
-      min-height: 160px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 12px;
-      background: var(--surface);
-      box-shadow: var(--shadow-soft);
-      overflow: hidden;
-      transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
-    }
-
-    .trip-card:hover {
-      border-color: color-mix(in srgb, var(--accent) 38%, var(--line));
-      transform: translateY(-2px);
-      box-shadow: var(--shadow);
-    }
-
-    .trip-card:focus-visible {
-      outline: 3px solid color-mix(in srgb, var(--warm) 70%, transparent);
-      outline-offset: 4px;
-    }
-
-    .trip-thumb {
-      min-height: 136px;
-      border-radius: 14px;
-      background: var(--surface-strong) center / cover no-repeat;
-      overflow: hidden;
-    }
-
-    .trip-main {
-      min-width: 0;
-      display: grid;
-      align-content: space-between;
-      gap: 14px;
-      padding: 2px 2px 2px 0;
-    }
-
-    .trip-title-row {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .trip-title {
-      min-width: 0;
-    }
-
-    .trip-title h3 {
-      margin: 0;
-      font-size: clamp(1.16rem, 5vw, 1.62rem);
-      line-height: 1.16;
-      letter-spacing: 0;
-    }
-
-    .trip-title p {
-      margin: 6px 0 0;
-      color: var(--muted);
-      font-size: .92rem;
-      line-height: 1.4;
-    }
-
-    .status {
-      flex: 0 0 auto;
-      min-height: 32px;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      border-radius: 999px;
-      padding: 0 10px;
-      background: color-mix(in srgb, var(--green) 14%, transparent);
-      color: var(--green);
-      font-size: .78rem;
       font-weight: 860;
     }
 
-    .meta-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 8px;
-    }
-
-    .meta {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      align-items: center;
-      gap: 8px;
-      min-height: 42px;
+    .brand img {
+      width: 38px;
+      height: 38px;
       border-radius: 12px;
-      padding: 7px 9px;
-      background: var(--surface-strong);
-      color: var(--muted);
-      font-size: .82rem;
-      font-weight: 720;
+      box-shadow: 0 10px 24px color-mix(in srgb, var(--accent) 24%, transparent);
     }
 
-    .meta i {
-      color: var(--accent-strong);
-      font-size: 1.04rem;
+    .home {
+      align-self: start;
+      display: grid;
+      gap: 14px;
     }
 
-    .tag-row {
-      display: flex;
-      gap: 7px;
-      flex-wrap: wrap;
-    }
-
-    .tag {
-      min-height: 30px;
-      display: inline-flex;
-      align-items: center;
-      border-radius: 999px;
-      padding: 0 9px;
-      background: var(--accent-soft);
-      color: var(--accent-strong);
-      font-size: .78rem;
-      font-weight: 820;
-    }
-
-    .tag.warm {
-      background: var(--warm-soft);
-      color: color-mix(in srgb, var(--warm) 70%, var(--text));
-    }
-
-    .empty {
-      display: none;
-      border: 1px dashed var(--line-strong);
-      border-radius: var(--radius);
-      padding: 28px 18px;
-      background: color-mix(in srgb, var(--surface) 82%, transparent);
-      text-align: center;
-    }
-
-    .empty.show { display: block; }
-
-    .empty i {
-      color: var(--accent-strong);
-      font-size: 2rem;
-    }
-
-    .empty strong {
-      display: block;
-      margin-top: 8px;
-      font-size: 1.05rem;
-    }
-
-    .empty span {
-      display: block;
-      margin-top: 5px;
+    .label {
+      margin: 0;
       color: var(--muted);
       font-size: .92rem;
+      font-weight: 780;
     }
 
-    footer {
-      margin-top: 24px;
-      padding: 18px 0 6px;
-      color: var(--muted);
-      font-size: .86rem;
+    .trip-link {
+      position: relative;
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 16px 17px 16px 18px;
+      background:
+        linear-gradient(90deg, color-mix(in srgb, var(--surface) 94%, transparent), color-mix(in srgb, var(--surface) 78%, transparent)),
+        linear-gradient(90deg, var(--accent), var(--warm));
+      box-shadow: var(--shadow);
+      transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
     }
 
-    @media (max-width: 820px) {
-      .topbar { margin-bottom: 12px; }
-      .nav-link span { display: none; }
-      .hero {
-        grid-template-columns: 1fr;
-        min-height: auto;
-      }
-      .hero-copy {
-        align-self: start;
-      }
-      .hero::before {
-        inset: auto auto 20px 18px;
-        width: 170px;
-        height: 8px;
-      }
-      .hero-media {
-        min-height: 310px;
-      }
-      .hero-photo {
-        position: relative;
-        min-height: 310px;
-      }
-      .hero-ticket {
-        left: 16px;
-        bottom: 16px;
-      }
-      .trip-card {
-        grid-template-columns: 1fr;
-        min-height: auto;
-      }
-      .trip-thumb {
-        aspect-ratio: 16 / 9;
-        min-height: 0;
-      }
-      .meta-grid {
-        grid-template-columns: 1fr;
-      }
-      .trip-title-row {
-        align-items: flex-start;
-      }
+    .trip-link::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 6px;
+      border-radius: var(--radius) 0 0 var(--radius);
+      background: linear-gradient(180deg, var(--accent), var(--warm));
+    }
+
+    .trip-link:hover {
+      transform: translateY(-2px);
+      border-color: color-mix(in srgb, var(--accent) 34%, var(--line));
+      box-shadow: 0 22px 54px rgba(21, 57, 77, .16);
+    }
+
+    .trip-link:active {
+      transform: scale(.985);
+    }
+
+    .trip-name {
+      min-width: 0;
+      padding-left: 4px;
+      font-size: clamp(1.42rem, 8vw, 2.55rem);
+      line-height: 1.05;
+      font-weight: 920;
+      letter-spacing: 0;
+    }
+
+    .arrow {
+      width: 42px;
+      height: 42px;
+      flex: 0 0 auto;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      color: #f7fbfd;
+      background: var(--accent-strong);
+      font-size: 1.4rem;
+      line-height: 1;
     }
 
     @media (max-width: 430px) {
       body { font-size: 15px; }
-      .page { padding-left: 12px; padding-right: 12px; }
-      .hero { padding: 18px; }
-      .hero-photo { border-radius: 20px; }
-      .hero-ticket { width: calc(100% - 32px); }
-      .hero-actions { display: grid; grid-template-columns: 1fr; }
-      .primary-link, .ghost-link { width: 100%; }
-      .toolbar {
-        border-radius: 16px;
-        margin-left: -2px;
-        margin-right: -2px;
+
+      .page {
+        padding-left: 14px;
+        padding-right: 14px;
+        gap: 34px;
       }
-      .search-wrap {
-        min-height: 50px;
+
+      .topbar {
+        min-height: 52px;
       }
-      .trip-title-row {
-        display: grid;
+
+      .brand img {
+        width: 36px;
+        height: 36px;
       }
-      .status {
-        width: fit-content;
+
+      .trip-link {
+        min-height: 68px;
+        padding: 14px 14px 14px 16px;
+        gap: 12px;
+      }
+
+      .arrow {
+        width: 38px;
+        height: 38px;
       }
     }
 
@@ -626,143 +219,18 @@
   <main class="page">
     <header class="topbar">
       <a class="brand" href="./" aria-label="Coco Travel 首页">
-        <span class="brand-mark"><i class="ph ph-map-trifold" aria-hidden="true"></i></span>
+        <img src="./assets/icon-192.png" alt="" width="38" height="38" />
         <span>Coco Travel</span>
-      </a>
-      <a class="nav-link" href="#trips">
-        <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
-        <span>查找行程</span>
       </a>
     </header>
 
-    <section class="hero" aria-labelledby="page-title">
-      <div class="hero-copy">
-        <h1 id="page-title">旅行行程库</h1>
-        <p>按月份和地点整理旅行计划。打开详情页，直接查看地图、交通、日程和购物清单。</p>
-        <div class="hero-actions">
-          <a class="primary-link" href="#trips">
-            <i class="ph ph-list-magnifying-glass" aria-hidden="true"></i>
-            查看行程
-          </a>
-          <a class="ghost-link" href="./jeju_olle_itinerary_2026-09-20_to_2026-09-30.html">
-            <i class="ph ph-arrow-square-out" aria-hidden="true"></i>
-            打开济州
-          </a>
-        </div>
-      </div>
-
-      <div class="hero-media" aria-hidden="true">
-        <div class="hero-photo"></div>
-        <div class="hero-ticket">
-          <strong>2026-09 济州岛</strong>
-          <span>Olle 徒步、东线海岸、最后两天购物补货。</span>
-        </div>
-      </div>
+    <section class="home" aria-labelledby="current-title">
+      <p class="label" id="current-title">即将进行或正在进行</p>
+      <a class="trip-link" href="./jeju_olle_itinerary_2026-09-20_to_2026-09-30.html" aria-label="打开 2026-09 济州岛行程">
+        <span class="trip-name">2026-09 济州岛</span>
+        <span class="arrow" aria-hidden="true">›</span>
+      </a>
     </section>
-
-    <section class="toolbar" id="trips" aria-label="行程搜索">
-      <label class="search-wrap" for="trip-search">
-        <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
-        <input id="trip-search" type="search" autocomplete="off" placeholder="搜索地点、月份、主题，例如 济州、2026-09、徒步" />
-        <button class="clear-btn" id="clear-search" type="button" aria-label="清空搜索">
-          <i class="ph ph-x" aria-hidden="true"></i>
-        </button>
-      </label>
-    </section>
-
-    <section class="section" aria-labelledby="trip-list-title">
-      <div class="section-head">
-        <h2 id="trip-list-title">全部行程</h2>
-        <p id="result-copy">目前收录 1 个行程。</p>
-      </div>
-      <div class="trip-list" id="trip-list"></div>
-      <div class="empty" id="empty-state" aria-live="polite">
-        <i class="ph ph-binoculars" aria-hidden="true"></i>
-        <strong>没有找到匹配行程</strong>
-        <span>换一个地点、月份或主题试试。</span>
-      </div>
-    </section>
-
-    <footer>
-      <span>Coco Travel</span>
-    </footer>
   </main>
-
-  <script>
-    const trips = [
-      {
-        name: "2026-09 济州岛",
-        location: "韩国 济州",
-        dates: "2026-09-20 至 2026-09-30",
-        duration: "11 天",
-        focus: "Olle 徒步",
-        status: "已完成规划",
-        href: "./jeju_olle_itinerary_2026-09-20_to_2026-09-30.html",
-        image: "https://images.unsplash.com/photo-1632302578892-7564cb018d69?auto=format&fit=crop&w=900&q=82",
-        summary: "西归浦、城山、济州市三段移动，覆盖 Olle 6、7、8、10、1、1-1。",
-        tags: ["Jeju Olle", "Solo Trip", "徒步", "购物", "地图"],
-        searchable: "2026-09 济州岛 韩国 济州 Jeju Olle Solo Trip 徒步 购物 地图 西归浦 城山 济州市"
-      }
-    ];
-
-    const list = document.querySelector("#trip-list");
-    const search = document.querySelector("#trip-search");
-    const clear = document.querySelector("#clear-search");
-    const empty = document.querySelector("#empty-state");
-    const resultCopy = document.querySelector("#result-copy");
-
-    function tripTemplate(trip) {
-      const tags = trip.tags.map((tag, index) => `<span class="tag ${index === 0 ? "warm" : ""}">${tag}</span>`).join("");
-      return `
-        <a class="trip-card" href="${trip.href}" data-search="${trip.searchable.toLowerCase()}">
-          <div class="trip-thumb" style="background-image: url('${trip.image}');" role="img" aria-label="${trip.location} 风景"></div>
-          <div class="trip-main">
-            <div class="trip-title-row">
-              <div class="trip-title">
-                <h3>${trip.name}</h3>
-                <p>${trip.summary}</p>
-              </div>
-              <span class="status"><i class="ph ph-check-circle" aria-hidden="true"></i>${trip.status}</span>
-            </div>
-            <div class="meta-grid" aria-label="${trip.name} 信息">
-              <span class="meta"><i class="ph ph-calendar-dots" aria-hidden="true"></i>${trip.dates}</span>
-              <span class="meta"><i class="ph ph-clock" aria-hidden="true"></i>${trip.duration}</span>
-              <span class="meta"><i class="ph ph-person-simple-hike" aria-hidden="true"></i>${trip.focus}</span>
-            </div>
-            <div class="tag-row">${tags}</div>
-          </div>
-        </a>
-      `;
-    }
-
-    function renderTrips(query = "") {
-      const normalized = query.trim().toLowerCase();
-      const filtered = trips.filter((trip) => {
-        if (!normalized) return true;
-        return trip.searchable.toLowerCase().includes(normalized);
-      });
-
-      list.innerHTML = filtered.map(tripTemplate).join("");
-      empty.classList.toggle("show", filtered.length === 0);
-      clear.classList.toggle("show", normalized.length > 0);
-
-      if (normalized && filtered.length) {
-        resultCopy.textContent = `找到 ${filtered.length} 个匹配行程。`;
-      } else if (normalized) {
-        resultCopy.textContent = "没有匹配行程。";
-      } else {
-        resultCopy.textContent = `目前收录 ${trips.length} 个行程。`;
-      }
-    }
-
-    search.addEventListener("input", (event) => renderTrips(event.target.value));
-    clear.addEventListener("click", () => {
-      search.value = "";
-      search.focus();
-      renderTrips("");
-    });
-
-    renderTrips();
-  </script>
 </body>
 </html>
