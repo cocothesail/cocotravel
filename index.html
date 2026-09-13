@@ -10,6 +10,8 @@
   <link rel="icon" href="./assets/coco-travel-icon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png" />
   <link rel="manifest" href="./site.webmanifest" />
+  <link rel="preconnect" href="https://unpkg.com" />
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css" />
   <style>
     :root {
       --bg: #f5f9fb;
@@ -80,7 +82,7 @@
     button, input { font: inherit; }
 
     .page {
-      width: min(100%, 760px);
+      width: min(100%, 1120px);
       min-height: 100dvh;
       margin: 0 auto;
       padding: max(16px, env(safe-area-inset-top)) clamp(16px, 5vw, 32px) max(28px, env(safe-area-inset-bottom));
@@ -129,6 +131,7 @@
       display: grid;
       gap: 10px;
       margin-top: 8px;
+      width: min(100%, 760px);
     }
 
     .section-title {
@@ -163,14 +166,14 @@
     }
 
     .current-link:hover,
-    .trip-row:hover {
+    .trip-card:hover {
       transform: translateY(-2px);
       border-color: color-mix(in srgb, var(--accent) 34%, var(--line));
       box-shadow: 0 18px 42px rgba(21, 57, 77, .14);
     }
 
     .current-link:active,
-    .trip-row:active {
+    .trip-card:active {
       transform: scale(.985);
     }
 
@@ -200,6 +203,7 @@
       top: 0;
       z-index: 2;
       margin-top: 8px;
+      width: min(100%, 760px);
       padding: 8px;
       border: 1px solid var(--line);
       border-radius: var(--radius);
@@ -276,48 +280,133 @@
 
     .trip-list {
       display: grid;
-      gap: 8px;
+      gap: 12px;
     }
 
-    .trip-row {
+    .trip-card {
+      position: relative;
       display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: center;
-      gap: 12px;
-      min-height: 62px;
+      grid-template-columns: 132px 1fr;
+      align-items: stretch;
+      gap: 14px;
+      min-height: 160px;
       border: 1px solid var(--line);
-      border-radius: var(--radius-sm);
-      padding: 12px 13px;
-      background: color-mix(in srgb, var(--surface) 92%, transparent);
+      border-radius: var(--radius);
+      padding: 12px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      overflow: hidden;
       transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
     }
 
-    .trip-row strong {
-      display: block;
-      font-size: 1.04rem;
-      line-height: 1.25;
+    .trip-thumb {
+      min-height: 136px;
+      border-radius: 14px;
+      background: var(--surface-strong) center / cover no-repeat;
+      overflow: hidden;
     }
 
-    .trip-row span {
-      display: block;
-      margin-top: 3px;
+    .trip-main {
+      min-width: 0;
+      display: grid;
+      align-content: space-between;
+      gap: 14px;
+      padding: 2px 2px 2px 0;
+    }
+
+    .trip-title-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .trip-title {
+      min-width: 0;
+    }
+
+    .trip-title h3 {
+      margin: 0;
+      font-size: clamp(1.35rem, 4.2vw, 1.75rem);
+      line-height: 1.16;
+      letter-spacing: 0;
+    }
+
+    .trip-title p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: .94rem;
+      line-height: 1.4;
+    }
+
+    .status {
+      flex: 0 0 auto;
+      min-height: 32px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      padding: 0 10px;
+      background: color-mix(in srgb, #2f8a5b 18%, transparent);
+      color: color-mix(in srgb, #2f8a5b 82%, var(--text));
+      font-size: .78rem;
+      font-weight: 860;
+      white-space: nowrap;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+      gap: 8px;
+      min-height: 42px;
+      border-radius: 12px;
+      padding: 7px 9px;
+      background: var(--surface-strong);
       color: var(--muted);
       font-size: .84rem;
-      line-height: 1.35;
+      font-weight: 720;
     }
 
-    .trip-tag {
+    .meta-icon {
+      color: var(--accent-strong);
+      font-size: 1.08rem;
+    }
+
+    .tag-row {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
       min-height: 30px;
       display: inline-flex;
       align-items: center;
-      justify-content: center;
       border-radius: 999px;
       padding: 0 9px;
+      background: var(--accent-soft);
+      color: var(--accent-strong);
+      font-size: .78rem;
+      font-weight: 820;
+      white-space: nowrap;
+    }
+
+    .tag.warm {
       background: var(--warm-soft);
       color: color-mix(in srgb, var(--warm) 70%, var(--text));
-      font-size: .78rem;
-      font-weight: 840;
-      white-space: nowrap;
+    }
+
+    .trip-card strong {
+      display: block;
+      font-size: inherit;
+      line-height: 1.25;
     }
 
     .empty {
@@ -370,11 +459,25 @@
         gap: 3px;
       }
 
-      .trip-row {
+      .trip-card {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .trip-thumb {
+        aspect-ratio: 16 / 9;
+        min-height: 0;
+      }
+
+      .meta-grid {
         grid-template-columns: 1fr;
       }
 
-      .trip-tag {
+      .trip-title-row {
+        display: grid;
+      }
+
+      .status {
         width: fit-content;
       }
     }
@@ -428,9 +531,14 @@
     const trips = [
       {
         name: "2026-09 济州岛",
-        meta: "2026-09-20 至 2026-09-30 / Olle 徒步",
-        tag: "即将出发",
+        summary: "西归浦、城山、济州市三段移动，覆盖 Olle 6、7、8、10、1、1-1。",
+        dates: "2026-09-20 至 2026-09-30",
+        duration: "11 天",
+        focus: "Olle 徒步",
+        status: "已完成规划",
         href: "./jeju_olle_itinerary_2026-09-20_to_2026-09-30.html",
+        image: "https://images.unsplash.com/photo-1632302578892-7564cb018d69?auto=format&fit=crop&w=900&q=82",
+        tags: ["Jeju Olle", "Solo Trip", "徒步", "购物", "地图"],
         searchable: "2026-09 济州岛 韩国 济州 Jeju Olle Solo Trip 徒步 购物 地图 西归浦 城山 济州市"
       }
     ];
@@ -448,15 +556,29 @@
         return trip.searchable.toLowerCase().includes(normalized);
       });
 
-      list.innerHTML = filtered.map((trip) => `
-        <a class="trip-row" href="${trip.href}" data-search="${trip.searchable.toLowerCase()}">
-          <span>
-            <strong>${trip.name}</strong>
-            <span>${trip.meta}</span>
-          </span>
-          <span class="trip-tag">${trip.tag}</span>
+      list.innerHTML = filtered.map((trip) => {
+        const tags = trip.tags.map((tag, index) => `<span class="tag ${index === 0 ? "warm" : ""}">${tag}</span>`).join("");
+        return `
+        <a class="trip-card" href="${trip.href}" data-search="${trip.searchable.toLowerCase()}">
+          <div class="trip-thumb" style="background-image: url('${trip.image}');" role="img" aria-label="${trip.name} 风景"></div>
+          <div class="trip-main">
+            <div class="trip-title-row">
+              <div class="trip-title">
+                <h3>${trip.name}</h3>
+                <p>${trip.summary}</p>
+              </div>
+              <span class="status"><i class="ph ph-check-circle" aria-hidden="true"></i>${trip.status}</span>
+            </div>
+            <div class="meta-grid" aria-label="${trip.name} 信息">
+              <span class="meta"><i class="ph ph-calendar-dots meta-icon" aria-hidden="true"></i>${trip.dates}</span>
+              <span class="meta"><i class="ph ph-clock meta-icon" aria-hidden="true"></i>${trip.duration}</span>
+              <span class="meta"><i class="ph ph-person-simple-hike meta-icon" aria-hidden="true"></i>${trip.focus}</span>
+            </div>
+            <div class="tag-row">${tags}</div>
+          </div>
         </a>
-      `).join("");
+      `;
+      }).join("");
 
       empty.classList.toggle("show", filtered.length === 0);
       clear.classList.toggle("show", normalized.length > 0);
