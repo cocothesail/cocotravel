@@ -1,0 +1,1494 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>济州偶来执行版 | 2026-09-20 至 2026-09-30</title>
+  <style>
+    :root {
+      --olle-blue: #0076c9;
+      --olle-blue-dark: #005891;
+      --olle-blue-soft: #e6f4ff;
+      --olle-orange: #f28c18;
+      --olle-orange-dark: #bf6400;
+      --olle-orange-soft: #fff2df;
+      --basalt: #263238;
+      --stone: #5d6a72;
+      --sea-mist: #f4f9fb;
+      --paper: #fffdf8;
+      --card: #ffffff;
+      --line: #dce7ec;
+      --line-strong: #bdd3df;
+      --green: #2f8a5b;
+      --red: #c34a35;
+      --shadow: 0 18px 44px rgba(20, 48, 67, .12);
+      --shadow-soft: 0 10px 24px rgba(20, 48, 67, .08);
+      --radius: 8px;
+      --tap: 44px;
+      color-scheme: light;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--basalt);
+      background:
+        radial-gradient(circle at 12% 0%, rgba(0, 118, 201, .11), transparent 28rem),
+        radial-gradient(circle at 92% 7%, rgba(242, 140, 24, .13), transparent 26rem),
+        linear-gradient(180deg, #f5fbff 0%, #fffaf0 34%, #f8fbfa 100%);
+      font-size: 16px;
+      line-height: 1.58;
+      letter-spacing: 0;
+      padding-bottom: calc(86px + env(safe-area-inset-bottom));
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button, input, select { font: inherit; }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .page {
+      width: min(100%, 1120px);
+      margin: 0 auto;
+      padding: 14px clamp(14px, 4vw, 30px) 42px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      color: white;
+      border-radius: 0 0 20px 20px;
+      margin: 0 calc(clamp(14px, 4vw, 30px) * -1) 18px;
+      padding: calc(18px + env(safe-area-inset-top)) clamp(18px, 5vw, 38px) 24px;
+      min-height: 330px;
+      background:
+        linear-gradient(135deg, rgba(0, 88, 145, .94), rgba(0, 118, 201, .78) 42%, rgba(242, 140, 24, .82)),
+        url("https://images.unsplash.com/photo-1632302578892-7564cb018d69?auto=format&fit=crop&w=1800&q=82") center/cover;
+      box-shadow: var(--shadow);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -60px -72px auto;
+      width: 220px;
+      height: 220px;
+      border: 24px solid rgba(255,255,255,.18);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero-top {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 38px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      min-height: 34px;
+      padding: 6px 10px 6px 7px;
+      border: 1px solid rgba(255,255,255,.34);
+      border-radius: 999px;
+      background: rgba(255,255,255,.14);
+      backdrop-filter: blur(16px);
+      font-size: .82rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .marker {
+      position: relative;
+      width: 32px;
+      height: 20px;
+      flex: 0 0 auto;
+    }
+
+    .marker::before,
+    .marker::after {
+      content: "";
+      position: absolute;
+      top: 4px;
+      width: 22px;
+      height: 8px;
+      border-radius: 99px 99px 99px 0;
+      transform: rotate(-24deg);
+    }
+
+    .marker::before { left: 0; background: var(--olle-blue); }
+    .marker::after { right: 0; background: var(--olle-orange); transform: rotate(24deg); }
+
+    .hero-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .icon-link,
+    .icon-btn {
+      width: var(--tap);
+      height: var(--tap);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.32);
+      background: rgba(255,255,255,.16);
+      color: currentColor;
+      backdrop-filter: blur(16px);
+      cursor: pointer;
+    }
+
+    .icon-btn {
+      color: var(--basalt);
+      border-color: var(--line);
+      background: white;
+      box-shadow: 0 5px 14px rgba(23,47,63,.08);
+    }
+
+    .icon-btn svg,
+    .icon-link svg,
+    .nav-pill svg,
+    .pill svg,
+    .mini-link svg,
+    .timeline-icon svg { width: 19px; height: 19px; stroke-width: 2.2; }
+
+    .icon-btn.is-done {
+      color: white;
+      border-color: var(--green);
+      background: var(--green);
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 1;
+      max-width: 730px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 0 10px;
+      color: rgba(255,255,255,.86);
+      font-size: .86rem;
+      font-weight: 760;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 10ch;
+      font-size: clamp(2.25rem, 13vw, 5.8rem);
+      line-height: .92;
+      letter-spacing: 0;
+      font-weight: 900;
+      text-wrap: balance;
+    }
+
+    .hero-subtitle {
+      margin: 14px 0 0;
+      max-width: 660px;
+      color: rgba(255,255,255,.92);
+      font-size: clamp(1rem, 3.9vw, 1.2rem);
+      line-height: 1.65;
+    }
+
+    .hero-chips {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      gap: 8px;
+      margin-top: 22px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+      scrollbar-width: none;
+    }
+
+    .hero-chips::-webkit-scrollbar { display: none; }
+
+    .hero-chip {
+      flex: 0 0 auto;
+      border: 1px solid rgba(255,255,255,.30);
+      border-radius: 999px;
+      padding: 7px 11px;
+      background: rgba(255,255,255,.15);
+      color: white;
+      font-size: .82rem;
+      font-weight: 760;
+      backdrop-filter: blur(14px);
+    }
+
+    .quick-panel {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin: -34px 0 18px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .summary-card,
+    .section,
+    .day,
+    .map-card,
+    .shop-card {
+      border: 1px solid rgba(190, 211, 223, .86);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, .93);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .summary-card {
+      padding: 14px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .summary-title {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0 0 2px;
+      font-size: .9rem;
+      color: var(--stone);
+      font-weight: 850;
+    }
+
+    .summary-main {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .summary-main strong {
+      display: block;
+      font-size: 1.02rem;
+      line-height: 1.25;
+    }
+
+    .summary-main span {
+      display: block;
+      color: var(--stone);
+      font-size: .84rem;
+      line-height: 1.35;
+      margin-top: 3px;
+    }
+
+    .section {
+      margin: 16px 0;
+      padding: 16px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+
+    .section h2,
+    .day-title h2 {
+      margin: 0;
+      font-size: 1.18rem;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+
+    .section-note,
+    .muted {
+      margin: 4px 0 0;
+      color: var(--stone);
+      font-size: .9rem;
+      line-height: 1.45;
+    }
+
+    .ribbon-grid,
+    .hotel-grid,
+    .bus-grid,
+    .shop-grid,
+    .logic-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .ribbon,
+    .hotel-card,
+    .bus-card,
+    .logic-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      padding: 12px;
+    }
+
+    .ribbon {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 10px;
+      align-items: start;
+    }
+
+    .ribbon-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      background: var(--olle-blue);
+    }
+
+    .ribbon:nth-child(even) .ribbon-icon { background: var(--olle-orange); }
+
+    .ribbon strong,
+    .hotel-card strong,
+    .bus-card strong,
+    .shop-card strong,
+    .logic-card strong {
+      display: block;
+      font-size: .98rem;
+      line-height: 1.25;
+    }
+
+    .ribbon span,
+    .hotel-card span,
+    .bus-card span,
+    .shop-card span,
+    .logic-card span {
+      display: block;
+      color: var(--stone);
+      font-size: .86rem;
+      line-height: 1.45;
+      margin-top: 4px;
+    }
+
+    .pill-row {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .pill,
+    .mini-link {
+      min-height: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      color: var(--basalt);
+      padding: 6px 10px;
+      font-size: .82rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .pill.blue {
+      border-color: rgba(0, 118, 201, .22);
+      background: var(--olle-blue-soft);
+      color: var(--olle-blue-dark);
+    }
+
+    .pill.orange {
+      border-color: rgba(242, 140, 24, .28);
+      background: var(--olle-orange-soft);
+      color: var(--olle-orange-dark);
+    }
+
+    .pill.green {
+      border-color: rgba(47, 138, 91, .22);
+      background: #e9f7ef;
+      color: #1f6943;
+    }
+
+    .map-shell {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #d6e8f2;
+      min-height: 300px;
+    }
+
+    .map-shell iframe {
+      display: block;
+      width: 100%;
+      height: min(72vw, 420px);
+      min-height: 300px;
+      border: 0;
+    }
+
+    .map-list {
+      display: grid;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .map-card {
+      box-shadow: none;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items: center;
+      padding: 11px;
+    }
+
+    .map-card h3 {
+      margin: 0;
+      font-size: .98rem;
+      line-height: 1.25;
+    }
+
+    .map-card p {
+      margin: 4px 0 0;
+      color: var(--stone);
+      font-size: .83rem;
+      line-height: 1.35;
+    }
+
+    .map-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .mini-link {
+      min-width: 44px;
+      width: 44px;
+      padding: 0;
+      border-radius: 999px;
+      color: var(--olle-blue-dark);
+    }
+
+    .mini-link.kakao { color: var(--olle-orange-dark); }
+
+    .hotel-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hotel-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 5px;
+      background: var(--olle-blue);
+    }
+
+    .hotel-card:nth-child(2)::before { background: var(--olle-orange); }
+    .hotel-card:nth-child(3)::before { background: var(--green); }
+
+    .day-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .day {
+      overflow: hidden;
+    }
+
+    .day > summary {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 10px;
+      align-items: center;
+      padding: 13px 12px;
+      cursor: pointer;
+      list-style: none;
+      min-height: 74px;
+      background: linear-gradient(90deg, rgba(0,118,201,.08), rgba(242,140,24,.06));
+    }
+
+    .day > summary::-webkit-details-marker { display: none; }
+
+    .date-badge {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      color: white;
+      background: linear-gradient(135deg, var(--olle-blue), var(--olle-blue-dark));
+      box-shadow: 0 8px 18px rgba(0, 88, 145, .22);
+    }
+
+    .date-badge strong {
+      display: block;
+      font-size: 1.15rem;
+      line-height: 1;
+    }
+
+    .date-badge span {
+      display: block;
+      font-size: .67rem;
+      font-weight: 850;
+      margin-top: 2px;
+    }
+
+    .day:nth-of-type(even) .date-badge {
+      background: linear-gradient(135deg, var(--olle-orange), var(--olle-orange-dark));
+      box-shadow: 0 8px 18px rgba(191, 100, 0, .20);
+    }
+
+    .day-title {
+      min-width: 0;
+    }
+
+    .day-title h2 {
+      font-size: 1.02rem;
+      white-space: normal;
+    }
+
+    .day-title p {
+      margin: 4px 0 0;
+      color: var(--stone);
+      font-size: .82rem;
+      line-height: 1.34;
+    }
+
+    .chevron {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,.8);
+      color: var(--stone);
+      transition: transform .2s ease;
+    }
+
+    .day[open] .chevron { transform: rotate(180deg); }
+
+    .day-body {
+      padding: 13px 12px 14px;
+      display: grid;
+      gap: 12px;
+      background: rgba(255, 255, 255, .88);
+    }
+
+    .timeline {
+      display: grid;
+      gap: 9px;
+    }
+
+    .timeline-row {
+      display: grid;
+      grid-template-columns: 62px 28px 1fr;
+      gap: 8px;
+      align-items: start;
+    }
+
+    .time {
+      color: var(--stone);
+      font-size: .82rem;
+      font-weight: 850;
+      line-height: 1.25;
+      padding-top: 3px;
+    }
+
+    .timeline-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      background: var(--olle-blue);
+      margin-top: 0;
+    }
+
+    .timeline-row:nth-child(even) .timeline-icon { background: var(--olle-orange); }
+
+    .timeline-copy {
+      min-width: 0;
+      border-bottom: 1px dashed var(--line);
+      padding-bottom: 8px;
+    }
+
+    .timeline-row:last-child .timeline-copy { border-bottom: 0; }
+
+    .timeline-copy strong {
+      display: block;
+      font-size: .95rem;
+      line-height: 1.35;
+    }
+
+    .timeline-copy span {
+      display: block;
+      margin-top: 3px;
+      color: var(--stone);
+      font-size: .84rem;
+      line-height: 1.45;
+    }
+
+    .route-options {
+      display: grid;
+      gap: 9px;
+    }
+
+    .option-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 11px;
+      background: #fff;
+    }
+
+    .option-card.a {
+      border-color: rgba(0, 118, 201, .25);
+      background: linear-gradient(180deg, #fff, var(--olle-blue-soft));
+    }
+
+    .option-card.b {
+      border-color: rgba(242, 140, 24, .28);
+      background: linear-gradient(180deg, #fff, var(--olle-orange-soft));
+    }
+
+    .option-head {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 7px;
+    }
+
+    .option-label {
+      width: 28px;
+      height: 28px;
+      display: inline-grid;
+      place-items: center;
+      border-radius: 999px;
+      color: white;
+      background: var(--olle-blue);
+      font-size: .88rem;
+      font-weight: 900;
+    }
+
+    .option-card.b .option-label { background: var(--olle-orange); }
+
+    .option-card h3 {
+      margin: 0;
+      font-size: .98rem;
+      line-height: 1.25;
+    }
+
+    .option-card p {
+      margin: 0;
+      color: var(--stone);
+      font-size: .86rem;
+      line-height: 1.48;
+    }
+
+    .retreat {
+      margin-top: 9px;
+      padding-top: 9px;
+      border-top: 1px dashed rgba(93,106,114,.25);
+    }
+
+    .copy-line {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 9px;
+      background: #fff;
+    }
+
+    .copy-line strong {
+      display: block;
+      font-size: .92rem;
+      line-height: 1.2;
+    }
+
+    .copy-line span {
+      display: block;
+      color: var(--stone);
+      font-size: .79rem;
+      line-height: 1.25;
+      margin-top: 3px;
+    }
+
+    .bus-card {
+      display: grid;
+      gap: 9px;
+      align-items: start;
+    }
+
+    .bus-card > span {
+      margin-top: 0;
+    }
+
+    .bus-names {
+      display: grid;
+      gap: 7px;
+    }
+
+    .food-list {
+      display: grid;
+      gap: 8px;
+      margin-top: 9px;
+    }
+
+    .food-item {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 8px;
+      align-items: start;
+      color: var(--stone);
+      font-size: .88rem;
+      line-height: 1.45;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 99px;
+      background: var(--olle-orange);
+      margin-top: 8px;
+    }
+
+    .shop-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .shop-card {
+      box-shadow: none;
+      padding: 12px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 26px;
+      border-radius: 999px;
+      padding: 4px 8px;
+      background: var(--olle-blue-soft);
+      color: var(--olle-blue-dark);
+      font-size: .75rem;
+      font-weight: 900;
+      margin-bottom: 7px;
+    }
+
+    .tag.orange {
+      background: var(--olle-orange-soft);
+      color: var(--olle-orange-dark);
+    }
+
+    .source-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .source-list a {
+      border-bottom: 1px solid rgba(0, 118, 201, .25);
+      color: var(--olle-blue-dark);
+      font-weight: 760;
+    }
+
+    .mobile-rail {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 20;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 4px;
+      padding: 8px 10px calc(8px + env(safe-area-inset-bottom));
+      border-top: 1px solid rgba(189, 211, 223, .9);
+      background: rgba(255, 255, 255, .94);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 -12px 28px rgba(20,48,67,.10);
+    }
+
+    .nav-pill {
+      min-height: 50px;
+      display: grid;
+      place-items: center;
+      gap: 2px;
+      color: var(--stone);
+      border-radius: 8px;
+      font-size: .72rem;
+      font-weight: 900;
+    }
+
+    .nav-pill:active,
+    .nav-pill:focus-visible {
+      color: var(--olle-blue-dark);
+      background: var(--olle-blue-soft);
+      outline: 0;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: calc(78px + env(safe-area-inset-bottom));
+      z-index: 40;
+      transform: translateX(-50%) translateY(14px);
+      max-width: min(92vw, 460px);
+      border-radius: 999px;
+      padding: 9px 13px;
+      color: white;
+      background: rgba(38, 50, 56, .94);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .18s ease, transform .18s ease;
+      font-size: .84rem;
+      font-weight: 800;
+      text-align: center;
+      box-shadow: 0 12px 32px rgba(0,0,0,.22);
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media (min-width: 700px) {
+      body { padding-bottom: 34px; }
+      .hero { min-height: 420px; border-radius: 0 0 28px 28px; }
+      .quick-panel { grid-template-columns: repeat(3, 1fr); }
+      .ribbon-grid, .hotel-grid, .logic-grid { grid-template-columns: repeat(3, 1fr); }
+      .bus-grid, .shop-grid { grid-template-columns: repeat(2, 1fr); }
+      .map-list { grid-template-columns: repeat(2, 1fr); }
+      .route-options { grid-template-columns: repeat(2, 1fr); }
+      .day-title h2 { font-size: 1.18rem; }
+      .mobile-rail { display: none; }
+    }
+
+    @media (min-width: 980px) {
+      .bus-grid, .shop-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 380px) {
+      body { font-size: 15px; }
+      .page { padding-left: 12px; padding-right: 12px; }
+      .hero { padding-left: 16px; padding-right: 16px; }
+      .timeline-row { grid-template-columns: 54px 24px 1fr; gap: 7px; }
+      .timeline-icon { width: 24px; height: 24px; }
+      .time { font-size: .76rem; }
+      .day > summary { grid-template-columns: auto 1fr 30px; padding-left: 10px; padding-right: 9px; }
+      .date-badge { width: 48px; height: 48px; }
+      .icon-btn, .icon-link { width: 42px; height: 42px; }
+    }
+
+    @media print {
+      @page { size: A4; margin: 10mm; }
+      body {
+        background: white;
+        color: #111;
+        padding: 0;
+        font-size: 11pt;
+      }
+      .page { width: 100%; padding: 0; }
+      .hero {
+        min-height: auto;
+        margin: 0 0 12mm;
+        border-radius: 0;
+        box-shadow: none;
+        background: white;
+        color: #111;
+        padding: 0;
+      }
+      .hero::after, .hero-actions, .mobile-rail, .map-shell, .icon-btn, .mini-link, .toast { display: none !important; }
+      .hero-chip, .brand, .summary-card, .section, .day, .map-card, .shop-card {
+        box-shadow: none;
+        break-inside: avoid;
+      }
+      .hero-chip, .brand { border-color: #bbb; color: #111; background: #fff; }
+      .day { margin-bottom: 8mm; }
+      details.day:not([open]) .day-body { display: block; }
+      .chevron { display: none; }
+      a { text-decoration: underline; }
+    }
+  </style>
+</head>
+<body>
+  <svg aria-hidden="true" width="0" height="0" style="position:absolute">
+    <symbol id="i-map" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18 3 21V6l6-3 6 3 6-3v15l-6 3-6-3Z"/><path d="M9 3v15"/><path d="M15 6v15"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4"/><path d="M16 2v4"/><path d="M3 10h18"/><rect width="18" height="18" x="3" y="4" rx="2"/></symbol>
+    <symbol id="i-bed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M2 19V5"/><path d="M2 13h20"/><path d="M22 19v-6"/><path d="M6 13V7h7a3 3 0 0 1 3 3v3"/><path d="M2 19h20"/></symbol>
+    <symbol id="i-plane" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l5-5-3-3-5 5-8.2-1.8L3.4 7.6 10 11l-3 3-3.1-.7-1 1 4.2 2.8 2.8 4.2 1-1-.7-3.1 3-3 3.4 6.6 1.2-1.6Z"/></symbol>
+    <symbol id="i-hike" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="13" cy="4" r="2"/><path d="M7 21 10 12l3 3 1 6"/><path d="m7 10 4-3 3 2 3 1"/><path d="M19 8v13"/><path d="m12 15-3 2"/></symbol>
+    <symbol id="i-bus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6v6"/><path d="M16 6v6"/><path d="M3 11h18"/><path d="M5 19h14a2 2 0 0 0 2-2V6a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v11a2 2 0 0 0 2 2Z"/><path d="M7 19v2"/><path d="M17 19v2"/></symbol>
+    <symbol id="i-shop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-car" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9L18 6H6l-2.5 5.1C2.7 11.3 2 12.1 2 13v3c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M8 11h8"/></symbol>
+    <symbol id="i-food" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7a4 4 0 0 0 4 4v9"/><path d="M7 2v20"/><path d="M11 2v7a4 4 0 0 1-4 4"/><path d="M19 2v20"/><path d="M15 2v8a4 4 0 0 0 4 4"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.1 0l2.8-2.8a5 5 0 0 0-7.1-7.1L11.2 4.7"/><path d="M14 11a5 5 0 0 0-7.1 0l-2.8 2.8a5 5 0 0 0 7.1 7.1l1.6-1.6"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m21.7 18.6-8.5-15a1.4 1.4 0 0 0-2.4 0l-8.5 15A1.4 1.4 0 0 0 3.5 21h17a1.4 1.4 0 0 0 1.2-2.4Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 1.7 5.2L19 10l-5.3 1.8L12 17l-1.7-5.2L5 10l5.3-1.8Z"/><path d="M19 17v4"/><path d="M21 19h-4"/></symbol>
+    <symbol id="i-route" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7H7a3 3 0 0 1 0-6h11"/><path d="m15 3 3 3-3 3"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></symbol>
+  </svg>
+
+  <main class="page">
+    <header class="hero" id="top">
+      <div class="hero-top">
+        <div class="brand"><span class="marker"></span> Jeju Olle 2026</div>
+        <div class="hero-actions">
+          <a class="icon-link" href="#map" aria-label="查看地图"><svg><use href="#i-map"/></svg></a>
+          <a class="icon-link" href="javascript:window.print()" aria-label="打印"><svg><use href="#i-calendar"/></svg></a>
+        </div>
+      </div>
+      <div class="hero-copy">
+        <p class="eyebrow"><svg width="18" height="18"><use href="#i-route"/></svg> 2026-09-20 至 2026-09-30 · Solo Trip 执行版</p>
+        <h1>济州偶来</h1>
+        <p class="hero-subtitle">按西归浦、城山、济州市三段移动。每个徒步日都有 A 全程盖章版和 B 轻松精华版，公交站名可一键复制，手机上直接开地图搜索即可。</p>
+      </div>
+      <div class="hero-chips" aria-label="行程重点">
+        <span class="hero-chip">TR828 00:35 → 07:25</span>
+        <span class="hero-chip">Olle 6 / 7 / 8 / 10 / 1 / 1-1</span>
+        <span class="hero-chip">蓝色正向 · 橙色反向</span>
+        <span class="hero-chip">9/30 05:30 打车去机场</span>
+      </div>
+    </header>
+
+    <section class="quick-panel" aria-label="顶部总览">
+      <article class="summary-card">
+        <p class="summary-title"><svg width="18" height="18"><use href="#i-plane"/></svg> 航班</p>
+        <div class="summary-main">
+          <div><strong>9/20 TR828</strong><span>新加坡 00:35 → 济州 07:25</span></div>
+          <button class="icon-btn copy-btn" data-copy="TR828 Singapore 00:35 to Jeju 07:25" aria-label="复制航班信息"><svg><use href="#i-copy"/></svg></button>
+        </div>
+      </article>
+      <article class="summary-card">
+        <p class="summary-title"><svg width="18" height="18"><use href="#i-bed"/></svg> 住宿节奏</p>
+        <div class="summary-main">
+          <div><strong>南部 → 东部 → 北部</strong><span>西归浦 5晚 · 城山 3晚 · 济州市 2晚</span></div>
+          <a class="icon-btn" href="#hotels" aria-label="查看住宿"><svg><use href="#i-link"/></svg></a>
+        </div>
+      </article>
+      <article class="summary-card">
+        <p class="summary-title"><svg width="18" height="18"><use href="#i-alert"/></svg> 返程提醒</p>
+        <div class="summary-main">
+          <div><strong>9/30 约 08:00</strong><span>建议 05:30 从 I Jin Hotel 打车出发</span></div>
+          <button class="icon-btn copy-btn" data-copy="I Jin Hotel to Jeju International Airport. Leave around 05:30 for 08:00 flight." aria-label="复制返程提醒"><svg><use href="#i-copy"/></svg></button>
+        </div>
+      </article>
+    </section>
+
+    <section class="section" id="overview">
+      <div class="section-head">
+        <div>
+          <h2>执行原则</h2>
+          <p class="section-note">把“盖章”放在理想状态，把“好看且不狼狈”作为真实底线。</p>
+        </div>
+      </div>
+      <div class="ribbon-grid">
+        <article class="ribbon">
+          <div class="ribbon-icon"><svg width="19" height="19"><use href="#i-route"/></svg></div>
+          <div><strong>蓝橙路标逻辑</strong><span>蓝色按起点到终点正向走，橙色用于反向。页面也用蓝/橙区分全程与精华方案。</span></div>
+        </article>
+        <article class="ribbon">
+          <div class="ribbon-icon"><svg width="19" height="19"><use href="#i-car"/></svg></div>
+          <div><strong>撤退不算失败</strong><span>连续徒步时，15:00 后腿沉、风雨变大、脚底磨痛，就直接在标注点打车回酒店。</span></div>
+        </article>
+        <article class="ribbon">
+          <div class="ribbon-icon"><svg width="19" height="19"><use href="#i-food"/></svg></div>
+          <div><strong>Solo 饮食</strong><span>优先市场、海女食堂、紫菜包饭、汤饭、便利店补给。海鲜锅和烤肉类留给体力好的晚上。</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="hotels">
+      <div class="section-head">
+        <div>
+          <h2>酒店分段</h2>
+          <p class="section-note">每天先看这一段，决定“走完”还是“走漂亮部分”。</p>
+        </div>
+      </div>
+      <div class="hotel-grid">
+        <article class="hotel-card">
+          <strong>Cornerstone Hotel</strong>
+          <span>9/20-9/25 · 西归浦市区。适合 Olle 6、7、8、10 和每日偶来市场。</span>
+          <div class="pill-row">
+            <a class="pill blue" href="https://map.naver.com/p/search/Cornerstone%20Hotel%20Seogwipo" target="_blank" rel="noreferrer">Naver</a>
+            <a class="pill orange" href="https://map.kakao.com/link/search/Cornerstone%20Hotel%20Seogwipo" target="_blank" rel="noreferrer">Kakao</a>
+          </div>
+        </article>
+        <article class="hotel-card">
+          <strong>Playce Camp Jeju</strong>
+          <span>9/25-9/28 · 城山。适合 Olle 1、牛岛 1-1、城山日出峰、Yumin Art、涉地可支。</span>
+          <div class="pill-row">
+            <a class="pill blue" href="https://map.naver.com/p/search/Playce%20Camp%20Jeju" target="_blank" rel="noreferrer">Naver</a>
+            <a class="pill orange" href="https://map.kakao.com/link/search/Playce%20Camp%20Jeju" target="_blank" rel="noreferrer">Kakao</a>
+          </div>
+        </article>
+        <article class="hotel-card">
+          <strong>I Jin Hotel</strong>
+          <span>9/28-9/30 · 济州市莲洞。最后购物、补货、免税店和清晨去机场最稳。</span>
+          <div class="pill-row">
+            <a class="pill blue" href="https://map.naver.com/p/search/I%20Jin%20Hotel%20Jeju" target="_blank" rel="noreferrer">Naver</a>
+            <a class="pill orange" href="https://map.kakao.com/link/search/I%20Jin%20Hotel%20Jeju" target="_blank" rel="noreferrer">Kakao</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="map">
+      <div class="section-head">
+        <div>
+          <h2>地图信息</h2>
+          <p class="section-note">离线页面内置总览图；精确导航请点 Naver / Kakao 搜索。</p>
+        </div>
+      </div>
+      <div class="map-shell" aria-label="济州岛总览地图">
+        <iframe title="Jeju overview map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.openstreetmap.org/export/embed.html?bbox=126.12%2C33.08%2C126.98%2C33.62&amp;layer=mapnik&amp;marker=33.247%2C126.565"></iframe>
+      </div>
+      <div class="map-list" id="map-list"></div>
+    </section>
+
+    <section class="section" id="bus">
+      <div class="section-head">
+        <div>
+          <h2>公交站与复制</h2>
+          <p class="section-note">手机地图不好点时，直接复制韩文或英文站名，再粘贴到 Naver / Kakao。</p>
+        </div>
+      </div>
+      <div class="bus-grid" id="bus-list"></div>
+    </section>
+
+    <section class="section" id="days">
+      <div class="section-head">
+        <div>
+          <h2>每日时间轴</h2>
+          <p class="section-note">默认展开关键日。徒步日按 A/B 方案临场切换。</p>
+        </div>
+      </div>
+      <div class="day-list" id="day-list"></div>
+    </section>
+
+    <section class="section" id="logic">
+      <div class="section-head">
+        <div>
+          <h2>天气与体力调整</h2>
+          <p class="section-note">这段是路上临时决策用的，不用纠结。</p>
+        </div>
+      </div>
+      <div class="logic-grid">
+        <article class="logic-card"><strong>雨天或大风</strong><span>海岸悬崖、松岳山、涉地可支一类无遮挡路段改 B 版；把美术馆、咖啡、市场提前。</span></article>
+        <article class="logic-card"><strong>脚底痛或睡眠差</strong><span>当天只走最漂亮的 5-8km。盖章目标顺延，不要用第一天状态评判整趟旅行。</span></article>
+        <article class="logic-card"><strong>好天气且精神好</strong><span>Olle 6、7、1、1-1 优先全程；Olle 8 和 10 仍建议保留打车撤退点。</span></article>
+      </div>
+    </section>
+
+    <section class="section" id="shopping">
+      <div class="section-head">
+        <div>
+          <h2>Olive Young 与特产</h2>
+          <p class="section-note">按“轻、好带、最后两天再买”整理，避免背着购物袋徒步。</p>
+        </div>
+      </div>
+      <div class="shop-grid">
+        <article class="shop-card"><span class="tag">补水舒缓</span><strong>Round Lab 1025 Dokdo Toner</strong><span>国民化妆水类。适合湿敷、晒后基础补水。</span></article>
+        <article class="shop-card"><span class="tag">精华</span><strong>Torriden Dive-In Hyaluronic Acid Serum</strong><span>轻薄保湿精华，适合济州风吹后叠加。</span></article>
+        <article class="shop-card"><span class="tag">屏障修护</span><strong>AESTURA Atobarrier365 Cream</strong><span>干燥、泛红、屏障弱时优先买这类修护面霜。</span></article>
+        <article class="shop-card"><span class="tag">棉片</span><strong>MEDIHEAL Madecassoside Blemish Pad</strong><span>徒步后脸颊热、红、闷的时候，回酒店短敷更方便。</span></article>
+        <article class="shop-card"><span class="tag">防晒</span><strong>Round Lab Birch Juice Sun Cream</strong><span>每天徒步必备。先买一支随身，满意再补货。</span></article>
+        <article class="shop-card"><span class="tag">卸妆</span><strong>manyo Pure Cleansing Oil</strong><span>防晒和底妆都多的旅行日，用油类卸更稳。</span></article>
+        <article class="shop-card"><span class="tag orange">济州特产</span><strong>Omegi Tteok</strong><span>糯叽叽伴手礼，建议最后一天或冷藏条件明确时买。</span></article>
+        <article class="shop-card"><span class="tag orange">好带零食</span><strong>橘子干 / 橘子巧克力 / 柑橘 gwajul</strong><span>东门市场和伴手礼店都好买，适合办公室分装。</span></article>
+        <article class="shop-card"><span class="tag orange">济州限定</span><strong>牛岛花生零食、绿茶、Hallabong 果酱</strong><span>轻便且不太怕压。液体、酒类和鲜果按航空与入境规则处理。</span></article>
+      </div>
+    </section>
+
+    <section class="section" id="sources">
+      <div class="section-head">
+        <div>
+          <h2>参考来源</h2>
+          <p class="section-note">路线和购物仍建议出发前再看一次营业时间与天气。</p>
+        </div>
+      </div>
+      <div class="source-list">
+        <p><a href="https://www.visitjeju.net/en/detail/view?contentsid=CNTS_000000000019926" target="_blank" rel="noreferrer">Visit Jeju · Jeju Olle Traveler Center</a>：蓝色箭头为正向，橙色箭头为反向。</p>
+        <p><a href="https://www.oliveyoung.co.kr/store/amusement/award.do" target="_blank" rel="noreferrer">Olive Young Awards</a>：护肤品榜单参考。</p>
+        <p><a href="https://www.visitjeju.net/en/detail/view?contentsid=CNTS_300000000012883" target="_blank" rel="noreferrer">Visit Jeju · Things To Buy</a>：济州特产参考。</p>
+        <p><a href="https://bus.jeju.go.kr/" target="_blank" rel="noreferrer">Jeju Bus Information System</a>：公交实时信息。</p>
+      </div>
+    </section>
+  </main>
+
+  <nav class="mobile-rail" aria-label="底部导航">
+    <a class="nav-pill" href="#map"><svg><use href="#i-map"/></svg><span>地图</span></a>
+    <a class="nav-pill" href="#bus"><svg><use href="#i-bus"/></svg><span>公交</span></a>
+    <a class="nav-pill" href="#days"><svg><use href="#i-calendar"/></svg><span>日程</span></a>
+    <a class="nav-pill" href="#shopping"><svg><use href="#i-shop"/></svg><span>购物</span></a>
+    <a class="nav-pill" href="#top"><svg><use href="#i-plane"/></svg><span>机场</span></a>
+  </nav>
+  <div class="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const icon = (id) => `<svg aria-hidden="true"><use href="#${id}"></use></svg>`;
+    const naver = (q) => `https://map.naver.com/p/search/${encodeURIComponent(q)}`;
+    const kakao = (q) => `https://map.kakao.com/link/search/${encodeURIComponent(q)}`;
+
+    const places = [
+      ["济州国际机场", "Jeju International Airport", "제주국제공항", "9/20 抵达，9/30 清晨返程"],
+      ["Cornerstone Hotel", "Cornerstone Hotel Seogwipo", "코너스톤 호텔 서귀포", "9/20-9/25 西归浦住宿"],
+      ["Jeju Olle Tourist Center", "Jeju Olle Tourist Center", "제주올레 여행자센터", "买偶来护照、6号线终点附近"],
+      ["Soesokkak", "Soesokkak", "쇠소깍", "Olle 6 起点"],
+      ["Oedolgae", "Oedolgae", "외돌개", "Olle 7 精华段"],
+      ["Jungmun Tourist Complex", "Jungmun Tourist Complex", "중문관광단지", "Olle 8 精华段"],
+      ["Itami Jun Museum", "Itami Jun Museum", "이타미준 뮤지엄", "9/24 西部艺术日"],
+      ["Hyeopjae Beach", "Hyeopjae Beach", "협재해수욕장", "9/24 西海岸"],
+      ["Hollain", "Hollain Jeju", "홀라인 제주", "9/24 咖啡/休息点"],
+      ["Jeju Museum of Art", "Jeju Museum of Art", "제주도립미술관", "9/24 下午"],
+      ["Playce Camp Jeju", "Playce Camp Jeju", "플레이스 캠프 제주", "9/25-9/28 城山住宿"],
+      ["Seongsan Ilchulbong", "Seongsan Ilchulbong", "성산일출봉", "9/26 城山日出峰"],
+      ["Seongsan Port", "Seongsan Port", "성산항", "9/27 牛岛渡轮"],
+      ["Udo", "Udo Island", "우도", "Olle 1-1"],
+      ["Yumin Art Nouveau Collection", "Yumin Art Nouveau Collection", "유민미술관", "9/27 或 9/28"],
+      ["Seopjikoji", "Seopjikoji", "섭지코지", "东线海岸"],
+      ["I Jin Hotel", "I Jin Hotel Jeju", "아이진호텔", "9/28-9/30 济州市住宿"],
+      ["Chilseongro Shopping Street", "Chilseongro Shopping Street Jeju", "칠성로 쇼핑거리", "9/29 购物"],
+      ["Jungang Underground Shopping Center", "Jeju Jungang Underground Shopping Center", "제주중앙지하상가", "9/29 购物"],
+      ["Dongmun Market", "Dongmun Market Jeju", "동문시장", "9/29 晚餐和特产"],
+      ["Shilla Duty Free Jeju", "Shilla Duty Free Jeju", "신라면세점 제주점", "免税店补货"]
+    ];
+
+    const busStops = [
+      ["제주국제공항", "Jeju International Airport", "机场到西归浦、返程"],
+      ["서귀포버스터미널", "Seogwipo Bus Terminal", "西归浦跨区换乘"],
+      ["제주올레 여행자센터", "Jeju Olle Tourist Center", "护照、Route 6 终点"],
+      ["쇠소깍", "Soesokkak", "Route 6 起点"],
+      ["외돌개", "Oedolgae", "Route 7 精华撤退"],
+      ["제주월드컵경기장", "Jeju World Cup Stadium", "Route 7/8 换乘点"],
+      ["월평아왜낭목 쉼터", "Wolpyeong Awenangmok Rest Area", "Route 8 起点附近"],
+      ["중문관광단지", "Jungmun Tourist Complex", "Route 8 景区核心"],
+      ["화순금모래해변", "Hwasun Golden Sand Beach", "Route 10 起点"],
+      ["성산항", "Seongsan Port", "牛岛渡轮"],
+      ["성산일출봉입구", "Seongsan Ilchulbong Entrance", "Route 1/日出峰"],
+      ["섭지코지", "Seopjikoji", "涉地可支"],
+      ["중앙로(동문시장)[동]", "Jungang-ro Dongmun Market East", "东门市场"],
+      ["중앙로사거리", "Jungang-ro Intersection", "七星路/地下街"]
+    ];
+
+    const days = [
+      {
+        date: "9/20", weekday: "周日", title: "抵达济州 · Olle 6 低强度开局", stay: "Cornerstone Hotel", open: true,
+        timeline: [
+          ["00:35", "TR828 新加坡起飞", "随身放压缩袜、眼罩、轻外套。"],
+          ["07:25", "抵达济州国际机场", "入境后先买水和简单早餐。"],
+          ["09:00", "机场 → 西归浦", "机场巴士或出租到 Cornerstone Hotel 寄存行李。"],
+          ["10:30", "Jeju Olle Tourist Center", "买偶来护照，确认 6 号线当天路况。"],
+          ["11:10", "打车到 쇠소깍 Soesokkak", "轻装开走，把终点放回西归浦市区。"],
+          ["15:30", "入住休息", "晚餐去每日偶来市场，早点睡。"]
+        ],
+        options: [
+          ["A", "Olle 6 全程盖章", "Soesokkak → Jeju Olle Tourist Center，约 10km，低难度。抵达日最适合用它把时差走开。", "撤退点：보목포구 Bomok Port、정방폭포 Jeongbang Waterfall、서귀포매일올레시장 Seogwipo Maeil Olle Market。"],
+          ["B", "6 号线精华", "Soesokkak → Bomok Port 或 Jejigi Oreum 一带，走 5-7km 后打车回酒店。", "复制撤退点：쇠소깍 / 보목포구 / 정방폭포。"]
+        ],
+        food: ["晚餐：每日偶来市场，选紫菜包饭、黑猪肉串、海鲜小吃。", "Solo 友好：便利店补电解质饮料和创可贴。"]
+      },
+      {
+        date: "9/21", weekday: "周一", title: "Olle 7 · 外돌개与西归浦海岸", stay: "Cornerstone Hotel", open: true,
+        timeline: [
+          ["08:00", "早餐与补水", "今天海岸风景漂亮，防晒要补。"],
+          ["09:00", "前往起点", "从酒店打车或公交到 Jeju Olle Tourist Center。"],
+          ["09:30", "开始 Route 7", "按蓝色标记走，外돌개一段慢慢拍。"],
+          ["13:00", "中途午餐/咖啡", "不要空腹硬走，下午脚更容易疼。"],
+          ["16:30", "结束或撤退", "回西归浦吃热汤类。"]
+        ],
+        options: [
+          ["A", "Olle 7 全程盖章", "Jeju Olle Tourist Center → Wolpyeong Awenangmok，约 13km，海岸和村落混合。", "撤退点：외돌개 Oedolgae、법환포구 Beophwan Port、제주월드컵경기장 Jeju World Cup Stadium。"],
+          ["B", "外돌개海岸精华", "Jeju Olle Tourist Center → Oedolgae → Beophwan Port，约 6-8km。", "复制撤退点：외돌개 / 법환포구 / 제주월드컵경기장。"]
+        ],
+        food: ["午餐：海岸咖啡或便利店饭团，不要等到低血糖。", "晚餐：西归浦市区汤饭、刀削面、烤鱼定食更适合一个人。"]
+      },
+      {
+        date: "9/22", weekday: "周二", title: "Olle 8 · 中文海岸与柱状节理", stay: "Cornerstone Hotel", open: false,
+        timeline: [
+          ["07:30", "早出门", "8 号线长，今天不要拖到中午才开始。"],
+          ["08:40", "到月坪起点", "公交到 중문/월평 一带，或直接打车。"],
+          ["10:30", "柱状节理/中文海岸", "好看的段落集中，拍照不要赶。"],
+          ["14:30", "判断体力", "脚底热痛就从中文或大坪打车。"],
+          ["17:00", "回酒店", "拉伸、泡脚、补蛋白质。"]
+        ],
+        options: [
+          ["A", "Olle 8 全程盖章", "Wolpyeong → Daepyeong，约 19km，强度较高。适合天气稳定、睡眠充足时挑战。", "撤退点：중문관광단지 Jungmun Tourist Complex、주상절리대 Jusangjeolli Cliff、대평포구 Daepyeong Port。"],
+          ["B", "柱状节理—中文—大坪精华", "直接从柱状节理或中文海岸开始，走到大坪前后，约 7-10km。", "复制撤退点：중문관광단지 / 주상절리대 / 대평포구。"]
+        ],
+        food: ["午餐：中文旅游区选择更多，适合坐下来吃。", "晚餐：回西归浦再吃，别在路线上为了餐厅绕太多。"]
+      },
+      {
+        date: "9/23", weekday: "周三", title: "Olle 10 · 山房山、松岳山与西南海岸", stay: "Cornerstone Hotel", open: false,
+        timeline: [
+          ["07:50", "出发到花顺金砂海边", "跨区移动，建议提前查公交或直接打车。"],
+          ["09:10", "开始 Route 10", "山房山视野好，风大时要保守。"],
+          ["12:30", "午餐/咖啡", "在山房山或松岳山附近补给。"],
+          ["15:00", "松岳山后判断", "风大、膝盖不舒服就撤。"],
+          ["17:30", "回西归浦", "今天不要安排重购物。"]
+        ],
+        options: [
+          ["A", "Olle 10 全程盖章", "Hwasun Golden Sand Beach → Moseulpo，约 15km+，景色大开大合。", "撤退点：산방산 Sanbangsan、사계해안 Sagye Coast、송악산 Songaksan、모슬포항 Moseulpo Port。"],
+          ["B", "山房山/松岳山精华", "山房山 → Sagye Coast → Songaksan，约 6-9km，风景密度高。", "复制撤退点：산방산 / 사계해안 / 송악산。"]
+        ],
+        food: ["午餐：海鲜面、烤鱼、紫菜包饭都比重油烤肉更适合徒步中段。", "补给：今天带两瓶水，海岸风大会让人不知不觉脱水。"]
+      },
+      {
+        date: "9/24", weekday: "周四", title: "西部艺术恢复日 · Itami Jun / 狭才 / Hollain", stay: "Cornerstone Hotel", open: true,
+        timeline: [
+          ["08:30", "西归浦出发", "今天不硬走，给腿恢复。"],
+          ["10:00", "Itami Jun Museum", "建筑和光线优先，适合慢看。"],
+          ["12:30", "狭才/西海岸", "Hyeopjae Beach 或附近海边午餐。"],
+          ["14:30", "Hollain", "咖啡休息，整理照片和体力。"],
+          ["16:30", "济州道立美术馆", "如果闭馆或时间不稳，就改成新济州轻松吃饭。"],
+          ["19:00", "回西归浦", "为 9/25 转场收拾行李。"]
+        ],
+        options: [
+          ["A", "完整西部艺术线", "Itami Jun Museum → Hyeopjae/西海岸 → Hollain → Jeju Museum of Art。", "交通：这天点位分散，建议打车组合，公交只负责长距离时段。"],
+          ["B", "轻松恢复线", "只保留 Itami Jun Museum + Hyeopjae/Hollain，济州道立美术馆顺延到 9/28。", "撤退点：협재해수욕장 Hyeopjae Beach、한림공원 Hallim Park、제주도립미술관。"]
+        ],
+        food: ["午餐：狭才海边找单人可点的海鲜面或盖饭。", "咖啡：Hollain 作为腿部恢复点，不把它当赶路任务。"]
+      },
+      {
+        date: "9/25", weekday: "周五", title: "西归浦 → 城山转场", stay: "Playce Camp Jeju", open: false,
+        timeline: [
+          ["09:00", "退房与寄/带行李", "早餐后不要再安排长距离徒步。"],
+          ["10:00", "西归浦轻松补漏", "可去市场、咖啡、海边短走。"],
+          ["13:00", "出发去城山", "公交转移或直接打车，行李日以省力为先。"],
+          ["15:00", "入住 Playce Camp Jeju", "洗衣、补给、防晒补货。"],
+          ["17:30", "城山周边散步", "看天气决定是否提前踩点日出峰入口。"]
+        ],
+        options: [
+          ["A", "转场稳定版", "中午前离开西归浦，下午到城山，晚上只做补给和散步。", "交通：如带大行李，优先打车或分段少换乘路线。"],
+          ["B", "恢复版", "睡到自然醒，西归浦吃早午餐后再去城山。", "撤退点：任何疲惫都不用加景点，今天的任务是换酒店。"]
+        ],
+        food: ["晚餐：城山附近海鲜汤、鲍鱼粥、紫菜包饭。", "补给：买好第二天 Olle 1 的水、能量棒和足贴。"]
+      },
+      {
+        date: "9/26", weekday: "周六", title: "Olle 1 · 城山日出峰与东部海岸", stay: "Playce Camp Jeju", open: true,
+        timeline: [
+          ["06:00", "可选日出峰", "想看日出就先走城山日出峰；不想早起就上午走。"],
+          ["08:30", "Route 1 出发", "从 Siheung 或合适起点开始，按天气调节。"],
+          ["12:30", "午餐", "城山区域补给相对方便。"],
+          ["15:30", "城山日出峰/终点盖章", "按体力决定是否登顶。"],
+          ["18:00", "Playce Camp 周边晚餐", "早点回，给牛岛留体力。"]
+        ],
+        options: [
+          ["A", "Olle 1 全程盖章", "Siheung Elementary School → Gwangchigi Beach/Seongsan，约 15km，东部代表路线。", "撤退点：종달리 Jongdal-ri、성산일출봉입구 Seongsan Ilchulbong Entrance、광치기해변 Gwangchigi Beach。"],
+          ["B", "城山精华", "Jongdal-ri 或 Gwangchigi Beach → Seongsan Ilchulbong，约 6-9km。", "复制撤退点：종달리 / 성산일출봉입구 / 광치기해변。"]
+        ],
+        food: ["午餐：城山海鲜面、鲍鱼粥，一人吃压力较小。", "晚餐：避免太辣太油，第二天要坐船去牛岛。"]
+      },
+      {
+        date: "9/27", weekday: "周日", title: "牛岛 Olle 1-1 · Yumin Art / 涉地可支", stay: "Playce Camp Jeju", open: true,
+        timeline: [
+          ["08:00", "前往 성산항 Seongsan Port", "查当天船班和风浪，带身份证件。"],
+          ["09:00", "上岛走 Route 1-1", "牛岛风大，帽子和防晒要稳。"],
+          ["12:30", "牛岛午餐", "花生冰淇淋、海鲜面、汉拿峰饮品。"],
+          ["14:30", "回程船", "不要卡最后一班。"],
+          ["16:00", "Yumin Art / 涉地可支", "二选一或都轻松走。"]
+        ],
+        options: [
+          ["A", "牛岛 1-1 全程", "Udo Olle 1-1 环岛，约 11km，盖章和海景兼顾。", "撤退点：천진항 Cheonjin Port、하우목동항 Haumokdong Port、검멀레해변 Geommeolle Beach。"],
+          ["B", "牛岛精华 + 东线艺术", "岛上只走港口—海边—咖啡段，下午留给 Yumin Art 和 Seopjikoji。", "复制撤退点：천진항 / 하우목동항 / 검멀레해변。"]
+        ],
+        food: ["牛岛：花生冰淇淋可以当快乐补给，不当正餐。", "晚餐：回城山后吃热汤，避免赶船前吃太满。"]
+      },
+      {
+        date: "9/28", weekday: "周一", title: "城山补漏 → 济州市", stay: "I Jin Hotel", open: false,
+        timeline: [
+          ["08:30", "城山晨间补漏", "前一天没去的 Yumin Art 或涉地可支放这里。"],
+          ["11:30", "退房/取行李", "从 Playce Camp 出发去济州市。"],
+          ["14:30", "抵达 I Jin Hotel", "寄存或入住，洗衣和整理购物清单。"],
+          ["16:30", "莲洞/新济州轻松购物", "先扫 Olive Young，不急着买重物。"],
+          ["19:00", "简单晚餐", "今天重在转场恢复。"]
+        ],
+        options: [
+          ["A", "东线补完版", "Seopjikoji + Yumin Art 后再去济州市。", "交通：从城山到济州市路程长，下午不要再塞远景点。"],
+          ["B", "直接进城版", "上午睡够，午后直接到 I Jin Hotel，晚上莲洞逛街。", "撤退点：호텔 체크인后直接休息，购物顺延 9/29。"]
+        ],
+        food: ["晚餐：莲洞有更多一人友好餐厅，可选汤饭、冷面、日式定食。", "购物：先比价 Olive Young、免税店和机场，重物明天买。"]
+      },
+      {
+        date: "9/29", weekday: "周二", title: "济州市购物 · 七星路 / 地下街 / 东门 / 免税店", stay: "I Jin Hotel", open: true,
+        timeline: [
+          ["09:30", "新济州 Olive Young", "先买护肤品，避免晚上热门货断货。"],
+          ["11:00", "免税店", "护肤、香水、包袋按清单处理，控制重量。"],
+          ["14:00", "七星路 + 中央地下街", "衣服、小物、咖啡，雨天也舒服。"],
+          ["17:30", "东门市场", "晚餐和特产，Omegi Tteok 建议今天买。"],
+          ["21:00", "回酒店打包", "液体、刀具、食物分好托运/随身。"]
+        ],
+        options: [
+          ["A", "完整购物线", "免税店 → 七星路 → 中央地下街 → 东门市场。", "交通：市区段公交/步行/短打车混合，不为省小钱拖累脚。"],
+          ["B", "省力购物线", "只做 Olive Young + 东门市场 + 酒店附近餐厅。", "撤退点：중앙로사거리 Jungang-ro Intersection、동문시장 Dongmun Market。"]
+        ],
+        food: ["东门市场：黑猪肉串、海鲜小吃、橘子甜品；一个人边走边吃最轻松。", "打包：Omegi Tteok 看保质和冷藏，鲜果谨慎购买。"]
+      },
+      {
+        date: "9/30", weekday: "周三", title: "清晨返程 · 05:30 打车去机场", stay: "返程", open: true,
+        timeline: [
+          ["04:50", "起床洗漱", "前一晚把护照、钱包、充电器放同一小包。"],
+          ["05:20", "叫车", "Kakao T 或酒店前台协助；目标 05:30 出发。"],
+          ["05:50", "到济州国际机场", "早班机别压线，退税/托运都留余量。"],
+          ["08:00", "预计返程航班", "时间以最终机票为准。"]
+        ],
+        options: [
+          ["A", "稳妥机场版", "05:30 从 I Jin Hotel 出发，按早班机节奏处理。", "复制给司机：제주국제공항 국제선 출발층으로 가주세요."],
+          ["B", "极简版", "前一晚完成全部打包，早上只拿包下楼。", "提醒：不要把最后购物留到机场，早班很多店未必开。"]
+        ],
+        food: ["早餐：便利店饭团、牛奶、香蕉即可。", "机场：水过安检后再买，避免早上找店浪费时间。"]
+      }
+    ];
+
+    function renderMapList() {
+      document.getElementById("map-list").innerHTML = places.map(([zh, en, ko, note]) => `
+        <article class="map-card">
+          <div>
+            <h3>${zh}</h3>
+            <p>${ko} · ${en}<br>${note}</p>
+          </div>
+          <div class="map-actions">
+            <a class="mini-link" href="${naver(ko || en)}" target="_blank" rel="noreferrer" aria-label="Naver Map 搜索 ${zh}">${icon("i-map")}<span class="sr-only">Naver</span></a>
+            <a class="mini-link kakao" href="${kakao(ko || en)}" target="_blank" rel="noreferrer" aria-label="Kakao Map 搜索 ${zh}">${icon("i-link")}<span class="sr-only">Kakao</span></a>
+            <button class="icon-btn copy-btn" data-copy="${ko} / ${en}" aria-label="复制 ${zh}">${icon("i-copy")}</button>
+          </div>
+        </article>
+      `).join("");
+    }
+
+    function renderBusList() {
+      document.getElementById("bus-list").innerHTML = busStops.map(([ko, en, note]) => `
+        <article class="bus-card">
+          <span>${note}</span>
+          <div class="bus-names">
+            <div class="copy-line">
+              <div><strong>${ko}</strong><span>Korean</span></div>
+              <button class="icon-btn copy-btn" data-copy="${ko}" aria-label="复制韩文站名 ${ko}">${icon("i-copy")}</button>
+            </div>
+            <div class="copy-line">
+              <div><strong>${en}</strong><span>English</span></div>
+              <button class="icon-btn copy-btn" data-copy="${en}" aria-label="复制英文站名 ${en}">${icon("i-copy")}</button>
+            </div>
+          </div>
+        </article>
+      `).join("");
+    }
+
+    function renderDays() {
+      document.getElementById("day-list").innerHTML = days.map((day, index) => `
+        <details class="day" ${day.open ? "open" : ""}>
+          <summary>
+            <div class="date-badge"><div><strong>${day.date.split("/")[1]}</strong><span>${day.weekday}</span></div></div>
+            <div class="day-title">
+              <h2>${day.date} ${day.title}</h2>
+              <p>${day.stay}</p>
+            </div>
+            <span class="chevron" aria-hidden="true">⌄</span>
+          </summary>
+          <div class="day-body">
+            <div class="pill-row">
+              <span class="pill blue">${icon("i-bed")}${day.stay}</span>
+              <span class="pill orange">${icon("i-calendar")}2026/${day.date}</span>
+            </div>
+            <div class="timeline">
+              ${day.timeline.map(([time, title, text]) => `
+                <div class="timeline-row">
+                  <div class="time">${time}</div>
+                  <div class="timeline-icon">${icon(index % 2 ? "i-hike" : "i-route")}</div>
+                  <div class="timeline-copy"><strong>${title}</strong><span>${text}</span></div>
+                </div>
+              `).join("")}
+            </div>
+            <div class="route-options">
+              ${day.options.map(([label, title, body, retreat]) => `
+                <article class="option-card ${label.toLowerCase()}">
+                  <div class="option-head"><span class="option-label">${label}</span><h3>${title}</h3></div>
+                  <p>${body}</p>
+                  <p class="retreat">${retreat}</p>
+                  <div class="pill-row">
+                    <button class="pill ${label === "A" ? "blue" : "orange"} copy-btn" data-copy="${title}｜${body}｜${retreat}" aria-label="复制 ${title}">${icon("i-copy")}<span class="sr-only">复制</span></button>
+                  </div>
+                </article>
+              `).join("")}
+            </div>
+            <div class="food-list">
+              ${day.food.map(item => `<div class="food-item"><span class="dot"></span><span>${item}</span></div>`).join("")}
+            </div>
+          </div>
+        </details>
+      `).join("");
+    }
+
+    function setupCopy() {
+      const toast = document.querySelector(".toast");
+      let timer;
+
+      async function copyText(text, button) {
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(text);
+          } else {
+            const input = document.createElement("textarea");
+            input.value = text;
+            input.setAttribute("readonly", "");
+            input.style.position = "fixed";
+            input.style.left = "-9999px";
+            document.body.appendChild(input);
+            input.select();
+            document.execCommand("copy");
+            document.body.removeChild(input);
+          }
+          button.classList.add("is-done");
+          button.innerHTML = icon("i-check");
+          toast.textContent = "已复制：" + text;
+          toast.classList.add("show");
+          clearTimeout(timer);
+          timer = setTimeout(() => {
+            toast.classList.remove("show");
+            button.classList.remove("is-done");
+            button.innerHTML = icon("i-copy");
+          }, 1300);
+        } catch (error) {
+          toast.textContent = "复制失败，请长按文字手动复制";
+          toast.classList.add("show");
+          clearTimeout(timer);
+          timer = setTimeout(() => toast.classList.remove("show"), 1600);
+        }
+      }
+
+      document.addEventListener("click", (event) => {
+        const button = event.target.closest(".copy-btn");
+        if (!button) return;
+        copyText(button.dataset.copy || "", button);
+      });
+    }
+
+    renderMapList();
+    renderBusList();
+    renderDays();
+    setupCopy();
+  </script>
+</body>
+</html>
