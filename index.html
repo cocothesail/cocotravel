@@ -422,6 +422,34 @@
 
     .empty.show { display: block; }
 
+    @media (max-width: 760px) {
+      .trip-card {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .trip-thumb {
+        aspect-ratio: 16 / 9;
+        min-height: 0;
+      }
+
+      .trip-title-row {
+        display: grid;
+      }
+
+      .status {
+        width: fit-content;
+      }
+
+      .meta-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .meta {
+        min-height: 46px;
+      }
+    }
+
     @media (max-width: 430px) {
       body { font-size: 15px; }
 
@@ -459,26 +487,8 @@
         gap: 3px;
       }
 
-      .trip-card {
-        grid-template-columns: 1fr;
-        min-height: auto;
-      }
-
-      .trip-thumb {
-        aspect-ratio: 16 / 9;
-        min-height: 0;
-      }
-
-      .meta-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .trip-title-row {
-        display: grid;
-      }
-
-      .status {
-        width: fit-content;
+      .trip-title h3 {
+        font-size: clamp(1.25rem, 8vw, 1.65rem);
       }
     }
 
