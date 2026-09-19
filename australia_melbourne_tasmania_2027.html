@@ -351,6 +351,100 @@
       font-size: .78rem;
     }
 
+    .recommend-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .recommend-card {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 15px;
+      background: var(--paper);
+    }
+
+    .recommend-card h3 {
+      margin: 0;
+      font-size: 1.08rem;
+      line-height: 1.3;
+    }
+
+    .recommend-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 9px 0 11px;
+    }
+
+    .recommend-meta span {
+      border-radius: 999px;
+      padding: 5px 8px;
+      color: color-mix(in srgb, var(--sea) 82%, var(--text));
+      background: color-mix(in srgb, var(--sea) 9%, var(--paper-soft));
+      font-size: .76rem;
+      font-weight: 850;
+    }
+
+    .pick-list {
+      display: grid;
+      gap: 9px;
+    }
+
+    .pick {
+      padding-top: 9px;
+      border-top: 1px solid color-mix(in srgb, var(--line) 72%, transparent);
+    }
+
+    .pick:first-child { padding-top: 0; border-top: 0; }
+
+    .pick strong,
+    .pick span { display: block; }
+
+    .pick strong { font-size: .94rem; }
+
+    .pick span {
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: .85rem;
+      line-height: 1.5;
+    }
+
+    .pick-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 7px;
+    }
+
+    .pick-actions a {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      min-height: 34px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      padding: 6px 9px;
+      color: var(--text);
+      background: var(--paper-soft);
+      font-size: .78rem;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .pick-actions a:hover { border-color: var(--sea); color: var(--sea); }
+
+    .booking-note {
+      margin: 12px 0 0;
+      padding: 10px 11px;
+      border-left: 3px solid var(--gold);
+      background: color-mix(in srgb, var(--gold) 8%, var(--paper-soft));
+      color: var(--muted);
+      font-size: .84rem;
+      line-height: 1.55;
+    }
+
     .spot-gallery {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -581,6 +675,68 @@
 
     .route-arrow { color: var(--orange); font-size: 1rem; }
 
+    .mileage-summary {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .mileage-stat {
+      display: grid;
+      gap: 2px;
+      padding: 11px;
+      border-radius: 10px;
+      background: var(--paper-soft);
+    }
+
+    .mileage-stat strong {
+      color: var(--sea);
+      font-size: 1.15rem;
+      line-height: 1.2;
+    }
+
+    .mileage-stat span {
+      color: var(--muted);
+      font-size: .76rem;
+    }
+
+    .mileage-list {
+      display: grid;
+      gap: 6px;
+    }
+
+    .mileage-row {
+      display: grid;
+      grid-template-columns: 48px minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 9px;
+      min-height: 42px;
+      padding: 7px 9px;
+      border-radius: 10px;
+      background: color-mix(in srgb, var(--paper-soft) 72%, transparent);
+    }
+
+    .mileage-day {
+      color: var(--sea);
+      font-size: .82rem;
+      font-weight: 900;
+    }
+
+    .mileage-route {
+      min-width: 0;
+      color: var(--muted);
+      font-size: .86rem;
+      line-height: 1.35;
+    }
+
+    .mileage-km {
+      color: var(--text);
+      font-size: .88rem;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
     .mini-table {
       display: grid;
       gap: 8px;
@@ -646,6 +802,7 @@
       .plan-grid,
       .drive-grid,
       .stay-grid,
+      .recommend-grid,
       .next-grid {
         grid-template-columns: 1fr;
       }
@@ -754,6 +911,9 @@
 
       .route-stop { scroll-snap-align: start; }
 
+      .mileage-summary { grid-template-columns: 1fr 1fr; }
+      .mileage-stat:first-child { grid-column: 1 / -1; }
+
       .spot-gallery {
         grid-template-columns: none;
         grid-auto-flow: column;
@@ -834,6 +994,13 @@
         grid-template-columns: minmax(64px, .72fr) repeat(2, minmax(0, 1fr));
       }
       .compare-row > span { padding-inline: 5px; font-size: .75rem; }
+      .mileage-row {
+        grid-template-columns: 42px minmax(0, 1fr);
+      }
+      .mileage-km {
+        grid-column: 2;
+        font-size: .84rem;
+      }
     }
   </style>
 </head>
@@ -874,7 +1041,9 @@
           <a class="nav-pill" href="#plans"><i class="ph ph-git-branch" aria-hidden="true"></i>版本</a>
           <a class="nav-pill" href="#drive"><i class="ph ph-car" aria-hidden="true"></i>自驾路线</a>
           <a class="nav-pill" href="#highlights"><i class="ph ph-image" aria-hidden="true"></i>沿途精华</a>
+          <a class="nav-pill" href="#mileage"><i class="ph ph-gauge" aria-hidden="true"></i>每日公里</a>
           <a class="nav-pill" href="#stay"><i class="ph ph-bed" aria-hidden="true"></i>住宿</a>
+          <a class="nav-pill" href="#food"><i class="ph ph-fork-knife" aria-hidden="true"></i>餐厅</a>
           <a class="nav-pill" href="#timeline"><i class="ph ph-list-checks" aria-hidden="true"></i>日程</a>
           <a class="nav-pill" href="#next"><i class="ph ph-ticket" aria-hidden="true"></i>下一步</a>
         </nav>
@@ -889,7 +1058,7 @@
         <article class="plan-card">
           <div class="card-top"><i class="ph ph-fast-forward" aria-hidden="true"></i><h3>Plan A｜1 月下旬出发</h3></div>
           <p><strong>2027/1/19-2/2 左右，15 天。</strong></p>
-          <p>春节前回到新加坡。节奏稍紧，但可以避开春节返程周期。</p>
+          <p>春节前回到新加坡。若只留 15 天，无法同时完整保留 Maria Island、Tasman Cruise 与 Stanley。</p>
         </article>
         <article class="plan-card recommended">
           <div class="card-top"><i class="ph ph-seal-check" aria-hidden="true"></i><h3>Plan B｜2 月下旬出发</h3></div>
@@ -905,7 +1074,7 @@
         <div class="compare-row header"><span>项目</span><span>Plan A</span><span>Plan B</span></div>
         <div class="compare-row"><span>日期</span><span>1/19-2/2 左右</span><span>2/16-3/3 左右</span></div>
         <div class="compare-row"><span>行程长度</span><span>15 天</span><span>16 天</span></div>
-        <div class="compare-row"><span>节奏</span><span>更紧凑</span><span>更松，Freycinet 多一天</span></div>
+        <div class="compare-row"><span>节奏</span><span>需删一项新增重点</span><span>完整保留三项新增重点</span></div>
         <div class="compare-row"><span>交通价格信号</span><span>笔记中较贵</span><span>笔记中更好</span></div>
         <div class="compare-row"><span>我的排序</span><span>No.2</span><span>No.1</span></div>
       </div>
@@ -918,9 +1087,11 @@
       <div class="route-strip" aria-label="Tasmania 自驾路线">
         <span class="route-stop">Hobart</span><i class="ph ph-arrow-right route-arrow" aria-hidden="true"></i>
         <span class="route-stop">Port Arthur</span><i class="ph ph-arrow-right route-arrow" aria-hidden="true"></i>
+        <span class="route-stop">Maria Island</span><i class="ph ph-arrow-right route-arrow" aria-hidden="true"></i>
         <span class="route-stop">Coles Bay</span><i class="ph ph-arrow-right route-arrow" aria-hidden="true"></i>
         <span class="route-stop">St Helens</span><i class="ph ph-arrow-right route-arrow" aria-hidden="true"></i>
         <span class="route-stop">Cradle Mountain</span><i class="ph ph-arrow-right route-arrow" aria-hidden="true"></i>
+        <span class="route-stop">Stanley</span><i class="ph ph-arrow-right route-arrow" aria-hidden="true"></i>
         <span class="route-stop">Launceston</span>
       </div>
       <div class="drive-grid">
@@ -937,6 +1108,30 @@
       </div>
     </section>
 
+    <section class="section" id="priorities">
+      <h2>新增景点与取舍</h2>
+      <p class="section-note">固定 16 天时，三项新增体验全部保留；用 Great Ocean Road 的一天换取 Tasmania 更完整的东南与西北路线。</p>
+      <div class="drive-grid">
+        <article class="drive-card">
+          <div class="card-top"><i class="ph ph-seal-check" aria-hidden="true"></i><h3>优先保留</h3></div>
+          <p><strong>Tasman Island Cruise：</strong>与 Port Arthur 同日，10:00–13:00 出海，下午参观 Historic Site。</p>
+          <p><strong>Maria Island：</strong>住 Triabunna / Orford，预留完整一天搭船登岛。</p>
+          <p><strong>Stanley：</strong>住两晚，完整体验 The Nut、老镇、Highfield 与海岸。</p>
+        </article>
+        <article class="drive-card">
+          <div class="card-top"><i class="ph ph-minus-circle" aria-hidden="true"></i><h3>降级或移除</h3></div>
+          <p><strong>移除：</strong>Great Ocean Road 一日游，为 Tasmania 多留一天。</p>
+          <p><strong>备选：</strong>Richmond、MONA、kunanyi、Tamar Valley，按天气与体力临场加入。</p>
+          <p><strong>不建议删：</strong>Freycinet、Bay of Fires、Cradle Mountain。</p>
+        </article>
+      </div>
+      <div class="source-links">
+        <a href="https://www.tasmancruises.com.au/" target="_blank" rel="noreferrer"><i class="ph ph-link" aria-hidden="true"></i>Tasman Cruise</a>
+        <a href="https://parks.tas.gov.au/explore-our-parks/maria-island-national-park" target="_blank" rel="noreferrer"><i class="ph ph-link" aria-hidden="true"></i>Maria Island</a>
+        <a href="https://www.discovertasmania.com.au/regions/north-west/stanley/" target="_blank" rel="noreferrer"><i class="ph ph-link" aria-hidden="true"></i>Stanley</a>
+      </div>
+    </section>
+
     <section class="section" id="highlights">
       <h2>沿途精华</h2>
       <p class="section-note">按路线顺序浏览。手机上左右滑动，每张图片对应当天最值得期待的主景观。</p>
@@ -947,7 +1142,7 @@
         </figure>
         <figure class="spot-card">
           <img src="./assets/australia-spots/twelve-apostles.webp" alt="Great Ocean Road 十二门徒石灰岩海岸" width="960" height="640" loading="lazy" decoding="async" />
-          <figcaption><strong>Great Ocean Road</strong><span>12 Apostles · Loch Ard Gorge · Port Campbell</span></figcaption>
+          <figcaption><strong>Great Ocean Road · Plan A 备选</strong><span>Plan B 已移除，把时间留给 Tasmania</span></figcaption>
         </figure>
         <figure class="spot-card">
           <img src="./assets/australia-spots/hobart.webp" alt="Hobart Salamanca Place 与远处的 kunanyi 山" width="960" height="640" loading="lazy" decoding="async" />
@@ -977,40 +1172,142 @@
       <p class="image-credit">景点照片来自 <a href="https://commons.wikimedia.org/" target="_blank" rel="noreferrer">Wikimedia Commons</a>，仅作行程视觉参考。</p>
     </section>
 
+    <section class="section" id="mileage">
+      <h2>每日驾驶里程</h2>
+      <p class="section-note">按 Plan B 推荐版与当前停靠点估算，单位均为公里。实际住宿地址、临时绕行和停车位置会带来约 5–10% 浮动。</p>
+      <div class="mileage-summary">
+        <div class="mileage-stat"><strong>约 1,315–1,545 km</strong><span>Tasmania 全段预计总里程</span></div>
+        <div class="mileage-stat"><strong>D11</strong><span>最长驾驶日</span></div>
+        <div class="mileage-stat"><strong>320–340 km</strong><span>St Helens → Cradle Valley</span></div>
+      </div>
+      <div class="mileage-list" aria-label="每日预计驾驶里程">
+        <div class="mileage-row"><span class="mileage-day">D3</span><span class="mileage-route">Hobart Airport → Hobart / Sandy Bay</span><span class="mileage-km">约 20 km</span></div>
+        <div class="mileage-row"><span class="mileage-day">D4</span><span class="mileage-route">Hobart 市区；天气好加 kunanyi 往返</span><span class="mileage-km">约 0–45 km</span></div>
+        <div class="mileage-row"><span class="mileage-day">D5</span><span class="mileage-route">Hobart → Eaglehawk Neck → Port Arthur</span><span class="mileage-km">约 120–140 km</span></div>
+        <div class="mileage-row"><span class="mileage-day">D6</span><span class="mileage-route">Port Arthur → Sorell → Triabunna / Orford</span><span class="mileage-km">约 130–155 km</span></div>
+        <div class="mileage-row"><span class="mileage-day">D7</span><span class="mileage-route">Triabunna ferry terminal 当地往返</span><span class="mileage-km">约 0–10 km</span></div>
+        <div class="mileage-row"><span class="mileage-day">D8</span><span class="mileage-route">Triabunna → Swansea → Coles Bay</span><span class="mileage-km">约 110–130 km</span></div>
+        <div class="mileage-row"><span class="mileage-day">D9</span><span class="mileage-route">Coles Bay ↔ Freycinet 各步道与海湾</span><span class="mileage-km">约 25–40 km</span></div>
+        <div class="mileage-row"><span class="mileage-day">D10</span><span class="mileage-route">Coles Bay → Bicheno → St Helens / Binalong Bay</span><span class="mileage-km">约 130–155 km</span></div>
+        <div class="mileage-row"><span class="mileage-day">D11</span><span class="mileage-route">St Helens → Derby → Sheffield → Cradle Valley</span><span class="mileage-km">约 320–340 km</span></div>
+        <div class="mileage-row"><span class="mileage-day">D12</span><span class="mileage-route">Cradle Valley 住宿 ↔ Visitor Centre</span><span class="mileage-km">约 10–25 km</span></div>
+        <div class="mileage-row"><span class="mileage-day">D13</span><span class="mileage-route">Cradle Valley → Burnie → Stanley</span><span class="mileage-km">约 200–220 km</span></div>
+        <div class="mileage-row"><span class="mileage-day">D14</span><span class="mileage-route">Stanley、Highfield 与海岸当地移动</span><span class="mileage-km">约 10–25 km</span></div>
+        <div class="mileage-row"><span class="mileage-day">D15</span><span class="mileage-route">Stanley → Burnie → Devonport → Launceston</span><span class="mileage-km">约 225 km</span></div>
+        <div class="mileage-row"><span class="mileage-day">D16</span><span class="mileage-route">Launceston CBD → Launceston Airport</span><span class="mileage-km">约 15 km</span></div>
+      </div>
+      <p class="footnote">以上按 Plan B 新路线计算。山区与海岸道路弯道较多，驾驶时间通常比公里数看起来更长；D11 是唯一需要严格控制停留时间的长途日。</p>
+      <div class="source-links"><a href="https://www.discovertasmania.com.au/planning/drive-times-and-distance/" target="_blank" rel="noreferrer"><i class="ph ph-link" aria-hidden="true"></i>官方驾驶距离表</a></div>
+    </section>
+
     <section class="section" id="stay">
       <h2>住宿区域速查</h2>
-      <p class="section-note">两个人更适合选择带厨房、洗衣机和停车位的整套民宿。海岸与山区优先提前采购，晚上回住处自己做饭。</p>
+      <p class="section-note">Plan B 共 15 晚。城市住步行区，乡镇住带厨房和停车位的 cottage；连续两晚尽量不换房。</p>
       <div class="stay-grid">
         <article class="stay-card">
-          <div class="card-top"><i class="ph ph-buildings" aria-hidden="true"></i><h3>Melbourne</h3></div>
-          <p>优先 CBD / Southbank，方便 SkyBus、tram、NGV、Yarra River 和一日团集合。</p>
-          <small>关键词: Melbourne CBD / Southbank</small>
+          <div class="card-top"><i class="ph ph-buildings" aria-hidden="true"></i><h3>Melbourne · 2 晚</h3></div>
+          <p>CBD / Southbank，步行到电车、NGV 与 Yarra River；无需停车位。</p>
+          <small>D1-D2 · 公寓式酒店优先</small>
         </article>
         <article class="stay-card">
-          <div class="card-top"><i class="ph ph-anchor-simple" aria-hidden="true"></i><h3>Hobart</h3></div>
-          <p>住 CBD / Salamanca 方便步行；有车后也可住 Sandy Bay 的整套公寓，停车和采购更轻松。</p>
-          <small>采购: Woolworths / Coles · 找带停车位和厨房</small>
+          <div class="card-top"><i class="ph ph-anchor-simple" aria-hidden="true"></i><h3>Hobart · 2 晚</h3></div>
+          <p>Salamanca 步行最省心；Sandy Bay 更容易找到免费停车与厨房。</p>
+          <small>D3-D4 · 首次大采购</small>
         </article>
         <article class="stay-card">
-          <div class="card-top"><i class="ph ph-mountains" aria-hidden="true"></i><h3>Freycinet</h3></div>
-          <p>住 Coles Bay 两晚，优先整套 cabin / cottage。晚餐选择有限，抵达前在 Swansea 采购两晚食材。</p>
-          <small>采购: Swansea · 找 full kitchen / BBQ</small>
+          <div class="card-top"><i class="ph ph-waves" aria-hidden="true"></i><h3>Port Arthur · 1 晚</h3></div>
+          <p>住 Historic Site 或 Stewarts Bay 附近，巡游结束后不用继续赶路。</p>
+          <small>D5 · 先订巡游再订房</small>
         </article>
         <article class="stay-card">
-          <div class="card-top"><i class="ph ph-sun-horizon" aria-hidden="true"></i><h3>Bay of Fires</h3></div>
-          <p>想看海住 Binalong Bay，重视超市与加油住 St Helens。只住一晚时，St Helens 执行更稳定。</p>
-          <small>采购: St Helens · 当晚适合海鲜简餐</small>
+          <div class="card-top"><i class="ph ph-sailboat" aria-hidden="true"></i><h3>Triabunna / Orford · 2 晚</h3></div>
+          <p>赶早班 ferry 选 Triabunna；想住得舒服、看海吃饭选 Orford。</p>
+          <small>D6-D7 · Maria Island 基地</small>
         </article>
         <article class="stay-card">
-          <div class="card-top"><i class="ph ph-mountains" aria-hidden="true"></i><h3>Cradle Mountain</h3></div>
-          <p>住 Cradle Valley 两晚，减少 Launceston 当日往返。优先 cabin，准备早餐、徒步午餐和一顿热晚饭。</p>
-          <small>采购: Sheffield / Deloraine · 山区选择少</small>
+          <div class="card-top"><i class="ph ph-mountains" aria-hidden="true"></i><h3>Coles Bay · 2 晚</h3></div>
+          <p>优先整套 cabin / cottage；在 Swansea 买齐早餐、徒步午餐和一顿晚饭。</p>
+          <small>D8-D9 · full kitchen / BBQ</small>
         </article>
         <article class="stay-card">
-          <div class="card-top"><i class="ph ph-park" aria-hidden="true"></i><h3>Launceston</h3></div>
-          <p>住 CBD / Cataract Gorge 周边，选择带停车位的公寓；最后一晚可清空冰箱并整理行李。</p>
-          <small>关键词: Launceston CBD / West Launceston</small>
+          <div class="card-top"><i class="ph ph-sun-horizon" aria-hidden="true"></i><h3>St Helens · 1 晚</h3></div>
+          <p>住镇内比 Binalong Bay 更方便补油、采购和第二天早出发。</p>
+          <small>D10 · 山区补给站</small>
         </article>
+        <article class="stay-card">
+          <div class="card-top"><i class="ph ph-mountains" aria-hidden="true"></i><h3>Cradle Valley · 2 晚</h3></div>
+          <p>住 Visitor Centre 附近的独立 cabin，雨天也能舒服休整与自炊。</p>
+          <small>D11-D12 · 进入山区前采购</small>
+        </article>
+        <article class="stay-card">
+          <div class="card-top"><i class="ph ph-island" aria-hidden="true"></i><h3>Stanley · 2 晚</h3></div>
+          <p>住历史镇中心，可步行去 The Nut、海边与餐馆；民宿数量少，尽早订。</p>
+          <small>D13-D14 · cottage / apartment</small>
+        </article>
+        <article class="stay-card">
+          <div class="card-top"><i class="ph ph-park" aria-hidden="true"></i><h3>Launceston · 1 晚</h3></div>
+          <p>住 CBD / Cataract Gorge 周边，选带停车位的公寓，方便晚餐与次日还车。</p>
+          <small>D15 · 整理行李 / 清空食材</small>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="lodging-picks">
+      <h2>具体住宿推荐</h2>
+      <p class="section-note">以下是适合两人自驾的落脚点，不代表已经预订。优先选可免费取消、独立卫浴、停车位和厨房明确写入房型说明的房源。</p>
+      <div class="recommend-grid">
+        <article class="recommend-card">
+          <h3>Melbourne + Hobart</h3>
+          <div class="recommend-meta"><span>城市步行</span><span>2 + 2 晚</span></div>
+          <div class="pick-list">
+            <div class="pick"><strong>Adina Apartment Hotel Southbank</strong><span>Melbourne 公寓式房型，靠近 NGV、河岸和电车；城市段不取车时很顺手。</span><div class="pick-actions"><a href="https://www.google.com/maps/search/?api=1&query=Adina+Apartment+Hotel+Melbourne+Southbank" target="_blank" rel="noreferrer"><i class="ph ph-map-pin"></i>地图</a></div></div>
+            <div class="pick"><strong>Salamanca Suites</strong><span>Hobart 一至两卧室有完整厨房和洗衣设施，附停车，步行可到 waterfront 与 Battery Point。</span><div class="pick-actions"><a href="https://www.google.com/maps/search/?api=1&query=Salamanca+Suites+Hobart" target="_blank" rel="noreferrer"><i class="ph ph-map-pin"></i>地图</a><a href="https://www.salamancasuites.com.au/" target="_blank" rel="noreferrer"><i class="ph ph-arrow-square-out"></i>官网</a></div></div>
+          </div>
+        </article>
+        <article class="recommend-card">
+          <h3>Port Arthur + Maria Island 基地</h3>
+          <div class="recommend-meta"><span>巡游动线</span><span>1 + 2 晚</span><span>厨房优先</span></div>
+          <div class="pick-list">
+            <div class="pick"><strong>Port Arthur Villas / Bay Retreat</strong><span>都适合自炊；Villas 更靠近 Historic Site，Bay Retreat 更安静、适合两人独住。</span><div class="pick-actions"><a href="https://www.google.com/maps/search/?api=1&query=Port+Arthur+Villas+Tasmania" target="_blank" rel="noreferrer"><i class="ph ph-map-pin"></i>Villas</a><a href="https://www.google.com/maps/search/?api=1&query=Bay+Retreat+Port+Arthur" target="_blank" rel="noreferrer"><i class="ph ph-map-pin"></i>Bay Retreat</a></div></div>
+            <div class="pick"><strong>Tandara Motor Inn / Orford Blue Waters</strong><span>Tandara 距 Triabunna 码头更近；Blue Waters 住宿和现场用餐更完整，次日短途开车去码头。</span><div class="pick-actions"><a href="https://www.google.com/maps/search/?api=1&query=Tandara+Motor+Inn+Triabunna" target="_blank" rel="noreferrer"><i class="ph ph-map-pin"></i>Triabunna</a><a href="https://www.google.com/maps/search/?api=1&query=Orford+Blue+Waters" target="_blank" rel="noreferrer"><i class="ph ph-map-pin"></i>Orford</a></div></div>
+          </div>
+        </article>
+        <article class="recommend-card">
+          <h3>Coles Bay + St Helens</h3>
+          <div class="recommend-meta"><span>东海岸</span><span>2 + 1 晚</span></div>
+          <div class="pick-list">
+            <div class="pick"><strong>BIG4 Iluka cabin</strong><span>靠近 Muirs Beach，厨房型住宿实用；想升级景观与国家公园位置可选 Freycinet Lodge。</span><div class="pick-actions"><a href="https://www.google.com/maps/search/?api=1&query=BIG4+Iluka+on+Freycinet" target="_blank" rel="noreferrer"><i class="ph ph-map-pin"></i>Iluka</a><a href="https://www.google.com/maps/search/?api=1&query=Freycinet+Lodge" target="_blank" rel="noreferrer"><i class="ph ph-map-pin"></i>Lodge</a></div></div>
+            <div class="pick"><strong>St Helens 镇中心 self-contained apartment</strong><span>筛选 free parking、kitchen、washer；只住一晚时不用为了海景搬到 Binalong Bay。</span><div class="pick-actions"><a href="https://www.google.com/maps/search/?api=1&query=self-contained+apartments+St+Helens+Tasmania" target="_blank" rel="noreferrer"><i class="ph ph-magnifying-glass"></i>地图搜索</a></div></div>
+          </div>
+        </article>
+        <article class="recommend-card">
+          <h3>Cradle Mountain + Stanley</h3>
+          <div class="recommend-meta"><span>优先锁定</span><span>2 + 2 晚</span><span>自炊</span></div>
+          <div class="pick-list">
+            <div class="pick"><strong>Cradle Highlander Cottages</strong><span>独立 cottage、可自炊，靠近 Visitor Centre；备选 Discovery Resorts cabin。</span><div class="pick-actions"><a href="https://www.google.com/maps/search/?api=1&query=Cradle+Highlander+Cottages" target="_blank" rel="noreferrer"><i class="ph ph-map-pin"></i>地图</a><a href="https://www.cradlehighlander.com.au/" target="_blank" rel="noreferrer"><i class="ph ph-arrow-square-out"></i>官网</a></div></div>
+            <div class="pick"><strong>Touchwood Cottages / Ship Inn Stanley</strong><span>Touchwood 更有小镇 cottage 氛围并附 café；Ship Inn 设计感更强，部分套房有厨房区域。</span><div class="pick-actions"><a href="https://www.google.com/maps/search/?api=1&query=Touchwood+Cottages+Stanley" target="_blank" rel="noreferrer"><i class="ph ph-map-pin"></i>Touchwood</a><a href="https://www.google.com/maps/search/?api=1&query=Ship+Inn+Stanley+Tasmania" target="_blank" rel="noreferrer"><i class="ph ph-map-pin"></i>Ship Inn</a></div></div>
+          </div>
+        </article>
+        <article class="recommend-card">
+          <h3>Launceston · 最后 1 晚</h3>
+          <div class="recommend-meta"><span>方便还车</span><span>可停车</span></div>
+          <div class="pick-list"><div class="pick"><strong>Alice's Cottages / Peppers Silo</strong><span>Alice's 是独立 cottage；想住现代酒店、靠河和餐厅则选 Peppers Silo。</span><div class="pick-actions"><a href="https://www.google.com/maps/search/?api=1&query=Alice%27s+Cottages+Launceston" target="_blank" rel="noreferrer"><i class="ph ph-map-pin"></i>Alice's</a><a href="https://www.google.com/maps/search/?api=1&query=Peppers+Silo+Launceston" target="_blank" rel="noreferrer"><i class="ph ph-map-pin"></i>Peppers Silo</a></div></div></div>
+          <p class="booking-note"><strong>订房顺序：</strong>Cradle Valley → Stanley → Port Arthur → Coles Bay → Triabunna / Orford → 其余城市。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="food">
+      <h2>当地好吃的餐馆</h2>
+      <p class="section-note">每站只保留少而强的选择。正式餐厅建议提前订位；偏远小镇的营业日和厨房关门时间，请在出发前一周再次确认。</p>
+      <div class="recommend-grid">
+        <article class="recommend-card"><h3>Melbourne</h3><div class="recommend-meta"><span>城市晚餐</span><span>建议订位</span></div><div class="pick-list"><div class="pick"><strong>Tipo 00</strong><span>手工意面，适合两人第一顿正式晚餐。</span><div class="pick-actions"><a href="https://www.google.com/maps/search/?api=1&query=Tipo+00+Melbourne" target="_blank" rel="noreferrer"><i class="ph ph-map-pin"></i>地图</a></div></div><div class="pick"><strong>Cumulus Inc.</strong><span>现代澳洲菜，适合共享小盘。</span><div class="pick-actions"><a href="https://www.google.com/maps/search/?api=1&query=Cumulus+Inc+Melbourne" target="_blank" rel="noreferrer"><i class="ph ph-map-pin"></i>地图</a></div></div></div></article>
+        <article class="recommend-card"><h3>Hobart</h3><div class="recommend-meta"><span>本地食材</span><span>海鲜</span></div><div class="pick-list"><div class="pick"><strong>Bar Wa Izakaya</strong><span>用塔州食材做日式小菜和拉面，适合分享；热门时段先订。</span><div class="pick-actions"><a href="https://www.google.com/maps/search/?api=1&query=Bar+Wa+Izakaya+Hobart" target="_blank" rel="noreferrer"><i class="ph ph-map-pin"></i>地图</a></div></div><div class="pick"><strong>Mures Lower Deck</strong><span>码头边轻松吃海鲜，比正式餐厅更容易临时安排。</span><div class="pick-actions"><a href="https://www.google.com/maps/search/?api=1&query=Mures+Lower+Deck+Hobart" target="_blank" rel="noreferrer"><i class="ph ph-map-pin"></i>地图</a></div></div></div></article>
+        <article class="recommend-card"><h3>Port Arthur + Orford</h3><div class="recommend-meta"><span>顺路可靠</span><span>早收档</span></div><div class="pick-list"><div class="pick"><strong>1830 Restaurant & Bar</strong><span>Historic Site 内午餐，适合巡游后直接衔接参观。</span><div class="pick-actions"><a href="https://www.google.com/maps/search/?api=1&query=1830+Restaurant+Port+Arthur" target="_blank" rel="noreferrer"><i class="ph ph-map-pin"></i>地图</a><a href="https://portarthur.org.au/eat-drink/" target="_blank" rel="noreferrer"><i class="ph ph-arrow-square-out"></i>官网</a></div></div><div class="pick"><strong>Orford Blue Waters Bistro</strong><span>Maria Island 前后的稳妥晚餐，营业时段临近出发复核。</span><div class="pick-actions"><a href="https://www.google.com/maps/search/?api=1&query=Orford+Blue+Waters+Bistro" target="_blank" rel="noreferrer"><i class="ph ph-map-pin"></i>地图</a></div></div></div></article>
+        <article class="recommend-card"><h3>Coles Bay + St Helens</h3><div class="recommend-meta"><span>生蚝</span><span>海鲜</span></div><div class="pick-list"><div class="pick"><strong>Freycinet Marine Farm</strong><span>生蚝、青口和海鲜拼盘，适合 D8 抵达前或 D9 徒步后早吃；通常不接受订位。</span><div class="pick-actions"><a href="https://www.google.com/maps/search/?api=1&query=Freycinet+Marine+Farm" target="_blank" rel="noreferrer"><i class="ph ph-map-pin"></i>地图</a><a href="https://www.freycinetmarinefarm.com/" target="_blank" rel="noreferrer"><i class="ph ph-arrow-square-out"></i>官网</a></div></div><div class="pick"><strong>Geographe Restaurant</strong><span>Coles Bay 晚餐备选，披萨与本地食材对徒步日很友好。</span><div class="pick-actions"><a href="https://www.google.com/maps/search/?api=1&query=Geographe+Restaurant+Coles+Bay" target="_blank" rel="noreferrer"><i class="ph ph-map-pin"></i>地图</a></div></div><div class="pick"><strong>Lease 65 / Skippers Fish Shop</strong><span>St Helens 的生蚝与炸鱼薯条组合，出发前确认当日营业。</span><div class="pick-actions"><a href="https://www.google.com/maps/search/?api=1&query=Lease+65+St+Helens+Tasmania" target="_blank" rel="noreferrer"><i class="ph ph-map-pin"></i>Lease 65</a><a href="https://www.google.com/maps/search/?api=1&query=Skippers+Fish+Shop+St+Helens+Tasmania" target="_blank" rel="noreferrer"><i class="ph ph-map-pin"></i>Skippers</a></div></div></div></article>
+        <article class="recommend-card"><h3>Cradle Mountain</h3><div class="recommend-meta"><span>选择有限</span><span>自炊一晚</span></div><div class="pick-list"><div class="pick"><strong>Hellyers Restaurant</strong><span>Discovery Resorts 内，徒步后吃热食方便；晚餐需网上订位。</span><div class="pick-actions"><a href="https://www.google.com/maps/search/?api=1&query=Hellyers+Restaurant+Cradle+Mountain" target="_blank" rel="noreferrer"><i class="ph ph-map-pin"></i>地图</a><a href="https://www.discoveryholidayparks.com.au/resorts/cradle-mountain/dining" target="_blank" rel="noreferrer"><i class="ph ph-arrow-square-out"></i>官网</a></div></div><div class="pick"><strong>自炊安排</strong><span>D10 在 St Helens 或 D11 经过 Sheffield 时采购：两顿早餐、两份徒步午餐、一顿热晚饭。</span></div></div></article>
+        <article class="recommend-card"><h3>Stanley</h3><div class="recommend-meta"><span>海鲜重点</span><span>务必订位</span></div><div class="pick-list"><div class="pick"><strong>Hursey Seafoods</strong><span>当地海鲜代表，适合 D13 抵达后的早晚餐。</span><div class="pick-actions"><a href="https://www.google.com/maps/search/?api=1&query=Hursey+Seafoods+Stanley" target="_blank" rel="noreferrer"><i class="ph ph-map-pin"></i>地图</a><a href="https://www.hurseyseafoods.com.au/" target="_blank" rel="noreferrer"><i class="ph ph-arrow-square-out"></i>官网</a></div></div><div class="pick"><strong>Stanley Hotel Bistro</strong><span>适合完整晚餐；小镇座位有限，提前订。</span><div class="pick-actions"><a href="https://www.google.com/maps/search/?api=1&query=Stanley+Hotel+Bistro+Tasmania" target="_blank" rel="noreferrer"><i class="ph ph-map-pin"></i>地图</a></div></div><div class="pick"><strong>Touchwood Café</strong><span>早餐或午餐，住同名 cottage 时最方便。</span></div></div></article>
+        <article class="recommend-card"><h3>Launceston</h3><div class="recommend-meta"><span>收官晚餐</span><span>建议订位</span></div><div class="pick-list"><div class="pick"><strong>Stillwater Restaurant</strong><span>历史面粉厂里的现代塔州菜，靠近 Cataract Gorge，适合最后一顿。</span><div class="pick-actions"><a href="https://www.google.com/maps/search/?api=1&query=Stillwater+Restaurant+Launceston" target="_blank" rel="noreferrer"><i class="ph ph-map-pin"></i>地图</a></div></div><div class="pick"><strong>Black Cow Bistro</strong><span>偏爱牛排时选这里，主打塔州牛肉。</span><div class="pick-actions"><a href="https://www.google.com/maps/search/?api=1&query=Black+Cow+Bistro+Launceston" target="_blank" rel="noreferrer"><i class="ph ph-map-pin"></i>地图</a></div></div></div><p class="booking-note"><strong>最该提前订：</strong>Stanley 两晚晚餐、Hellyers、Stillwater / Black Cow、Hobart 热门餐厅。Maria Island 当天没有餐饮，午餐和饮水必须前一晚备好。</p></article>
       </div>
     </section>
 
@@ -1018,33 +1315,33 @@
       <h2>每日节奏</h2>
       <div class="timeline">
         <details open id="plan-b-timeline">
-          <summary><span class="summary-copy"><span class="summary-title">Plan B｜16 天双人自驾推荐版</span><span class="summary-sub">Melbourne 4 天 + Tasmania 连续自驾 11 晚 + 返程</span></span><i class="ph ph-caret-down" aria-hidden="true"></i></summary>
+          <summary><span class="summary-copy"><span class="summary-title">Plan B｜16 天 Tasmania 深度自驾版</span><span class="summary-sub">Melbourne 3 天 + Tasmania 12 晚；新增 Maria Island、Tasman Cruise、Stanley</span></span><i class="ph ph-caret-down" aria-hidden="true"></i></summary>
           <div class="timeline-body">
-            <div class="phase">Melbourne 城市与近郊 · D1-D4</div>
+            <div class="phase">Melbourne 城市适应 · D1-D3</div>
             <div class="day"><strong>D1</strong><span><b>住 Melbourne CBD / Southbank。</b><span class="line"><b>交通:</b> SIN → MEL，抵达后用 SkyBus / taxi / rideshare 进城，不取车。</span><span class="line"><b>安排:</b> 只做入住、超市补给、Yarra River 轻松散步，倒时差。</span></span></div>
             <div class="day"><strong>D2</strong><span><b>住 Melbourne CBD / Southbank。</b><span class="line"><b>交通:</b> 全程 tram / 步行。</span><span class="line"><b>安排:</b> Flinders Street、Federation Square、Yarra River、NGV、Southbank。两个人可以安排一顿正式晚餐。</span></span></div>
-            <div class="day"><strong>D3</strong><span><b>住 Melbourne CBD / Southbank。</b><span class="line"><b>交通:</b> tram 到 Fitzroy / Collingwood，区域内步行。</span><span class="line"><b>安排:</b> 咖啡馆、设计店、小店、Brunswick Street / Smith Street。今天保持城市慢节奏。</span></span></div>
-            <div class="day"><strong>D4</strong><span><b>住 Melbourne CBD / Southbank。</b><span class="line"><b>交通:</b> Great Ocean Road 可继续报小团；若两人都习惯左侧驾驶，可租车日游并轮换驾驶。</span><span class="line"><b>安排:</b> 12 Apostles、Loch Ard Gorge；自驾版最多选 3-4 个主停靠点，日落前返程。</span><span class="day-tags"><span class="day-tag"><i class="ph ph-users" aria-hidden="true"></i>双人轮换</span><span class="day-tag"><i class="ph ph-warning" aria-hidden="true"></i>避免夜路</span></span></span></div>
-            <div class="phase">Hobart 与 Tasman Peninsula · D5-D8</div>
-            <div class="day"><strong>D5</strong><span><b>住 Hobart CBD / Sandy Bay 民宿。</b><span class="line"><b>交通:</b> MEL → HBA，机场取自动挡后进城，约 20 分钟级别。</span><span class="line"><b>安排:</b> 入住、超市采购、waterfront 轻松散步。今天只熟悉车辆与停车。</span><span class="day-tags"><span class="day-tag"><i class="ph ph-shopping-cart" aria-hidden="true"></i>首次采购</span><span class="day-tag"><i class="ph ph-cooking-pot" aria-hidden="true"></i>可自炊</span></span></span></div>
-            <div class="day"><strong>D6</strong><span><b>住 Hobart CBD / Sandy Bay 民宿。</b><span class="line"><b>交通:</b> 市区步行；kunanyi 视天气短途自驾，或把车留在住处。</span><span class="line"><b>安排:</b> Salamanca Market（周六）、Battery Point、waterfront；天气通透再上 kunanyi。</span></span></div>
-            <div class="day"><strong>D7</strong><span><b>住 Hobart CBD / Sandy Bay 民宿。</b><span class="line"><b>交通:</b> 自驾 Richmond 往返，单程约 30 分钟；MONA 可改搭 ferry。</span><span class="line"><b>安排:</b> Richmond Bridge、老镇与咖啡馆，作为左侧驾驶适应日。下午回 Hobart 选 MONA 或休息。</span></span></div>
-            <div class="day"><strong>D8</strong><span><b>住 Port Arthur / Eaglehawk Neck cottage。</b><span class="line"><b>交通:</b> Hobart → Sorell → Tasman Peninsula，纯驾驶约 1.5 小时，沿途分段停靠。</span><span class="line"><b>安排:</b> Tessellated Pavement、Tasman Arch、Devils Kitchen，下午 Port Arthur Historic Site。住半岛避免当天往返。</span><span class="day-tags"><span class="day-tag"><i class="ph ph-house-line" aria-hidden="true"></i>乡间民宿</span><span class="day-tag"><i class="ph ph-cooking-pot" aria-hidden="true"></i>提前买晚餐</span></span></span></div>
-            <div class="phase">Great Eastern Drive · D9-D11</div>
-            <div class="day"><strong>D9</strong><span><b>住 Coles Bay / Freycinet cottage。</b><span class="line"><b>交通:</b> Port Arthur → Sorell → Orford → Swansea → Coles Bay，纯驾驶约 4 小时。</span><span class="line"><b>安排:</b> Orford 海边短走、Swansea 午餐与采购、Spiky Bridge；这天只走顺路小镇，不额外绕行。</span><span class="day-tags"><span class="day-tag"><i class="ph ph-storefront" aria-hidden="true"></i>Swansea 采购</span><span class="day-tag"><i class="ph ph-cooking-pot" aria-hidden="true"></i>准备两晚食材</span></span></span></div>
-            <div class="day"><strong>D10</strong><span><b>住 Coles Bay / Freycinet cottage。</b><span class="line"><b>交通:</b> 仅住宿与国家公园停车点之间短途移动。</span><span class="line"><b>安排:</b> Wineglass Bay Lookout 轻松版，或 Wineglass Bay Beach 完整版；下午 Honeymoon Bay / Cape Tourville。</span></span></div>
-            <div class="day"><strong>D11</strong><span><b>住 St Helens / Binalong Bay 民宿。</b><span class="line"><b>交通:</b> Coles Bay → Bicheno → Scamander → St Helens，纯驾驶约 2.5 小时。</span><span class="line"><b>安排:</b> Bicheno Blowhole、海岸步道与午餐；傍晚到 Binalong Bay 看橙色岩岸。晚餐在 St Helens 采购或外食海鲜。</span><span class="day-tags"><span class="day-tag"><i class="ph ph-camera" aria-hidden="true"></i>Bicheno 停留</span><span class="day-tag"><i class="ph ph-sunset" aria-hidden="true"></i>Bay of Fires</span></span></span></div>
-            <div class="phase">Cradle Mountain 与北部 · D12-D16</div>
-            <div class="day"><strong>D12</strong><span><b>住 Cradle Valley cabin。</b><span class="line"><b>交通:</b> St Helens → Derby → Scottsdale → Launceston 外围 → Sheffield → Cradle Valley，纯驾驶约 4.5 小时。</span><span class="line"><b>安排:</b> Derby 咖啡、Sheffield 壁画镇并完成山区采购；16:30 前抵达，不在黄昏赶山路。</span><span class="day-tags"><span class="day-tag"><i class="ph ph-gas-pump" aria-hidden="true"></i>加满油</span><span class="day-tag"><i class="ph ph-shopping-cart" aria-hidden="true"></i>山区采购</span></span></span></div>
-            <div class="day"><strong>D13</strong><span><b>住 Cradle Valley cabin。</b><span class="line"><b>交通:</b> 开车到 Visitor Centre，白天换官方 shuttle 前往 Dove Lake / Ronny Creek。</span><span class="line"><b>安排:</b> 好天气走 Dove Lake Circuit；风雨较大改 Enchanted Walk、Pencil Pine Falls。晚上回 cabin 做热饭。</span><span class="day-tags"><span class="day-tag"><i class="ph ph-bus" aria-hidden="true"></i>园区 shuttle</span><span class="day-tag"><i class="ph ph-cloud-sun" aria-hidden="true"></i>天气弹性</span></span></span></div>
-            <div class="day"><strong>D14</strong><span><b>住 Launceston CBD / West Launceston 公寓。</b><span class="line"><b>交通:</b> Cradle Valley → Sheffield → Deloraine → Launceston，纯驾驶约 2.5 小时。</span><span class="line"><b>安排:</b> Sheffield 与 Deloraine 二选一慢停，下午 Cataract Gorge。车继续保留，方便住宿与机场。</span></span></div>
-            <div class="day"><strong>D15</strong><span><b>住 Launceston CBD / West Launceston 公寓。</b><span class="line"><b>交通:</b> 自驾 Tamar Valley / Evandale 半日，或把整天留在 Launceston。</span><span class="line"><b>安排:</b> 作为全程缓冲：天气好去 Tamar Valley，疲劳就逛 City Park、Design Tasmania 并整理行李。</span></span></div>
+            <div class="day"><strong>D3</strong><span><b>住 Hobart CBD / Sandy Bay 民宿。</b><span class="line"><b>交通:</b> 上午 Fitzroy / Collingwood，傍晚 MEL → HBA；机场取车后进城。</span><span class="line"><b>安排:</b> Great Ocean Road 本版移除。抵达 Hobart 后只入住、采购和熟悉车辆。</span></span></div>
+            <div class="phase">Hobart、Tasman Peninsula 与 Maria Island · D4-D7</div>
+            <div class="day"><strong>D4</strong><span><b>住 Hobart CBD / Sandy Bay 民宿。</b><span class="line"><b>交通:</b> 市区步行，天气好再短途自驾 kunanyi。</span><span class="line"><b>安排:</b> Salamanca、Battery Point、waterfront；Richmond / MONA 只作为天气差时替补。</span></span></div>
+            <div class="day"><strong>D5</strong><span><b>住 Port Arthur / Eaglehawk Neck cottage。</b><span class="line"><b>交通:</b> 07:15 左右从 Hobart 出发，09:15 前抵达 Tasman Island Cruises Booking Centre。</span><span class="line"><b>安排:</b> 10:00–13:00 Tasman Island Cruise，午餐后用约 3 小时参观 Port Arthur Historic Site。</span><span class="day-tags"><span class="day-tag"><i class="ph ph-waves" aria-hidden="true"></i>必订巡游</span><span class="day-tag"><i class="ph ph-coat-hanger" aria-hidden="true"></i>保暖防水</span></span></span></div>
+            <div class="day"><strong>D6</strong><span><b>住 Triabunna / Orford cottage。</b><span class="line"><b>交通:</b> Port Arthur → Sorell → Orford / Triabunna，约 2–2.5 小时，沿途停 Tessellated Pavement、Tasman Arch。</span><span class="line"><b>安排:</b> 恢复与转场日；抵达后确认次日 ferry、采购午餐和饮水。</span></span></div>
+            <div class="day"><strong>D7</strong><span><b>住 Triabunna / Orford cottage。</b><span class="line"><b>交通:</b> 车停 Triabunna，搭约 45 分钟 ferry 前往 Maria Island；岛上只能步行或骑行。</span><span class="line"><b>安排:</b> Darlington、Fossil Cliffs / Painted Cliffs 二选一；岛上没有商店和咖啡馆，食物与饮水全部自带。</span><span class="day-tags"><span class="day-tag"><i class="ph ph-ticket" aria-hidden="true"></i>ferry 必订</span><span class="day-tag"><i class="ph ph-backpack" aria-hidden="true"></i>自带补给</span></span></span></div>
+            <div class="phase">Freycinet 与 East Coast · D8-D10</div>
+            <div class="day"><strong>D8</strong><span><b>住 Coles Bay / Freycinet cottage。</b><span class="line"><b>交通:</b> Triabunna → Swansea → Coles Bay，约 2 小时。</span><span class="line"><b>安排:</b> Swansea 午餐与采购、Spiky Bridge；下午 Cape Tourville 或 Honeymoon Bay。</span></span></div>
+            <div class="day"><strong>D9</strong><span><b>住 Coles Bay / Freycinet cottage。</b><span class="line"><b>交通:</b> 住宿与国家公园停车点之间短途移动。</span><span class="line"><b>安排:</b> Wineglass Bay Lookout 轻松版，或 Wineglass Bay Beach 完整版。</span></span></div>
+            <div class="day"><strong>D10</strong><span><b>住 St Helens / Binalong Bay 民宿。</b><span class="line"><b>交通:</b> Coles Bay → Bicheno → Scamander → St Helens。</span><span class="line"><b>安排:</b> Bicheno Blowhole 与海岸午餐，傍晚 Bay of Fires；在 St Helens 加满油并采购山区食材。</span></span></div>
+            <div class="phase">Cradle Mountain、Stanley 与返程 · D11-D16</div>
+            <div class="day"><strong>D11</strong><span><b>住 Cradle Valley cabin。</b><span class="line"><b>交通:</b> St Helens → Derby → Scottsdale → Sheffield → Cradle Valley，约 320–340 km。</span><span class="line"><b>安排:</b> 全程最长驾驶日，Derby 咖啡、Sheffield 采购，16:30 前抵达。</span></span></div>
+            <div class="day"><strong>D12</strong><span><b>住 Cradle Valley cabin。</b><span class="line"><b>交通:</b> 开车到 Visitor Centre，白天换官方 shuttle。</span><span class="line"><b>安排:</b> 好天气走 Dove Lake Circuit；风雨则走 Enchanted Walk / Pencil Pine Falls。</span></span></div>
+            <div class="day"><strong>D13</strong><span><b>住 Stanley cottage。</b><span class="line"><b>交通:</b> Cradle Valley → Sheffield / Devonport → Burnie → Stanley，约 200–220 km。</span><span class="line"><b>安排:</b> 分段停 Sheffield 或 Burnie，下午抵达 Stanley 看 The Nut 与海边日落。</span></span></div>
+            <div class="day"><strong>D14</strong><span><b>住 Stanley cottage。</b><span class="line"><b>交通:</b> 当地短途驾驶。</span><span class="line"><b>安排:</b> The Nut summit walk / chairlift、Highfield Historic Site、Stanley Heritage Walk；傍晚去 Godfreys Beach 看企鹅。</span></span></div>
+            <div class="day"><strong>D15</strong><span><b>住 Launceston CBD / West Launceston 公寓。</b><span class="line"><b>交通:</b> Stanley → Burnie → Devonport → Launceston，约 225 km。</span><span class="line"><b>安排:</b> 早出发，下午 Cataract Gorge；Tamar Valley 与 Evandale 本版不再单独安排。</span></span></div>
             <div class="day"><strong>D16</strong><span><b>返程或 Melbourne 机场附近过夜。</b><span class="line"><b>交通:</b> LST → MEL → SIN。若衔接不顺，D16 只飞 MEL，住机场附近，D17 回 SIN。</span><span class="line"><b>安排:</b> 不排景点，专心转机和返程。</span></span></div>
           </div>
         </details>
 
         <details>
-          <summary><span class="summary-copy"><span class="summary-title">Plan A｜15 天双人自驾紧凑版</span><span class="summary-sub">路线相同，压缩 Hobart 与北部缓冲</span></span><i class="ph ph-caret-down" aria-hidden="true"></i></summary>
+          <summary><span class="summary-copy"><span class="summary-title">Plan A｜15 天双人自驾紧凑版</span><span class="summary-sub">旧版备选，不能同时保留三项新增重点</span></span><i class="ph ph-caret-down" aria-hidden="true"></i></summary>
           <div class="timeline-body">
             <div class="phase">Melbourne + Hobart · D1-D6</div>
             <div class="day"><strong>D1-D4</strong><span><b>住 Melbourne CBD / Southbank。</b><span class="line"><b>交通:</b> 城市段 tram / 步行；Great Ocean Road 可选团或双人轮换自驾。</span><span class="line"><b>安排:</b> CBD、NGV、Yarra River、Fitzroy / Collingwood 和 Great Ocean Road。</span></span></div>
@@ -1067,7 +1364,7 @@
 
     <section class="section" id="next">
       <h2>下一步查票与预订</h2>
-      <p class="section-note">先锁机票与异地还车，再按路线订可取消民宿。Coles Bay、Cradle Valley 和 Tasman Peninsula 的厨房型住宿最值得先订。</p>
+      <p class="section-note">先锁机票与异地还车，再按路线订可取消民宿。Cradle Valley、Stanley、Port Arthur 和 Triabunna / Orford 最值得先订。</p>
       <div class="next-grid">
         <article class="next-card">
           <div class="card-top"><i class="ph ph-airplane-takeoff" aria-hidden="true"></i><h3>国际段</h3></div>
@@ -1079,7 +1376,7 @@
         </article>
         <article class="next-card">
           <div class="card-top"><i class="ph ph-house-line" aria-hidden="true"></i><h3>厨房型民宿</h3></div>
-          <p>优先锁 Port Arthur、Coles Bay、Cradle Valley；筛选 entire place、kitchen、washer、free parking。</p>
+          <p>优先锁 Cradle Valley、Stanley、Port Arthur、Triabunna / Orford；筛选 entire place、kitchen、washer、free parking。</p>
         </article>
         <article class="next-card">
           <div class="card-top"><i class="ph ph-car-profile" aria-hidden="true"></i><h3>租车</h3></div>
