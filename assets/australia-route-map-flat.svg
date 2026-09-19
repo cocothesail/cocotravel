@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Tasmania road trip route</title>
+  <desc id="desc">Flat route map connecting Hobart, Port Arthur, Maria Island, Coles Bay, St Helens, Cradle Mountain, Stanley and Launceston.</desc>
+  <rect width="1600" height="900" fill="#0d5660"/>
+  <circle cx="1450" cy="116" r="138" fill="#e9b954" opacity=".96"/>
+  <path d="M0 760C210 696 363 724 528 786c190 71 362 70 550 7 190-64 331-49 522 15v92H0Z" fill="#0a3b43" opacity=".45"/>
+  <path d="M771 106c91 8 185 49 239 111 46 54 67 121 94 184 27 64 78 110 80 177 3 73-65 139-124 182-72 52-147 71-232 60-94-12-178-48-250-108-66-54-111-119-126-197-16-82 12-152 48-223 32-63 59-133 119-167 44-25 99-24 152-19Z" fill="#d5e2bd" stroke="#f6edda" stroke-width="12" stroke-linejoin="round"/>
+  <path d="M448 265c-36-12-74-19-111-15-32 4-64 16-88 38" fill="none" stroke="#74b9bc" stroke-width="9" stroke-linecap="round" opacity=".62"/>
+  <path d="M1106 279c48-18 100-22 150-10 33 8 63 25 89 48" fill="none" stroke="#74b9bc" stroke-width="9" stroke-linecap="round" opacity=".62"/>
+  <path d="M367 256C488 329 613 350 803 298c132-36 229 19 267 111 31 75 0 140-80 204-58 47-56 101-139 121" fill="none" stroke="#f6edda" stroke-width="24" stroke-linecap="round" stroke-linejoin="round" opacity=".9"/>
+  <path d="M367 256C488 329 613 350 803 298c132-36 229 19 267 111 31 75 0 140-80 204-58 47-56 101-139 121" fill="none" stroke="#f36f4b" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M851 734c73 24 169 11 230-43 58-51 57-112 20-159" fill="none" stroke="#f36f4b" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+  <g fill="#f36f4b" stroke="#f6edda" stroke-width="8">
+    <circle cx="851" cy="734" r="16"/>
+    <circle cx="1081" cy="691" r="16"/>
+    <circle cx="1127" cy="562" r="16"/>
+    <circle cx="1095" cy="470" r="16"/>
+    <circle cx="1070" cy="409" r="16"/>
+    <circle cx="803" cy="298" r="16"/>
+    <circle cx="556" cy="332" r="16"/>
+    <circle cx="367" cy="256" r="16"/>
+  </g>
+  <g font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="28" fill="#102f35">
+    <g transform="translate(722 742)"><rect width="168" height="52" rx="12" fill="#f6edda"/><text x="84" y="35" text-anchor="middle">Hobart</text></g>
+    <g transform="translate(1107 676)"><rect width="196" height="52" rx="12" fill="#f6edda"/><text x="98" y="35" text-anchor="middle">Port Arthur</text></g>
+    <g transform="translate(1154 537)"><rect width="206" height="52" rx="12" fill="#f6edda"/><text x="103" y="35" text-anchor="middle">Maria Island</text></g>
+    <g transform="translate(1121 444)"><rect width="178" height="52" rx="12" fill="#f6edda"/><text x="89" y="35" text-anchor="middle">Coles Bay</text></g>
+    <g transform="translate(1096 345)"><rect width="170" height="52" rx="12" fill="#f6edda"/><text x="85" y="35" text-anchor="middle">St Helens</text></g>
+    <g transform="translate(637 212)"><rect width="262" height="52" rx="12" fill="#f6edda"/><text x="131" y="35" text-anchor="middle">Launceston</text></g>
+    <g transform="translate(403 354)"><rect width="276" height="52" rx="12" fill="#f6edda"/><text x="138" y="35" text-anchor="middle">Cradle Mountain</text></g>
+    <g transform="translate(212 184)"><rect width="168" height="52" rx="12" fill="#f6edda"/><text x="84" y="35" text-anchor="middle">Stanley</text></g>
+  </g>
+  <g font-family="Arial, Helvetica, sans-serif" fill="#f6edda">
+    <text x="82" y="92" font-size="42" font-weight="800">TASMANIA ROAD TRIP</text>
+    <text x="84" y="132" font-size="22" font-weight="600" opacity=".78">Hobart to Launceston · 8 waypoints</text>
+  </g>
+  <g transform="translate(1220 784)" font-family="Arial, Helvetica, sans-serif" fill="#f6edda">
+    <circle cx="0" cy="-7" r="8" fill="#f36f4b" stroke="#f6edda" stroke-width="4"/>
+    <text x="22" y="0" font-size="20" font-weight="700">TRIP OVERVIEW</text>
+    <text x="22" y="28" font-size="16" opacity=".72">Not for navigation</text>
+  </g>
+</svg>

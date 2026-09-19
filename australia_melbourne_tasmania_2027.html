@@ -180,7 +180,7 @@
     .hero-img {
       min-height: 320px;
       border-radius: 22px;
-      background: url("./assets/australia-tasmania-cover.png") center / cover no-repeat;
+      background: url("./assets/australia-route-map-flat.svg") center / cover no-repeat;
       box-shadow: 0 20px 48px rgba(16, 36, 42, .16);
     }
 
@@ -438,7 +438,8 @@
     .booking-note {
       margin: 12px 0 0;
       padding: 10px 11px;
-      border-left: 3px solid var(--gold);
+      border: 1px solid color-mix(in srgb, var(--gold) 34%, var(--line));
+      border-radius: 10px;
       background: color-mix(in srgb, var(--gold) 8%, var(--paper-soft));
       color: var(--muted);
       font-size: .84rem;
@@ -789,11 +790,60 @@
       font-weight: 820;
     }
 
+    .mobile-dock { display: none; }
+
     @media (max-width: 780px) {
       .page {
         gap: 14px;
         padding-top: max(10px, env(safe-area-inset-top));
-        padding-bottom: max(28px, env(safe-area-inset-bottom));
+        padding-bottom: calc(92px + env(safe-area-inset-bottom));
+      }
+
+      .mobile-dock {
+        position: fixed;
+        z-index: 50;
+        right: 10px;
+        bottom: max(8px, env(safe-area-inset-bottom));
+        left: 10px;
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        min-height: 64px;
+        overflow: hidden;
+        border: 1px solid color-mix(in srgb, var(--line) 82%, transparent);
+        border-radius: 15px;
+        background: color-mix(in srgb, var(--paper) 96%, transparent);
+        box-shadow: 0 14px 34px rgba(4, 21, 27, .24);
+      }
+
+      .mobile-dock a {
+        min-width: 0;
+        min-height: 62px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+        padding: 7px 2px 6px;
+        color: var(--muted);
+        font-size: .7rem;
+        font-weight: 820;
+        line-height: 1;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .mobile-dock i {
+        font-size: 1.28rem;
+        line-height: 1;
+      }
+
+      .mobile-dock a[aria-current="location"] {
+        color: var(--sea);
+        background: color-mix(in srgb, var(--sea) 10%, transparent);
+      }
+
+      .mobile-dock a:active {
+        color: var(--sea);
+        background: color-mix(in srgb, var(--sea) 14%, transparent);
       }
 
       .topbar { min-height: 48px; }
@@ -818,7 +868,7 @@
         min-height: 210px;
         border-radius: 0;
         box-shadow: none;
-        background-position: center 44%;
+        background-position: center top;
       }
 
       .hero-copy {
@@ -959,7 +1009,7 @@
       .brand { font-size: .94rem; }
       .back { width: 42px; padding: 0; justify-content: center; }
       .back span { display: none; }
-      .hero-img { min-height: 168px; }
+      .hero-img { min-height: 0; aspect-ratio: 16 / 9; }
       .hero-copy { padding: 15px 14px 16px; }
       .hero-meta { gap: 6px; font-size: .78rem; }
       .hero-meta span { min-height: 28px; padding-inline: 8px; }
@@ -1001,11 +1051,17 @@
         grid-column: 2;
         font-size: .84rem;
       }
+      .mobile-dock { right: 6px; left: 6px; }
+      .mobile-dock a { font-size: .66rem; }
+    }
+
+    @media print {
+      .mobile-dock { display: none !important; }
     }
   </style>
 </head>
 <body>
-  <main class="page">
+  <main class="page" id="top">
     <header class="topbar">
       <a class="brand" href="./" aria-label="返回 Coco Travel 首页">
         <img src="./assets/icon-192.png" alt="" width="38" height="38" />
@@ -1048,7 +1104,7 @@
           <a class="nav-pill" href="#next"><i class="ph ph-ticket" aria-hidden="true"></i>下一步</a>
         </nav>
       </div>
-      <div class="hero-img" role="img" aria-label="Australia Melbourne Tasmania cover"></div>
+      <div class="hero-img" role="img" aria-label="Tasmania 扁平自驾路线图，依次标注 Hobart、Port Arthur、Maria Island、Coles Bay、St Helens、Cradle Mountain、Stanley 与 Launceston"></div>
     </section>
 
     <section class="section" id="plans">
@@ -1392,5 +1448,39 @@
       </div>
     </section>
   </main>
+  <nav class="mobile-dock" aria-label="手机快捷导航">
+    <a href="#drive" data-section="drive"><i class="ph ph-route" aria-hidden="true"></i><span>路线</span></a>
+    <a href="#stay" data-section="stay"><i class="ph ph-bed" aria-hidden="true"></i><span>住宿</span></a>
+    <a href="#food" data-section="food"><i class="ph ph-fork-knife" aria-hidden="true"></i><span>餐厅</span></a>
+    <a href="#timeline" data-section="timeline"><i class="ph ph-list-checks" aria-hidden="true"></i><span>日程</span></a>
+    <a href="#top" data-section="top"><i class="ph ph-arrow-up" aria-hidden="true"></i><span>顶部</span></a>
+  </nav>
+  <script>
+    (() => {
+      const dockLinks = [...document.querySelectorAll('.mobile-dock a')];
+      const sections = dockLinks
+        .map((link) => document.getElementById(link.dataset.section))
+        .filter(Boolean);
+
+      const setCurrent = (id) => {
+        dockLinks.forEach((link) => {
+          if (link.dataset.section === id) link.setAttribute('aria-current', 'location');
+          else link.removeAttribute('aria-current');
+        });
+      };
+
+      dockLinks.forEach((link) => link.addEventListener('click', () => setCurrent(link.dataset.section)));
+
+      const observer = new IntersectionObserver((entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setCurrent(visible.target.id);
+      }, { rootMargin: '-18% 0px -64% 0px', threshold: [0, .2, .5] });
+
+      sections.forEach((section) => observer.observe(section));
+      setCurrent(location.hash.slice(1) || 'top');
+    })();
+  </script>
 </body>
 </html>
