@@ -1,0 +1,1099 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="description" content="2027 澳洲 Melbourne 与 Tasmania 双版本行程规划。" />
+  <meta name="theme-color" content="#0f7f92" />
+  <title>2027 澳洲 Melbourne + Tasmania 行程</title>
+  <link rel="icon" href="./assets/favicon.ico" sizes="any" />
+  <link rel="icon" href="./assets/coco-travel-icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png" />
+  <link rel="manifest" href="./site.webmanifest" />
+  <link rel="preconnect" href="https://unpkg.com" />
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+  <style>
+    :root {
+      --sea: #0f7f92;
+      --sea-dark: #10242a;
+      --stone: #20343b;
+      --orange: #d9552a;
+      --gold: #f0c24a;
+      --sky: #a5d8e7;
+      --paper: #fbfefd;
+      --paper-soft: #eff7f8;
+      --text: #20303a;
+      --muted: #63737b;
+      --line: #d6e5e8;
+      --shadow: 0 18px 48px rgba(16, 36, 42, .13);
+      --radius: 18px;
+      --radius-sm: 12px;
+      color-scheme: light dark;
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #14242a;
+        --paper-soft: #1d343c;
+        --text: #edf8fa;
+        --muted: #b1c5ca;
+        --line: #31515b;
+        --shadow: 0 18px 48px rgba(0, 0, 0, .28);
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    ::selection { color: white; background: var(--sea); }
+    :focus-visible { outline: 3px solid color-mix(in srgb, var(--gold) 78%, transparent); outline-offset: 4px; }
+
+    body {
+      margin: 0;
+      min-height: 100dvh;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 8% 0%, color-mix(in srgb, var(--sea) 18%, transparent), transparent 28rem),
+        radial-gradient(circle at 94% 4%, color-mix(in srgb, var(--orange) 18%, transparent), transparent 24rem),
+        linear-gradient(180deg, #f4fafb, #fff8ed);
+      font-size: 16px;
+      line-height: 1.56;
+      letter-spacing: 0;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body {
+        background:
+          radial-gradient(circle at 8% 0%, color-mix(in srgb, var(--sea) 22%, transparent), transparent 28rem),
+          radial-gradient(circle at 94% 4%, color-mix(in srgb, var(--orange) 16%, transparent), transparent 24rem),
+          linear-gradient(180deg, #0e1c21, #14242a);
+      }
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .page {
+      width: min(100%, 1120px);
+      margin: 0 auto;
+      padding: max(16px, env(safe-area-inset-top)) clamp(16px, 4vw, 32px) 44px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .page > *,
+    .hero-copy,
+    .section,
+    .timeline,
+    details { min-width: 0; }
+
+    .topbar {
+      min-height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .brand,
+    .back {
+      min-height: 42px;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      border-radius: 999px;
+      font-weight: 850;
+    }
+
+    .brand img {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      box-shadow: 0 10px 24px rgba(15, 127, 146, .22);
+    }
+
+    .back {
+      border: 1px solid var(--line);
+      padding: 0 13px;
+      color: var(--muted);
+      background: color-mix(in srgb, var(--paper) 82%, transparent);
+      font-size: .88rem;
+    }
+
+    .hero {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, .95fr) minmax(260px, .82fr);
+      gap: clamp(18px, 4vw, 34px);
+      align-items: stretch;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: clamp(18px, 4vw, 34px);
+      background: color-mix(in srgb, var(--paper) 92%, transparent);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      align-content: center;
+      gap: 14px;
+    }
+
+    .hero-meta {
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      color: var(--muted);
+      font-size: .9rem;
+      font-weight: 850;
+    }
+
+    .hero-meta span {
+      min-height: 30px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      padding: 0 10px;
+      background: var(--paper-soft);
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 12ch;
+      font-size: clamp(2.35rem, 9vw, 5.2rem);
+      line-height: .96;
+      letter-spacing: 0;
+      font-weight: 930;
+    }
+
+    .hero-copy > p:not(.hero-meta) {
+      margin: 0;
+      max-width: 38rem;
+      color: var(--muted);
+      font-size: clamp(1rem, 3vw, 1.15rem);
+    }
+
+    .hero-img {
+      min-height: 320px;
+      border-radius: 22px;
+      background: url("./assets/australia-tasmania-cover.png") center / cover no-repeat;
+      box-shadow: 0 20px 48px rgba(16, 36, 42, .16);
+    }
+
+    .decision-panel {
+      display: grid;
+      gap: 12px;
+      border-radius: 16px;
+      padding: 16px;
+      color: #f7fbfd;
+      background:
+        linear-gradient(135deg, rgba(16, 36, 42, .92), rgba(15, 127, 146, .92)),
+        var(--sea-dark);
+      box-shadow: 0 16px 36px rgba(15, 127, 146, .24);
+    }
+
+    .decision-panel strong {
+      display: block;
+      font-size: clamp(1.15rem, 4vw, 1.48rem);
+      line-height: 1.18;
+    }
+
+    .decision-panel p {
+      margin: 0;
+      color: rgba(247, 251, 253, .82);
+      font-size: .94rem;
+    }
+
+    .decision-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 2px;
+    }
+
+    .decision-item {
+      min-height: 58px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+      gap: 8px;
+      border-radius: 12px;
+      padding: 10px;
+      background: rgba(247, 251, 253, .1);
+      color: #f7fbfd;
+      font-size: .86rem;
+      font-weight: 790;
+    }
+
+    .decision-item i {
+      color: var(--gold);
+      font-size: 1.18rem;
+    }
+
+    .pill-row,
+    .nav-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .pill,
+    .nav-pill {
+      min-height: 34px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      padding: 0 10px;
+      background: var(--paper-soft);
+      color: var(--muted);
+      font-size: .82rem;
+      font-weight: 820;
+    }
+
+    .pill.gold { background: color-mix(in srgb, var(--gold) 25%, transparent); color: color-mix(in srgb, var(--stone) 78%, var(--gold)); }
+    .pill.orange { background: color-mix(in srgb, var(--orange) 14%, transparent); color: color-mix(in srgb, var(--orange) 78%, var(--text)); }
+    .nav-pill { border: 1px solid var(--line); background: color-mix(in srgb, var(--paper) 86%, transparent); }
+    .nav-pill i { color: var(--sea); font-size: 1rem; }
+
+    .section {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: clamp(15px, 3vw, 22px);
+      background: color-mix(in srgb, var(--paper) 90%, transparent);
+      box-shadow: 0 10px 28px rgba(16, 36, 42, .07);
+    }
+
+    .section h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.35rem, 4vw, 2rem);
+      line-height: 1.18;
+    }
+
+    .section-note {
+      margin: 0 0 12px;
+      color: var(--muted);
+    }
+
+    .plan-grid,
+    .drive-grid,
+    .stay-grid,
+    .next-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .plan-card,
+    .drive-card,
+    .stay-card,
+    .next-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 14px;
+      background: var(--paper);
+    }
+
+    .plan-card.recommended {
+      border-color: color-mix(in srgb, var(--sea) 46%, var(--line));
+      background: linear-gradient(180deg, color-mix(in srgb, var(--sea) 8%, var(--paper)), var(--paper));
+    }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 8px;
+    }
+
+    .card-top i {
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      color: var(--sea);
+      background: color-mix(in srgb, var(--sea) 10%, transparent);
+      font-size: 1.15rem;
+    }
+
+    .plan-card h3,
+    .drive-card h3,
+    .stay-card h3,
+    .next-card h3 {
+      margin: 0;
+      font-size: 1.06rem;
+      line-height: 1.25;
+    }
+
+    .plan-card p,
+    .drive-card p,
+    .stay-card p,
+    .next-card p {
+      margin: 7px 0 0;
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    .stay-grid {
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    }
+
+    .stay-card small {
+      display: block;
+      margin-top: 7px;
+      color: color-mix(in srgb, var(--sea) 78%, var(--text));
+      font-weight: 850;
+      font-size: .78rem;
+    }
+
+    .spot-gallery {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .spot-card {
+      min-width: 0;
+      margin: 0;
+      overflow: hidden;
+      border-radius: 12px;
+      background: var(--paper-soft);
+    }
+
+    .spot-card img {
+      width: 100%;
+      height: 168px;
+      display: block;
+      object-fit: cover;
+      background: color-mix(in srgb, var(--sea) 10%, var(--paper-soft));
+    }
+
+    .spot-card figcaption {
+      display: grid;
+      gap: 3px;
+      padding: 10px;
+    }
+
+    .spot-card strong {
+      font-size: .92rem;
+      line-height: 1.3;
+    }
+
+    .spot-card span {
+      color: var(--muted);
+      font-size: .76rem;
+      line-height: 1.4;
+    }
+
+    .image-credit {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: .76rem;
+    }
+
+    .image-credit a {
+      color: color-mix(in srgb, var(--sea) 82%, var(--text));
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 9px;
+    }
+
+    details {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      background: var(--paper);
+      overflow: hidden;
+    }
+
+    summary {
+      min-height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      cursor: pointer;
+      font-weight: 880;
+      list-style: none;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+
+    summary > i {
+      flex: 0 0 auto;
+      transition: transform .22s ease;
+    }
+
+    details[open] summary {
+      background: color-mix(in srgb, var(--sea) 7%, var(--paper));
+    }
+
+    details[open] summary > i { transform: rotate(180deg); }
+
+    .summary-copy {
+      min-width: 0;
+      display: grid;
+      gap: 2px;
+    }
+
+    .summary-title {
+      font-size: 1rem;
+      line-height: 1.25;
+    }
+
+    .summary-sub {
+      color: var(--muted);
+      font-size: .82rem;
+      font-weight: 720;
+    }
+
+    .timeline-body {
+      display: grid;
+      gap: 10px;
+      padding: 0 14px 14px;
+    }
+
+    .phase {
+      margin-top: 3px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: color-mix(in srgb, var(--sea) 78%, var(--text));
+      font-size: .84rem;
+      font-weight: 900;
+    }
+
+    .phase::before {
+      content: "";
+      width: 22px;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--gold);
+    }
+
+    .day {
+      display: grid;
+      grid-template-columns: 74px 1fr;
+      gap: 10px;
+      padding: 10px;
+      border: 1px dashed color-mix(in srgb, var(--line) 82%, transparent);
+      border-radius: 12px;
+      background: color-mix(in srgb, var(--paper-soft) 44%, transparent);
+    }
+
+    .day strong {
+      width: fit-content;
+      height: 30px;
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 0 10px;
+      background: color-mix(in srgb, var(--sea) 13%, transparent);
+      color: var(--sea);
+      font-size: .88rem;
+    }
+
+    .day span {
+      color: var(--muted);
+      font-size: .94rem;
+    }
+
+    .day b {
+      color: var(--text);
+      font-weight: 850;
+    }
+
+    .day > span > b {
+      display: block;
+      margin-bottom: 5px;
+      font-size: .98rem;
+    }
+
+    .day .line {
+      display: block;
+      margin-top: 4px;
+    }
+
+    .day .line b {
+      display: inline-flex;
+      align-items: center;
+      min-height: 22px;
+      margin-right: 5px;
+      border-radius: 999px;
+      padding: 0 7px;
+      color: color-mix(in srgb, var(--sea) 76%, var(--text));
+      background: color-mix(in srgb, var(--sea) 9%, transparent);
+      font-size: .78rem;
+    }
+
+    .day-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .day-tag {
+      min-height: 25px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      border-radius: 999px;
+      padding: 0 8px;
+      color: color-mix(in srgb, var(--stone) 84%, var(--text));
+      background: color-mix(in srgb, var(--gold) 22%, transparent);
+      font-size: .76rem;
+      font-weight: 820;
+    }
+
+    .route-strip {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      overflow-x: auto;
+      padding: 4px 0 8px;
+      scrollbar-width: none;
+    }
+
+    .route-strip::-webkit-scrollbar { display: none; }
+
+    .route-stop {
+      flex: 0 0 auto;
+      min-height: 34px;
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 0 11px;
+      color: color-mix(in srgb, var(--sea) 76%, var(--text));
+      background: color-mix(in srgb, var(--sea) 9%, var(--paper));
+      font-size: .82rem;
+      font-weight: 850;
+    }
+
+    .route-arrow { color: var(--orange); font-size: 1rem; }
+
+    .mini-table {
+      display: grid;
+      gap: 8px;
+    }
+
+    .compare-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+      align-items: stretch;
+    }
+
+    .compare-row > span {
+      border-radius: 10px;
+      padding: 9px 10px;
+      background: var(--paper-soft);
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .compare-row.header > span {
+      color: var(--text);
+      font-weight: 880;
+      background: color-mix(in srgb, var(--sea) 10%, var(--paper-soft));
+    }
+
+    .footnote {
+      margin: 2px 0 0;
+      color: var(--muted);
+      font-size: .86rem;
+    }
+
+    .source-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .source-links a {
+      min-height: 34px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      padding: 0 10px;
+      background: var(--paper-soft);
+      color: color-mix(in srgb, var(--sea) 80%, var(--text));
+      font-size: .82rem;
+      font-weight: 820;
+    }
+
+    @media (max-width: 780px) {
+      .page {
+        gap: 14px;
+        padding-top: max(10px, env(safe-area-inset-top));
+        padding-bottom: max(28px, env(safe-area-inset-bottom));
+      }
+
+      .topbar { min-height: 48px; }
+
+      .hero,
+      .plan-grid,
+      .drive-grid,
+      .stay-grid,
+      .next-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        gap: 0;
+        padding: 0;
+        border-radius: 16px;
+      }
+
+      .hero-img {
+        order: -1;
+        min-height: 210px;
+        border-radius: 0;
+        box-shadow: none;
+        background-position: center 44%;
+      }
+
+      .hero-copy {
+        gap: 10px;
+        padding: 16px;
+      }
+
+      h1 {
+        max-width: 10ch;
+        font-size: clamp(2.2rem, 11vw, 3.5rem);
+        line-height: .98;
+      }
+
+      .hero-copy > p:not(.hero-meta) {
+        font-size: .98rem;
+        line-height: 1.6;
+      }
+
+      .decision-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 6px;
+      }
+
+      .decision-item:first-child { grid-column: 1 / -1; }
+
+      .decision-panel {
+        gap: 8px;
+        padding: 12px;
+        box-shadow: 0 12px 26px rgba(15, 127, 146, .2);
+      }
+
+      .decision-panel strong { font-size: 1.12rem; }
+      .decision-panel p { font-size: .88rem; line-height: 1.5; }
+
+      .decision-item {
+        min-height: 39px;
+        padding: 6px 8px;
+        font-size: .8rem;
+      }
+
+      .nav-pills {
+        width: auto;
+        max-width: calc(100% + 32px);
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        margin-inline: -16px;
+        padding: 2px 16px 5px;
+        scrollbar-width: none;
+        scroll-snap-type: x proximity;
+      }
+
+      .nav-pills::-webkit-scrollbar {
+        display: none;
+      }
+
+      .nav-pill {
+        flex: 0 0 auto;
+        min-height: 42px;
+        padding-inline: 13px;
+        scroll-snap-align: start;
+      }
+
+      .section {
+        border-radius: 14px;
+        padding: 16px 14px;
+        box-shadow: 0 8px 22px rgba(16, 36, 42, .06);
+      }
+
+      .compare-row {
+        grid-template-columns: minmax(72px, .78fr) repeat(2, minmax(0, 1fr));
+        gap: 5px;
+      }
+
+      .compare-row > span {
+        min-width: 0;
+        padding: 8px 7px;
+        border-radius: 8px;
+        font-size: .8rem;
+        line-height: 1.4;
+        overflow-wrap: anywhere;
+      }
+
+      .route-strip {
+        width: auto;
+        max-width: calc(100% + 28px);
+        margin-inline: -14px;
+        padding: 4px 14px 10px;
+        scroll-snap-type: x proximity;
+      }
+
+      .route-stop { scroll-snap-align: start; }
+
+      .spot-gallery {
+        grid-template-columns: none;
+        grid-auto-flow: column;
+        grid-auto-columns: minmax(220px, 78vw);
+        gap: 9px;
+        overflow-x: auto;
+        margin-inline: -14px;
+        padding: 2px 14px 9px;
+        scroll-padding-inline: 14px;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+      }
+
+      .spot-gallery::-webkit-scrollbar { display: none; }
+      .spot-card { scroll-snap-align: start; }
+      .spot-card img { height: 184px; }
+
+      summary {
+        min-height: 62px;
+        padding: 12px;
+      }
+
+      .timeline-body {
+        gap: 8px;
+        padding: 0 8px 8px;
+      }
+
+      .day {
+        padding: 11px;
+        border: 0;
+        background: var(--paper-soft);
+      }
+
+      .source-links a {
+        min-height: 42px;
+        padding-inline: 12px;
+      }
+    }
+
+    @media (max-width: 430px) {
+      body { font-size: 16px; }
+      .page { padding-left: 12px; padding-right: 12px; }
+      .brand { font-size: .94rem; }
+      .back { width: 42px; padding: 0; justify-content: center; }
+      .back span { display: none; }
+      .hero-img { min-height: 168px; }
+      .hero-copy { padding: 15px 14px 16px; }
+      .hero-meta { gap: 6px; font-size: .78rem; }
+      .hero-meta span { min-height: 28px; padding-inline: 8px; }
+      .pill-row { gap: 6px; }
+      .pill { font-size: .78rem; }
+      .section h2 { font-size: 1.42rem; }
+      .section-note { font-size: .92rem; }
+      .plan-card,
+      .drive-card,
+      .stay-card,
+      .next-card { padding: 12px; }
+      .day {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+      .day strong { height: 28px; padding-inline: 9px; }
+      .day > span > b { font-size: 1rem; line-height: 1.4; }
+      .day span { font-size: .92rem; }
+      .day .line { margin-top: 6px; }
+      .day .line b { min-height: 21px; }
+      .phase { padding: 5px 3px 0; }
+      .summary-title { font-size: .96rem; }
+      .summary-sub { margin-top: 2px; font-size: .78rem; line-height: 1.35; }
+    }
+
+    @media (max-width: 360px) {
+      .page { padding-inline: 8px; }
+      .hero-copy { padding-inline: 12px; }
+      h1 { font-size: 2.25rem; }
+      .section { padding-inline: 11px; }
+      .compare-row {
+        grid-template-columns: minmax(64px, .72fr) repeat(2, minmax(0, 1fr));
+      }
+      .compare-row > span { padding-inline: 5px; font-size: .75rem; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="topbar">
+      <a class="brand" href="./" aria-label="返回 Coco Travel 首页">
+        <img src="./assets/icon-192.png" alt="" width="38" height="38" />
+        <span>Coco Travel</span>
+      </a>
+      <a class="back" href="./"><i class="ph ph-arrow-left" aria-hidden="true"></i><span>返回首页</span></a>
+    </header>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="hero-meta">
+          <span><i class="ph ph-calendar-dots" aria-hidden="true"></i>2027/02-03</span>
+          <span><i class="ph ph-map-trifold" aria-hidden="true"></i>Melbourne + Tasmania</span>
+          <span><i class="ph ph-users" aria-hidden="true"></i>Two-person Road Trip</span>
+        </p>
+        <h1>Melbourne + Tasmania</h1>
+        <p>两个人一起出发，Tasmania 改为全程自驾。住进海边与山间民宿，沿 Great Eastern Drive 慢慢停靠，也给自己做饭留出舒服的晚上。</p>
+        <div class="decision-panel" aria-label="当前执行建议">
+          <strong>优先锁 Plan B，再订一台车走完整个 Tasmania。</strong>
+          <p>两人可以轮换驾驶，推荐 Hobart 机场取车、Launceston 机场还车；多出的一天留给 Freycinet 或 Cradle Mountain 看天气调整。</p>
+          <div class="decision-list">
+            <span class="decision-item"><i class="ph ph-number-one" aria-hidden="true"></i>SIN-MEL 国际段</span>
+            <span class="decision-item"><i class="ph ph-number-two" aria-hidden="true"></i>MEL-HBA + HBA 取车</span>
+            <span class="decision-item"><i class="ph ph-number-three" aria-hidden="true"></i>LST 还车 + 回程</span>
+          </div>
+        </div>
+        <div class="pill-row">
+          <span class="pill gold">推荐 Plan B</span>
+          <span class="pill">Tasmania 全程自驾</span>
+          <span class="pill orange">民宿 + 自炊</span>
+        </div>
+        <nav class="nav-pills" aria-label="页面导航">
+          <a class="nav-pill" href="#plans"><i class="ph ph-git-branch" aria-hidden="true"></i>版本</a>
+          <a class="nav-pill" href="#drive"><i class="ph ph-car" aria-hidden="true"></i>自驾路线</a>
+          <a class="nav-pill" href="#highlights"><i class="ph ph-image" aria-hidden="true"></i>沿途精华</a>
+          <a class="nav-pill" href="#stay"><i class="ph ph-bed" aria-hidden="true"></i>住宿</a>
+          <a class="nav-pill" href="#timeline"><i class="ph ph-list-checks" aria-hidden="true"></i>日程</a>
+          <a class="nav-pill" href="#next"><i class="ph ph-ticket" aria-hidden="true"></i>下一步</a>
+        </nav>
+      </div>
+      <div class="hero-img" role="img" aria-label="Australia Melbourne Tasmania cover"></div>
+    </section>
+
+    <section class="section" id="plans">
+      <h2>两个保留版本</h2>
+      <p class="section-note">如果总交通成本没有明显高于 Plan A，当前更建议选 Plan B。</p>
+      <div class="plan-grid">
+        <article class="plan-card">
+          <div class="card-top"><i class="ph ph-fast-forward" aria-hidden="true"></i><h3>Plan A｜1 月下旬出发</h3></div>
+          <p><strong>2027/1/19-2/2 左右，15 天。</strong></p>
+          <p>春节前回到新加坡。节奏稍紧，但可以避开春节返程周期。</p>
+        </article>
+        <article class="plan-card recommended">
+          <div class="card-top"><i class="ph ph-seal-check" aria-hidden="true"></i><h3>Plan B｜2 月下旬出发</h3></div>
+          <p><strong>2027/2/16-3/2 或 2/17-3/3，16 天。</strong></p>
+          <p>澳洲暑假基本结束，春节核心出行段已过，Freycinet 多留一天用于天气调整。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>真正的区别</h2>
+      <div class="mini-table">
+        <div class="compare-row header"><span>项目</span><span>Plan A</span><span>Plan B</span></div>
+        <div class="compare-row"><span>日期</span><span>1/19-2/2 左右</span><span>2/16-3/3 左右</span></div>
+        <div class="compare-row"><span>行程长度</span><span>15 天</span><span>16 天</span></div>
+        <div class="compare-row"><span>节奏</span><span>更紧凑</span><span>更松，Freycinet 多一天</span></div>
+        <div class="compare-row"><span>交通价格信号</span><span>笔记中较贵</span><span>笔记中更好</span></div>
+        <div class="compare-row"><span>我的排序</span><span>No.2</span><span>No.1</span></div>
+      </div>
+      <p class="footnote">票价和天气只作为规划依据，订票前需要重新查 SIN-MEL、MEL-HBA、LST-MEL 三段。</p>
+    </section>
+
+    <section class="section" id="drive">
+      <h2>Tasmania 连续自驾路线</h2>
+      <p class="section-note">Hobart 机场取车、Launceston 机场还车，车辆贯穿整个塔州段。每天尽量控制在 1-3 小时驾驶，景点日不赶夜路。</p>
+      <div class="route-strip" aria-label="Tasmania 自驾路线">
+        <span class="route-stop">Hobart</span><i class="ph ph-arrow-right route-arrow" aria-hidden="true"></i>
+        <span class="route-stop">Port Arthur</span><i class="ph ph-arrow-right route-arrow" aria-hidden="true"></i>
+        <span class="route-stop">Coles Bay</span><i class="ph ph-arrow-right route-arrow" aria-hidden="true"></i>
+        <span class="route-stop">St Helens</span><i class="ph ph-arrow-right route-arrow" aria-hidden="true"></i>
+        <span class="route-stop">Cradle Mountain</span><i class="ph ph-arrow-right route-arrow" aria-hidden="true"></i>
+        <span class="route-stop">Launceston</span>
+      </div>
+      <div class="drive-grid">
+        <article class="drive-card">
+          <div class="card-top"><i class="ph ph-steering-wheel" aria-hidden="true"></i><h3>取还车与驾驶节奏</h3></div>
+          <p>HBA 落地直接取小型自动挡，LST 起飞前还车；两位驾驶人都加入租车合同。</p>
+          <p>每天出发前确定主驾与替补，约 90 分钟交换一次。尽量 17:30 前抵达住宿，黄昏后减少驾驶。</p>
+        </article>
+        <article class="drive-card">
+          <div class="card-top"><i class="ph ph-shield-check" aria-hidden="true"></i><h3>仍需注意</h3></div>
+          <p>Cradle Mountain 开车到 Visitor Centre 后换官方 shuttle，运营时段内不能自驾进入 Dove Lake Road。</p>
+          <p>山路与海岸公路不追赶导航时间；下载离线地图，油量低于半箱就在大镇补给。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="highlights">
+      <h2>沿途精华</h2>
+      <p class="section-note">按路线顺序浏览。手机上左右滑动，每张图片对应当天最值得期待的主景观。</p>
+      <div class="spot-gallery" aria-label="澳洲行程景点图片">
+        <figure class="spot-card">
+          <img src="./assets/australia-spots/melbourne.webp" alt="Melbourne Flinders Street Station 黄色历史建筑" width="960" height="719" loading="lazy" decoding="async" />
+          <figcaption><strong>Melbourne 城市经典</strong><span>Flinders Street · Federation Square · Yarra River · NGV</span></figcaption>
+        </figure>
+        <figure class="spot-card">
+          <img src="./assets/australia-spots/twelve-apostles.webp" alt="Great Ocean Road 十二门徒石灰岩海岸" width="960" height="640" loading="lazy" decoding="async" />
+          <figcaption><strong>Great Ocean Road</strong><span>12 Apostles · Loch Ard Gorge · Port Campbell</span></figcaption>
+        </figure>
+        <figure class="spot-card">
+          <img src="./assets/australia-spots/hobart.webp" alt="Hobart Salamanca Place 与远处的 kunanyi 山" width="960" height="640" loading="lazy" decoding="async" />
+          <figcaption><strong>Hobart 慢生活</strong><span>Salamanca · Battery Point · waterfront · kunanyi</span></figcaption>
+        </figure>
+        <figure class="spot-card">
+          <img src="./assets/australia-spots/port-arthur.webp" alt="Port Arthur Historic Site 历史遗址与海湾" width="960" height="800" loading="lazy" decoding="async" />
+          <figcaption><strong>Tasman Peninsula</strong><span>Port Arthur · Tessellated Pavement · Tasman Arch · Devils Kitchen</span></figcaption>
+        </figure>
+        <figure class="spot-card">
+          <img src="./assets/australia-spots/wineglass-bay.webp" alt="Freycinet National Park Wineglass Bay 蓝色海湾" width="960" height="640" loading="lazy" decoding="async" />
+          <figcaption><strong>Freycinet</strong><span>Wineglass Bay · Honeymoon Bay · Cape Tourville · Coles Bay</span></figcaption>
+        </figure>
+        <figure class="spot-card">
+          <img src="./assets/australia-spots/bay-of-fires.webp" alt="Bay of Fires 白色沙滩与橙色岩石" width="960" height="640" loading="lazy" decoding="async" />
+          <figcaption><strong>Great Eastern Drive</strong><span>Orford · Swansea · Bicheno · St Helens · Bay of Fires</span></figcaption>
+        </figure>
+        <figure class="spot-card">
+          <img src="./assets/australia-spots/cradle-mountain.webp" alt="Dove Lake 船屋与 Cradle Mountain 山景" width="960" height="550" loading="lazy" decoding="async" />
+          <figcaption><strong>Cradle Mountain</strong><span>Sheffield · Dove Lake · Ronny Creek · Enchanted Walk</span></figcaption>
+        </figure>
+        <figure class="spot-card">
+          <img src="./assets/australia-spots/launceston.webp" alt="Launceston Cataract Gorge 峡谷河流与步道" width="960" height="540" loading="lazy" decoding="async" />
+          <figcaption><strong>Launceston 北部</strong><span>Cataract Gorge · Deloraine · Evandale · Tamar Valley</span></figcaption>
+        </figure>
+      </div>
+      <p class="image-credit">景点照片来自 <a href="https://commons.wikimedia.org/" target="_blank" rel="noreferrer">Wikimedia Commons</a>，仅作行程视觉参考。</p>
+    </section>
+
+    <section class="section" id="stay">
+      <h2>住宿区域速查</h2>
+      <p class="section-note">两个人更适合选择带厨房、洗衣机和停车位的整套民宿。海岸与山区优先提前采购，晚上回住处自己做饭。</p>
+      <div class="stay-grid">
+        <article class="stay-card">
+          <div class="card-top"><i class="ph ph-buildings" aria-hidden="true"></i><h3>Melbourne</h3></div>
+          <p>优先 CBD / Southbank，方便 SkyBus、tram、NGV、Yarra River 和一日团集合。</p>
+          <small>关键词: Melbourne CBD / Southbank</small>
+        </article>
+        <article class="stay-card">
+          <div class="card-top"><i class="ph ph-anchor-simple" aria-hidden="true"></i><h3>Hobart</h3></div>
+          <p>住 CBD / Salamanca 方便步行；有车后也可住 Sandy Bay 的整套公寓，停车和采购更轻松。</p>
+          <small>采购: Woolworths / Coles · 找带停车位和厨房</small>
+        </article>
+        <article class="stay-card">
+          <div class="card-top"><i class="ph ph-mountains" aria-hidden="true"></i><h3>Freycinet</h3></div>
+          <p>住 Coles Bay 两晚，优先整套 cabin / cottage。晚餐选择有限，抵达前在 Swansea 采购两晚食材。</p>
+          <small>采购: Swansea · 找 full kitchen / BBQ</small>
+        </article>
+        <article class="stay-card">
+          <div class="card-top"><i class="ph ph-sun-horizon" aria-hidden="true"></i><h3>Bay of Fires</h3></div>
+          <p>想看海住 Binalong Bay，重视超市与加油住 St Helens。只住一晚时，St Helens 执行更稳定。</p>
+          <small>采购: St Helens · 当晚适合海鲜简餐</small>
+        </article>
+        <article class="stay-card">
+          <div class="card-top"><i class="ph ph-mountains" aria-hidden="true"></i><h3>Cradle Mountain</h3></div>
+          <p>住 Cradle Valley 两晚，减少 Launceston 当日往返。优先 cabin，准备早餐、徒步午餐和一顿热晚饭。</p>
+          <small>采购: Sheffield / Deloraine · 山区选择少</small>
+        </article>
+        <article class="stay-card">
+          <div class="card-top"><i class="ph ph-park" aria-hidden="true"></i><h3>Launceston</h3></div>
+          <p>住 CBD / Cataract Gorge 周边，选择带停车位的公寓；最后一晚可清空冰箱并整理行李。</p>
+          <small>关键词: Launceston CBD / West Launceston</small>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="timeline">
+      <h2>每日节奏</h2>
+      <div class="timeline">
+        <details open id="plan-b-timeline">
+          <summary><span class="summary-copy"><span class="summary-title">Plan B｜16 天双人自驾推荐版</span><span class="summary-sub">Melbourne 4 天 + Tasmania 连续自驾 11 晚 + 返程</span></span><i class="ph ph-caret-down" aria-hidden="true"></i></summary>
+          <div class="timeline-body">
+            <div class="phase">Melbourne 城市与近郊 · D1-D4</div>
+            <div class="day"><strong>D1</strong><span><b>住 Melbourne CBD / Southbank。</b><span class="line"><b>交通:</b> SIN → MEL，抵达后用 SkyBus / taxi / rideshare 进城，不取车。</span><span class="line"><b>安排:</b> 只做入住、超市补给、Yarra River 轻松散步，倒时差。</span></span></div>
+            <div class="day"><strong>D2</strong><span><b>住 Melbourne CBD / Southbank。</b><span class="line"><b>交通:</b> 全程 tram / 步行。</span><span class="line"><b>安排:</b> Flinders Street、Federation Square、Yarra River、NGV、Southbank。两个人可以安排一顿正式晚餐。</span></span></div>
+            <div class="day"><strong>D3</strong><span><b>住 Melbourne CBD / Southbank。</b><span class="line"><b>交通:</b> tram 到 Fitzroy / Collingwood，区域内步行。</span><span class="line"><b>安排:</b> 咖啡馆、设计店、小店、Brunswick Street / Smith Street。今天保持城市慢节奏。</span></span></div>
+            <div class="day"><strong>D4</strong><span><b>住 Melbourne CBD / Southbank。</b><span class="line"><b>交通:</b> Great Ocean Road 可继续报小团；若两人都习惯左侧驾驶，可租车日游并轮换驾驶。</span><span class="line"><b>安排:</b> 12 Apostles、Loch Ard Gorge；自驾版最多选 3-4 个主停靠点，日落前返程。</span><span class="day-tags"><span class="day-tag"><i class="ph ph-users" aria-hidden="true"></i>双人轮换</span><span class="day-tag"><i class="ph ph-warning" aria-hidden="true"></i>避免夜路</span></span></span></div>
+            <div class="phase">Hobart 与 Tasman Peninsula · D5-D8</div>
+            <div class="day"><strong>D5</strong><span><b>住 Hobart CBD / Sandy Bay 民宿。</b><span class="line"><b>交通:</b> MEL → HBA，机场取自动挡后进城，约 20 分钟级别。</span><span class="line"><b>安排:</b> 入住、超市采购、waterfront 轻松散步。今天只熟悉车辆与停车。</span><span class="day-tags"><span class="day-tag"><i class="ph ph-shopping-cart" aria-hidden="true"></i>首次采购</span><span class="day-tag"><i class="ph ph-cooking-pot" aria-hidden="true"></i>可自炊</span></span></span></div>
+            <div class="day"><strong>D6</strong><span><b>住 Hobart CBD / Sandy Bay 民宿。</b><span class="line"><b>交通:</b> 市区步行；kunanyi 视天气短途自驾，或把车留在住处。</span><span class="line"><b>安排:</b> Salamanca Market（周六）、Battery Point、waterfront；天气通透再上 kunanyi。</span></span></div>
+            <div class="day"><strong>D7</strong><span><b>住 Hobart CBD / Sandy Bay 民宿。</b><span class="line"><b>交通:</b> 自驾 Richmond 往返，单程约 30 分钟；MONA 可改搭 ferry。</span><span class="line"><b>安排:</b> Richmond Bridge、老镇与咖啡馆，作为左侧驾驶适应日。下午回 Hobart 选 MONA 或休息。</span></span></div>
+            <div class="day"><strong>D8</strong><span><b>住 Port Arthur / Eaglehawk Neck cottage。</b><span class="line"><b>交通:</b> Hobart → Sorell → Tasman Peninsula，纯驾驶约 1.5 小时，沿途分段停靠。</span><span class="line"><b>安排:</b> Tessellated Pavement、Tasman Arch、Devils Kitchen，下午 Port Arthur Historic Site。住半岛避免当天往返。</span><span class="day-tags"><span class="day-tag"><i class="ph ph-house-line" aria-hidden="true"></i>乡间民宿</span><span class="day-tag"><i class="ph ph-cooking-pot" aria-hidden="true"></i>提前买晚餐</span></span></span></div>
+            <div class="phase">Great Eastern Drive · D9-D11</div>
+            <div class="day"><strong>D9</strong><span><b>住 Coles Bay / Freycinet cottage。</b><span class="line"><b>交通:</b> Port Arthur → Sorell → Orford → Swansea → Coles Bay，纯驾驶约 4 小时。</span><span class="line"><b>安排:</b> Orford 海边短走、Swansea 午餐与采购、Spiky Bridge；这天只走顺路小镇，不额外绕行。</span><span class="day-tags"><span class="day-tag"><i class="ph ph-storefront" aria-hidden="true"></i>Swansea 采购</span><span class="day-tag"><i class="ph ph-cooking-pot" aria-hidden="true"></i>准备两晚食材</span></span></span></div>
+            <div class="day"><strong>D10</strong><span><b>住 Coles Bay / Freycinet cottage。</b><span class="line"><b>交通:</b> 仅住宿与国家公园停车点之间短途移动。</span><span class="line"><b>安排:</b> Wineglass Bay Lookout 轻松版，或 Wineglass Bay Beach 完整版；下午 Honeymoon Bay / Cape Tourville。</span></span></div>
+            <div class="day"><strong>D11</strong><span><b>住 St Helens / Binalong Bay 民宿。</b><span class="line"><b>交通:</b> Coles Bay → Bicheno → Scamander → St Helens，纯驾驶约 2.5 小时。</span><span class="line"><b>安排:</b> Bicheno Blowhole、海岸步道与午餐；傍晚到 Binalong Bay 看橙色岩岸。晚餐在 St Helens 采购或外食海鲜。</span><span class="day-tags"><span class="day-tag"><i class="ph ph-camera" aria-hidden="true"></i>Bicheno 停留</span><span class="day-tag"><i class="ph ph-sunset" aria-hidden="true"></i>Bay of Fires</span></span></span></div>
+            <div class="phase">Cradle Mountain 与北部 · D12-D16</div>
+            <div class="day"><strong>D12</strong><span><b>住 Cradle Valley cabin。</b><span class="line"><b>交通:</b> St Helens → Derby → Scottsdale → Launceston 外围 → Sheffield → Cradle Valley，纯驾驶约 4.5 小时。</span><span class="line"><b>安排:</b> Derby 咖啡、Sheffield 壁画镇并完成山区采购；16:30 前抵达，不在黄昏赶山路。</span><span class="day-tags"><span class="day-tag"><i class="ph ph-gas-pump" aria-hidden="true"></i>加满油</span><span class="day-tag"><i class="ph ph-shopping-cart" aria-hidden="true"></i>山区采购</span></span></span></div>
+            <div class="day"><strong>D13</strong><span><b>住 Cradle Valley cabin。</b><span class="line"><b>交通:</b> 开车到 Visitor Centre，白天换官方 shuttle 前往 Dove Lake / Ronny Creek。</span><span class="line"><b>安排:</b> 好天气走 Dove Lake Circuit；风雨较大改 Enchanted Walk、Pencil Pine Falls。晚上回 cabin 做热饭。</span><span class="day-tags"><span class="day-tag"><i class="ph ph-bus" aria-hidden="true"></i>园区 shuttle</span><span class="day-tag"><i class="ph ph-cloud-sun" aria-hidden="true"></i>天气弹性</span></span></span></div>
+            <div class="day"><strong>D14</strong><span><b>住 Launceston CBD / West Launceston 公寓。</b><span class="line"><b>交通:</b> Cradle Valley → Sheffield → Deloraine → Launceston，纯驾驶约 2.5 小时。</span><span class="line"><b>安排:</b> Sheffield 与 Deloraine 二选一慢停，下午 Cataract Gorge。车继续保留，方便住宿与机场。</span></span></div>
+            <div class="day"><strong>D15</strong><span><b>住 Launceston CBD / West Launceston 公寓。</b><span class="line"><b>交通:</b> 自驾 Tamar Valley / Evandale 半日，或把整天留在 Launceston。</span><span class="line"><b>安排:</b> 作为全程缓冲：天气好去 Tamar Valley，疲劳就逛 City Park、Design Tasmania 并整理行李。</span></span></div>
+            <div class="day"><strong>D16</strong><span><b>返程或 Melbourne 机场附近过夜。</b><span class="line"><b>交通:</b> LST → MEL → SIN。若衔接不顺，D16 只飞 MEL，住机场附近，D17 回 SIN。</span><span class="line"><b>安排:</b> 不排景点，专心转机和返程。</span></span></div>
+          </div>
+        </details>
+
+        <details>
+          <summary><span class="summary-copy"><span class="summary-title">Plan A｜15 天双人自驾紧凑版</span><span class="summary-sub">路线相同，压缩 Hobart 与北部缓冲</span></span><i class="ph ph-caret-down" aria-hidden="true"></i></summary>
+          <div class="timeline-body">
+            <div class="phase">Melbourne + Hobart · D1-D6</div>
+            <div class="day"><strong>D1-D4</strong><span><b>住 Melbourne CBD / Southbank。</b><span class="line"><b>交通:</b> 城市段 tram / 步行；Great Ocean Road 可选团或双人轮换自驾。</span><span class="line"><b>安排:</b> CBD、NGV、Yarra River、Fitzroy / Collingwood 和 Great Ocean Road。</span></span></div>
+            <div class="day"><strong>D5-D6</strong><span><b>住 Hobart CBD / Sandy Bay 民宿。</b><span class="line"><b>交通:</b> MEL → HBA，机场取车；市区步行与短途自驾结合。</span><span class="line"><b>安排:</b> Salamanca、Battery Point、waterfront，Richmond / MONA 二选一。D6 完成东海岸食材采购。</span></span></div>
+            <div class="phase">Tasman Peninsula + East Coast · D7-D10</div>
+            <div class="day"><strong>D7</strong><span><b>住 Port Arthur / Eaglehawk Neck cottage。</b><span class="line"><b>交通:</b> Hobart → Tasman Peninsula，约 1.5 小时。</span><span class="line"><b>安排:</b> 自然海岸地貌 + Port Arthur，半岛住一晚。</span></span></div>
+            <div class="day"><strong>D8</strong><span><b>住 Coles Bay / Freycinet cottage。</b><span class="line"><b>交通:</b> Port Arthur → Orford → Swansea → Coles Bay，约 4 小时。</span><span class="line"><b>安排:</b> Orford 短停、Swansea 午餐采购，傍晚到 Coles Bay。</span></span></div>
+            <div class="day"><strong>D9</strong><span><b>住 Coles Bay / Freycinet cottage。</b><span class="line"><b>交通:</b> 国家公园内短途驾驶。</span><span class="line"><b>安排:</b> Wineglass Bay 徒步 + Cape Tourville / Honeymoon Bay。</span></span></div>
+            <div class="day"><strong>D10</strong><span><b>住 St Helens / Binalong Bay 民宿。</b><span class="line"><b>交通:</b> Freycinet → Bicheno → St Helens。</span><span class="line"><b>安排:</b> Bicheno 海岸、Bay of Fires 日落；St Helens 补油和采购。</span></span></div>
+            <div class="phase">Cradle Mountain + Launceston · D11-D15</div>
+            <div class="day"><strong>D11</strong><span><b>住 Cradle Valley cabin。</b><span class="line"><b>交通:</b> St Helens → Derby → Sheffield → Cradle Valley，约 4.5 小时。</span><span class="line"><b>安排:</b> 沿途小镇分段停靠，天黑前抵达山区。</span></span></div>
+            <div class="day"><strong>D12</strong><span><b>住 Cradle Valley cabin。</b><span class="line"><b>交通:</b> Visitor Centre 停车后换官方 shuttle。</span><span class="line"><b>安排:</b> Dove Lake / Ronny Creek 徒步，天气差则走低海拔短线。</span></span></div>
+            <div class="day"><strong>D13</strong><span><b>住 Launceston 公寓。</b><span class="line"><b>交通:</b> Cradle Valley → Sheffield / Deloraine → Launceston。</span><span class="line"><b>安排:</b> 小镇慢停，下午 Cataract Gorge。</span></span></div>
+            <div class="day"><strong>D14</strong><span><b>住 Launceston 公寓。</b><span class="line"><b>交通:</b> 自驾 Evandale / Tamar Valley 半日。</span><span class="line"><b>安排:</b> 北部缓冲、采购伴手礼、整理行李。</span></span></div>
+            <div class="day"><strong>D15</strong><span><b>返程或 Melbourne 机场附近过夜。</b><span class="line"><b>交通:</b> LST 机场还车 → MEL → SIN；若衔接不顺，拆出 D16。</span><span class="line"><b>安排:</b> 不排景点，留足还车与转机时间。</span></span></div>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="section" id="next">
+      <h2>下一步查票与预订</h2>
+      <p class="section-note">先锁机票与异地还车，再按路线订可取消民宿。Coles Bay、Cradle Valley 和 Tasman Peninsula 的厨房型住宿最值得先订。</p>
+      <div class="next-grid">
+        <article class="next-card">
+          <div class="card-top"><i class="ph ph-airplane-takeoff" aria-hidden="true"></i><h3>国际段</h3></div>
+          <p>SIN → MEL / MEL → SIN，分别拉 Plan A 和 Plan B 的具体日期。</p>
+        </article>
+        <article class="next-card">
+          <div class="card-top"><i class="ph ph-airplane-tilt" aria-hidden="true"></i><h3>澳洲国内段</h3></div>
+          <p>MEL → HBA、LST → MEL。确认衔接时间，不为省一晚酒店硬接早晚航班。</p>
+        </article>
+        <article class="next-card">
+          <div class="card-top"><i class="ph ph-house-line" aria-hidden="true"></i><h3>厨房型民宿</h3></div>
+          <p>优先锁 Port Arthur、Coles Bay、Cradle Valley；筛选 entire place、kitchen、washer、free parking。</p>
+        </article>
+        <article class="next-card">
+          <div class="card-top"><i class="ph ph-car-profile" aria-hidden="true"></i><h3>租车</h3></div>
+          <p>Hobart 机场取、Launceston 机场还，小型自动挡；登记两位驾驶人并确认异地还车费、零赔付额选项。</p>
+        </article>
+      </div>
+      <div class="source-links" aria-label="官方信息复核">
+        <a href="https://www.visitvictoria.com/regions/great-ocean-road/see-and-do/road-trips-and-itineraries/great-ocean-road-touring" target="_blank" rel="noreferrer"><i class="ph ph-link" aria-hidden="true"></i>Great Ocean Road</a>
+        <a href="https://parks.tas.gov.au/explore-our-parks/cradle-mountain/cradle-mountain-shuttle-bus-information" target="_blank" rel="noreferrer"><i class="ph ph-link" aria-hidden="true"></i>Cradle shuttle</a>
+        <a href="https://production.tourismtasmania.com.au/regions/east-coast/wineglass-bay/" target="_blank" rel="noreferrer"><i class="ph ph-link" aria-hidden="true"></i>Wineglass Bay</a>
+        <a href="https://www.discovertasmania.com.au/regions/east-coast/bicheno/" target="_blank" rel="noreferrer"><i class="ph ph-link" aria-hidden="true"></i>Bicheno</a>
+        <a href="https://www.discovertasmania.com.au/regions/east-coast/orford/" target="_blank" rel="noreferrer"><i class="ph ph-link" aria-hidden="true"></i>Orford</a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

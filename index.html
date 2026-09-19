@@ -354,6 +354,11 @@
       white-space: nowrap;
     }
 
+    .status.draft {
+      background: var(--warm-soft);
+      color: color-mix(in srgb, var(--warm) 74%, var(--text));
+    }
+
     .meta-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -530,7 +535,7 @@
     <section class="all-trips" id="all-trips" aria-labelledby="all-title">
       <div class="section-head">
         <h2 id="all-title">全部行程</h2>
-        <p class="result-copy" id="result-copy">目前收录 1 个行程</p>
+        <p class="result-copy" id="result-copy">目前收录 2 个行程</p>
       </div>
       <div class="trip-list" id="trip-list"></div>
       <div class="empty" id="empty-state" aria-live="polite">没有找到匹配行程，换个关键词试试。</div>
@@ -546,10 +551,26 @@
         duration: "11 天",
         focus: "Olle 徒步",
         status: "已完成规划",
+        statusType: "",
+        statusIcon: "ph-check-circle",
         href: "./jeju_olle_itinerary_2026-09-20_to_2026-09-30.html",
         image: "./assets/jeju-olle-cover.png",
         tags: ["Jeju Olle", "Solo Trip", "徒步", "购物", "地图"],
         searchable: "2026-09 济州岛 韩国 济州 Jeju Olle Solo Trip 徒步 购物 地图 西归浦 城山 济州市"
+      },
+      {
+        name: "2027-02 澳洲",
+        summary: "Melbourne + Tasmania 双人旅行，保留 Plan A / B；塔州全程自驾，沿海小镇慢停与民宿自炊。",
+        dates: "2027-02-16 至 2027-03-03",
+        duration: "16 天",
+        focus: "Melbourne + Tasmania",
+        status: "备选规划",
+        statusType: "draft",
+        statusIcon: "ph-compass",
+        href: "./australia_melbourne_tasmania_2027.html",
+        image: "./assets/australia-tasmania-cover.png",
+        tags: ["Australia", "Tasmania", "Road Trip", "Plan A/B", "双人旅行"],
+        searchable: "2027-02 澳洲 澳大利亚 Australia Melbourne Tasmania Hobart Freycinet Bay of Fires Launceston Cradle Mountain Great Ocean Road 自驾 塔斯马尼亚 墨尔本"
       }
     ];
 
@@ -577,7 +598,7 @@
                 <h3>${trip.name}</h3>
                 <p>${trip.summary}</p>
               </div>
-              <span class="status"><i class="ph ph-check-circle" aria-hidden="true"></i>${trip.status}</span>
+              <span class="status ${trip.statusType || ""}"><i class="ph ${trip.statusIcon || "ph-check-circle"}" aria-hidden="true"></i>${trip.status}</span>
             </div>
             <div class="meta-grid" aria-label="${trip.name} 信息">
               <span class="meta"><i class="ph ph-calendar-dots meta-icon" aria-hidden="true"></i>${trip.dates}</span>

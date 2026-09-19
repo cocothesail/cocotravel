@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-label="Australia Tasmania travel cover">
+  <rect width="1200" height="760" rx="44" fill="#10242a"/>
+  <path d="M0 0h1200v360c-125 68-262 92-411 73-156-20-268-87-424-102C220 317 96 354 0 428V0Z" fill="#0f7f92"/>
+  <path d="M1200 0v760H790c87-105 134-224 141-358 7-139-35-273-126-402h395Z" fill="#d9552a"/>
+  <path d="M0 468c112-77 247-114 405-112 179 3 314 67 494 77 117 6 218-12 301-54v381H0V468Z" fill="#20343b"/>
+  <circle cx="942" cy="176" r="82" fill="#f0c24a"/>
+  <circle cx="942" cy="176" r="38" fill="#fff9e8"/>
+  <path d="M140 590c96-80 198-125 306-135 131-12 225 33 337 72 93 33 189 39 291 17" fill="none" stroke="#a5d8e7" stroke-width="12" stroke-linecap="round" opacity=".78"/>
+  <path d="M140 590c52-43 107-75 164-95" fill="none" stroke="#f0c24a" stroke-width="12" stroke-linecap="round"/>
+  <text x="600" y="384" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="126" font-weight="900" letter-spacing="0" fill="#fffdf8">AUSTRALIA</text>
+  <text x="603" y="454" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="800" letter-spacing="0" fill="#c7dce3">MELBOURNE / TASMANIA</text>
+  <path d="M366 512h468" stroke="#fffdf8" stroke-width="7" stroke-linecap="round" opacity=".65"/>
+  <circle cx="366" cy="512" r="13" fill="#d9552a"/>
+  <circle cx="834" cy="512" r="13" fill="#a5d8e7"/>
+</svg>
