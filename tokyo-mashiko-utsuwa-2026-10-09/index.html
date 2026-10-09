@@ -6,15 +6,16 @@
 <title>器物手帖 · 东京与益子</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css">
 <script src="data.js" defer></script><script src="app.js" defer></script>
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
 </head>
 <body>
 <main>
 <header><div><p class="eyebrow">UTSUWA FIELD NOTES</p><h1>器物手帖<span>东京 · 益子</span></h1></div><span class="count">15 家店</span></header>
-<div class="toolbar"><label for="view">逛哪一片</label><select id="view"><option value="tokyo">东京全域 · 12 家</option><option value="aoyama">青山／表参道 · 5 家</option><option value="kappabashi">合羽桥 · 1 家</option><option value="kudan">九段／水道桥 · 2 家</option><option value="ginza">银座 · 4 家</option><option value="mashiko">益子 · 3 家</option></select></div>
+<div class="toolbar"><label for="view"><i class="ph ph-map-trifold" aria-hidden="true"></i>逛哪一片</label><select id="view"><option value="tokyo">东京全域 · 12 家</option><option value="aoyama">青山／表参道 · 5 家</option><option value="kappabashi">合羽桥 · 1 家</option><option value="kudan">九段／水道桥 · 2 家</option><option value="ginza">银座 · 4 家</option><option value="mashiko">益子 · 3 家</option></select></div>
 <section class="map" aria-label="Google 店铺地图"><iframe id="google-map" title="Google 店铺地图" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></section>
 <p class="hint" id="map-status" aria-live="polite">正在定位店铺</p><p class="hint">点击下方店铺切换 Google 地图；一次显示一家店。可拖动、缩放，街景以 Google 提供的入口为准。地图无法加载时，请使用“打开地图导航”。</p>
 <article id="detail" aria-live="polite"></article>
-<section aria-label="当前分区店铺"><h2 class="section-title">这一片的店</h2><div id="shop-list"></div></section>
+<section aria-label="当前分区店铺"><h2 class="section-title"><i class="ph ph-storefront" aria-hidden="true"></i>这一片的店</h2><div id="shop-list"></div></section>
 <footer><p>资料核对于 2026/10/9。代表作家是经营或展出记录，不保证到访库存。营业以店铺最新公告为准。</p><p>部分点位精确到街区，实际入口请使用导航确认。</p><p>地图由 Google Maps 提供。搜索按店名和日文地址定位，出发前请确认入口。</p></footer>
 </main>
 <noscript>请启用 JavaScript 以使用地图和店铺详情。</noscript>
