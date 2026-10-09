@@ -5,17 +5,17 @@
 <meta name="theme-color" content="#193b5a"><meta name="description" content="东京与益子15家器物店旅行地图：代表作家、特色物品、营业时间和导航。">
 <title>器物手帖 · 东京与益子</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css">
-<script src="vendor/d3.min.js" defer></script><script src="data.js" defer></script><script src="app.js" defer></script>
+<script src="data.js" defer></script><script src="app.js" defer></script>
 </head>
 <body>
 <main>
 <header><div><p class="eyebrow">UTSUWA FIELD NOTES</p><h1>器物手帖<span>东京 · 益子</span></h1></div><span class="count">15 家店</span></header>
 <div class="toolbar"><label for="view">逛哪一片</label><select id="view"><option value="tokyo">东京全域 · 12 家</option><option value="aoyama">青山／表参道 · 5 家</option><option value="kappabashi">合羽桥 · 1 家</option><option value="kudan">九段／水道桥 · 2 家</option><option value="ginza">银座 · 4 家</option><option value="mashiko">益子 · 3 家</option></select></div>
-<section class="map" aria-label="店铺地图"><svg id="map" aria-label="器物店分布地图"></svg><div id="pins"></div><div class="map-tools"><button id="zoom-in" aria-label="放大地图">＋</button><button id="zoom-out" aria-label="缩小地图">−</button><button id="reset" aria-label="复位地图">复位</button></div><span class="north">↑ 北</span></section>
-<p class="hint">点击数字看店铺 · 双指缩放／拖动地图</p>
+<section class="map" aria-label="Google 店铺地图"><iframe id="google-map" title="Google 店铺地图" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></section>
+<p class="hint" id="map-status" aria-live="polite">正在定位店铺</p><p class="hint">点击下方店铺切换 Google 地图；一次显示一家店。可拖动、缩放，街景以 Google 提供的入口为准。地图无法加载时，请使用“打开地图导航”。</p>
 <article id="detail" aria-live="polite"></article>
 <section aria-label="当前分区店铺"><h2 class="section-title">这一片的店</h2><div id="shop-list"></div></section>
-<footer><p>资料核对于 2026/10/9。代表作家是经营或展出记录，不保证到访库存。营业以店铺最新公告为准。</p><p>部分点位精确到街区，实际入口请使用导航确认。</p><p>底图：<a href="https://github.com/gsi-cyberjapan/experimental_rdcl" target="_blank" rel="noopener">国土地理院道路中心线</a> · 定位：国土地理院地址检索及公开会场地图</p></footer>
+<footer><p>资料核对于 2026/10/9。代表作家是经营或展出记录，不保证到访库存。营业以店铺最新公告为准。</p><p>部分点位精确到街区，实际入口请使用导航确认。</p><p>地图由 Google Maps 提供。搜索按店名和日文地址定位，出发前请确认入口。</p></footer>
 </main>
 <noscript>请启用 JavaScript 以使用地图和店铺详情。</noscript>
 </body></html>
